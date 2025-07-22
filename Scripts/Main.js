@@ -460,4 +460,24 @@ GW.Controls.Search.Data.Site = {
 		Category: "GW",
 		Terms: ["HOME", "INDEX"],
 	},
+	"About": {
+		URL: "https://groundedwren.com/Pages/About.html",
+		Category: "GW",
+		Terms: ["ABOUT", "VERA", "KONIGIN"],
+	},
+	"Games": {
+		URL: "https://groundedwren.com/Pages/Games.html",
+		Category: "GW",
+		Terms: ["GAMES", "GAME", "JAVASCRIPT", "SUDOKU", "CHESS", "MINESWEEPER"],
+	},
+	"Neocities": {
+		URL: "https://groundedwren.neocities.org/",
+		Category: "External",
+		Terms: ["NEOCITIES", "ORG", "EXTERNAL", "WEB", "DEV", "DEVELOPMENT"],
+	},
+	"Legacy": {
+		URL: "https://legacy.groundedwren.com/",
+		Category: "External",
+		Terms: ["LEGACY", "OLD", "GROUNDED", "WREN", "COM", "SITE"],
+	},
 }

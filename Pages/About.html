@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="Your average flightless bird">
-	<title>Grounded Wren</title>
+	<meta name="description" content="About Vera Konigin">
+	<title>Vera</title>
 	
 	<script>
 		/**
@@ -59,9 +59,9 @@
 		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
 	</script>
 
-	<link href="./Styles/main.css" rel="stylesheet" type="text/css">
-	<link href="./Styles/variables.css" rel="stylesheet" type="text/css">
-	<script src="./Scripts/Main.js"></script>
+	<link href="../Styles/main.css" rel="stylesheet" type="text/css">
+	<link href="../Styles/variables.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Main.js"></script>
 
 	<style>
 		body {
@@ -73,90 +73,16 @@
 			flex-grow: 1;
 
 			max-width: 1100px;
-			max-height: 900px;
 			margin-inline: auto;
-
-			display: grid;
-			grid-template-columns: minmax(150px, auto) minmax(250px, 1fr) minmax(0, 150px);
-			grid-template-areas: 
-				"nav brd nth";
-			align-items: center;
-
-			nav {
-				grid-area: nav;
-				ul {
-					display: grid;
-					grid-auto-flow: row;
-					gap: 15px;
-					padding: 0;
-
-					li {
-						list-style: none;
-
-						a {
-							display: inline-block;
-							width: 100%;
-							text-align: center;
-						}
-					}
-				}
-			}
-		}
-
-		@media(min-width: 399px) {
-			main {
-				nav ul {
-					li {
-						&[lvl="1"] {
-							padding-inline-start: 20px;
-							margin-inline-end: -5px;
-						}
-					}
-				}
-			}
-		}
-
-		@media(max-width: 400px) {
-			main {
-				grid-template-columns: auto;
-				grid-template-areas: 
-					"brd"
-					"nav"
-					"nth";
-
-				nav {
-					width: 100%;
-				}
-			}
-		}
-
-		#traversiaLyalli {
-			grid-area: brd;
-			width: 100%;
-			border-radius: 100%;
-			background-color: var(--accent-color);
-		}
-
-		#nth {
-			grid-area: nth;
 		}
 	</style>
 </head>
 <body>
 	<gw-site-header reflowWidth="650px">
-		<h1>Grounded Wren</h1>
+		<h1>Vera</h1>
 	</gw-site-header>
 	<main id="main">
-		<img id="traversiaLyalli" src="./Img/Birds/Traversia_lyalli_grunge.png" alt="A drawing of Traversia lyalli with grunge styling">
-		<nav>
-			<ul>
-				<li lvl="1"><a class="full" href="./Pages/About.html">About</a></li>
-				<li><a class="full" href="https://groundedwren.neocities.org/">Neocities</a></li>
-				<li><a class="full" href="./Pages/Games.html">Games</a></li>
-				<li lvl="1"><a class="full" href="https://legacy.groundedwren.com/">Legacy</a></li>
-			</ul>
-		</nav>
-		<div id="nth"></div>
+		<p>Todo</p>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
