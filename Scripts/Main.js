@@ -7,7 +7,7 @@
 window.GW = window.GW || {};
 (function Common(ns) {
 	(function Controls(ns) {
-			ns.SiteHeaderEl = class SiteHeader extends HTMLElement {
+		ns.SiteHeaderEl = class SiteHeader extends HTMLElement {
 			static InstanceCount = 0; // Global count of instances created
 			static InstanceMap = {}; // Dynamic map of IDs to instances of the element currently attached
 
@@ -261,6 +261,192 @@ window.GW = window.GW || {};
 		}
 		if(!customElements.get(ns.SiteHeaderEl.Name)) {
 			customElements.define(ns.SiteHeaderEl.Name, ns.SiteHeaderEl);
+		}
+
+		ns.ButtonsListEl = class ButtonsList extends HTMLElement {
+			static InstanceCount = 0; // Global count of instances created
+			static InstanceMap = {}; // Dynamic map of IDs to instances of the element currently attached
+
+			//Element name
+			static Name = "gw-buttons-list";
+			// Element CSS rules
+			static Style = `${ButtonsList.Name} {
+				display: contents;
+
+				ul {
+					min-height: 55px;
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					justify-content: space-evenly;
+					padding: 0;
+
+					li {
+						list-style: none;
+						width: 150px;
+					}
+				}
+
+				figure {
+					display: grid;
+					grid-template-rows: auto auto;
+					justify-items: center;
+					margin: 5px;
+					
+					figcaption {
+						font-size: 0.9em;
+						text-align: center;
+					}
+				}
+			}`;
+
+			//TODO update href
+			static Buttons = [
+				{
+					Href: "https://pinkvampyr.leprd.space/accessiblenet/index",
+					Src: "./Img/Buttons/accessiblenet-button.png",
+					Alt: "A light purple 88x31 button with the universal access symbol and the words 'accessible net'",
+					Title: "Accessible Net",
+					Caption: "A11y first"
+				},
+				{
+					Href: "https://owlsroost.xyz/webring/index.html",
+					Src: "./Img/Buttons/focusfirst-button.png",
+					Alt: "A light brown 88x31 button with the words 'focus first'",
+					Title: "Focus first",
+					Caption: "Anti-distraction"
+				},
+				{
+					Href: "./Img/Buttons/gw-button.png",
+					Src: "./Img/Buttons/gw-button.png",
+					Alt: "Grounded Wren 88x31 Button; white text on a swirling purple, red, and black background",
+					Title: "Grounded Wren",
+					Caption: "Created by Vera"
+				},
+				{
+					Href: "https://kalechips.net/responsive/index",
+					Src: "./Img/Buttons/responsiveweb-button.png",
+					Alt: "A dark 88x31 button with white text: 'responsive web directory'",
+					Title: "Responsive Web",
+					Caption: "Mobile visitors welcome"
+				},
+				{
+					Href: "https://bisexualism.emeowly.gay/",
+					Src: "./Img/Buttons/bisexualism-button.png",
+					Alt: "A dark 88x31 button dripping with magenta and blue that reads 'bisexualism'",
+					Title: "Bisexualism",
+					Caption: "Proudly queer"
+				},
+			];
+
+			InstanceId; // Identifier for this instance of the element
+			IsInitialized; // Whether the element has rendered its content
+
+			/** Creates an instance */
+			constructor() {
+				super();
+				if(!this.getId) {
+					// We're not initialized correctly. Attempting to fix:
+					Object.setPrototypeOf(this, customElements.get(ButtonsList.Name).prototype);
+				}
+				this.InstanceId = ButtonsList.InstanceCount++;
+			}
+
+			/** Shortcut for the root node of the element */
+			get Root() {
+				return this.getRootNode();
+			}
+			/** Looks up the <head> element (or a fascimile thereof in the shadow DOM) for the element's root */
+			get Head() {
+				if(this.Root.head) {
+					return this.Root.head;
+				}
+				if(this.Root.getElementById("gw-head")) {
+					return this.Root.getElementById("gw-head");
+				}
+				const head = document.createElement("div");
+				head.setAttribute("id", "gw-head");
+				this.Root.prepend(head);
+				return head;
+			}
+
+			/**
+			 * Generates a globally unique ID for a key unique to the custom element instance
+			 * @param {String} key Unique key within the custom element
+			 * @returns A globally unique ID
+			 */
+			getId(key) {
+				return `${ButtonsList.Name}-${this.InstanceId}-${key}`;
+			}
+			/**
+			 * Finds an element within the custom element created with an ID from getId
+			 * @param {String} key Unique key within the custom element
+			 * @returns The element associated with the key
+			 */
+			getRef(key) {
+				return this.querySelector(`#${CSS.escape(this.getId(key))}`);
+			}
+
+			/** Handler invoked when the element is attached to the page */
+			connectedCallback() {
+				this.onAttached();
+			}
+			/** Handler invoked when the element is moved to a new document via adoptNode() */
+			adoptedCallback() {
+				this.onAttached();
+			}
+			/** Handler invoked when the element is disconnected from the document */
+			disconnectedCallback() {
+				delete ButtonsList.InstanceMap[this.InstanceId];
+			}
+
+			/** Performs setup when the element has been sited */
+			onAttached() {
+				if(!this.Root.querySelector(`style.${ButtonsList.Name}`)) {
+					this.Head.insertAdjacentHTML(
+						"beforeend",
+						`<style class=${ButtonsList.Name}>${ButtonsList.Style}</style>`
+					);
+				}
+
+				ButtonsList.InstanceMap[this.InstanceId] = this;
+				if(!this.IsInitialized) {
+					if(document.readyState === "loading") {
+						document.addEventListener("DOMContentLoaded", () => {
+							if(!this.IsInitialized) {
+								this.renderContent();
+							}
+						});
+					}
+					else {
+						this.renderContent();
+					}
+				}
+			}
+
+			/** Invoked when the element is ready to render */
+			renderContent() {
+				this.innerHTML = `
+					<ul>
+						${ButtonsList.Buttons.map(btnObj => 
+							`<li>
+								<figure>
+									${btnObj.Href ? `<a href="${btnObj.Href}" target="_blank">` : ""}
+										<img src="${btnObj.Src}" alt="${btnObj.Alt}" title="${btnObj.Title}">
+									${btnObj.Href ? `</a>` : ""}
+									<figcaption>
+										${btnObj.Caption}
+									</figcaption>
+								</figure>
+							</li>`
+						).join("\n")}
+					</ul>
+				`;
+				this.IsInitialized = true;
+			}
+		}
+		if(!customElements.get(ns.ButtonsListEl.Name)) {
+			customElements.define(ns.ButtonsListEl.Name, ns.ButtonsListEl);
 		}
 	}) (ns.Controls = ns.Controls || {});
 }) (GW.Common = GW.Common || {}); 
