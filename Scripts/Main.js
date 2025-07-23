@@ -26,18 +26,36 @@ window.GW = window.GW || {};
 					border-block-end: 1px solid color-mix(in oklab, var(--border-color), transparent 80%);
 					margin-inline: 4px;
 
-					> :is(:first-child, :last-child) {
-						display: flex;
-						flex-direction: row;
-						gap: 5px;
+					> :first-child {
+						display: grid;
+						grid-template-areas:
+							"j s"
+							"b b";
+						grid-template-columns: auto 1fr;
+						grid-template-rows: auto auto;
+						justify-items: start;
+						align-items: start;
 					}
 
 					> :last-child {
+						display: flex;
+						flex-direction: row;
+						gap: 5px;
 						justify-content: flex-end;
 					}
 				}
 
+				[href="#main"] {
+					grid-area: j;
+				}
+				
+				gw-search {
+					grid-area: s;
+				}
+
 				nav {
+					grid-area: b;
+
 					display: flex;
 					flex-direction: row;
 					flex-wrap: wrap;
@@ -465,15 +483,30 @@ GW.Controls.Search.Data.Site = {
 		Category: "GW",
 		Terms: ["ABOUT", "VERA", "KONIGIN"],
 	},
+	"Guestbook": {
+		URL: "https://groundedwren.com/Pages/Guestbook.html",
+		Category: "GW",
+		Terms: ["GUESTBOOK", "SIGN", "VISITOR", "COMMENT"],
+	},
 	"Games": {
 		URL: "https://groundedwren.com/Pages/Games.html",
 		Category: "GW",
 		Terms: ["GAMES", "GAME", "JAVASCRIPT", "SUDOKU", "CHESS", "MINESWEEPER"],
 	},
-	"Neocities": {
+	"Music": {
+		URL: "https://groundedwren.com/Pages/Music.html",
+		Category: "GW",
+		Terms: ["MUSIC", "GUITAR", "SINGING", "SONG", "BAND", "SOUND"],
+	},
+	"Writing": {
+		URL: "https://groundedwren.com/Pages/Writing.html",
+		Category: "GW",
+		Terms: ["BLOG", "POETRY", "FICTION", "FANFIC", "WRITING", "ARTICLE"],
+	},
+	"LYRICS": {
 		URL: "https://groundedwren.neocities.org/",
 		Category: "External",
-		Terms: ["NEOCITIES", "ORG", "EXTERNAL", "WEB", "DEV", "DEVELOPMENT"],
+		Terms: ["LYRICS", "SONG", "SONGS", "WORD", "ANALYSIS", "PARSER", "STEMMER"],
 	},
 	"Legacy": {
 		URL: "https://legacy.groundedwren.com/",

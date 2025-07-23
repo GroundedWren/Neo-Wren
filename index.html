@@ -72,23 +72,21 @@
 			padding: 5px;
 			flex-grow: 1;
 
-			max-width: 1100px;
 			max-height: 900px;
-			margin-inline: auto;
 
 			display: grid;
-			grid-template-columns: minmax(150px, auto) minmax(250px, 1fr) minmax(0, 150px);
+			grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(250px, auto) minmax(150px, auto) minmax(0, 1fr);
 			grid-template-areas: 
-				"nav brd nth";
+				"lft nv1 brd nv2 rht";
 			align-items: center;
 
 			nav {
-				grid-area: nav;
 				ul {
 					display: grid;
 					grid-auto-flow: row;
 					gap: 15px;
 					padding: 0;
+					margin: 0;
 
 					li {
 						list-style: none;
@@ -103,9 +101,9 @@
 			}
 		}
 
-		@media(min-width: 399px) {
+		@media(min-width: 569px) {
 			main {
-				nav ul {
+				#nv1 {
 					li {
 						&[lvl="1"] {
 							padding-inline-start: 20px;
@@ -113,20 +111,35 @@
 						}
 					}
 				}
+				#nv2 {
+					li {
+						&[lvl="1"] {
+							padding-inline-end: 20px;
+							margin-inline-start: -5px;
+						}
+					}
+				}
 			}
 		}
 
-		@media(max-width: 400px) {
+		@media(max-width: 570px) {
 			main {
 				grid-template-columns: auto;
 				grid-template-areas: 
 					"brd"
-					"nav"
-					"nth";
+					"nv1"
+					"nv2";
 
 				nav {
 					width: 100%;
+
+					+ nav {
+						margin-block-start: 15px;
+					}
 				}
+			}
+			#lft, #rht {
+				display: none;
 			}
 		}
 
@@ -135,28 +148,58 @@
 			width: 100%;
 			border-radius: 100%;
 			background-color: var(--accent-color);
+			margin-block: 10px;
 		}
 
-		#nth {
-			grid-area: nth;
+		#nv1 {
+			grid-area: nv1;
+		}
+		#nv2 {
+			grid-area: nv2;
+		}
+		#lft {
+			grid-area: lft;
+			overflow: clip;
+		}
+		#rht {
+			grid-area: rht;
+			overflow: clip;
+		}
+		.side-deco {
+			max-height: 700px;
+			max-width: 100%;
+			min-width: 200px;
 		}
 	</style>
 </head>
 <body>
-	<gw-site-header reflowWidth="650px">
+	<gw-site-header reflowWidth="780px">
 		<h1>Grounded Wren</h1>
 	</gw-site-header>
 	<main id="main">
+		<div id="lft">
+			
+		</div>
 		<img id="traversiaLyalli" src="./Img/Birds/Traversia_lyalli_grunge.png" alt="A drawing of Traversia lyalli with grunge styling">
-		<nav>
+		<nav id="nv1" aria-label="Links one of two">
 			<ul>
 				<li lvl="1"><a class="full" href="./Pages/About.html">About</a></li>
-				<li><a class="full" href="https://groundedwren.neocities.org/">Neocities</a></li>
+				<li><a class="full" href="./Pages/Guestbook.html">Guestbook</a></li>
 				<li><a class="full" href="./Pages/Games.html">Games</a></li>
+				<li lvl="1"><a class="full" href="./Pages/Music.html">Music</a></li>
+			</ul>
+		</nav>
+		<nav id="nv2" aria-label="Links two of two">
+			<ul>
+				<li lvl="1"><a class="full" href="./Pages/Writing.html">Writing</a></li>
+				<li><a class="full" href="https://groundedwren.neocities.org/">Web Dev</a></li>
+				<li><a class="full" href="https://lyrics.groundedwren.com/">Lyrics</a></li>
 				<li lvl="1"><a class="full" href="https://legacy.groundedwren.com/">Legacy</a></li>
 			</ul>
 		</nav>
-		<div id="nth"></div>
+		<div id="rht">
+			<img class="side-deco" src="./Img/Decorations/Tree.png" alt="A stylized depiction of a tree">
+		</div>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
