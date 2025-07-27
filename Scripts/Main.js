@@ -108,6 +108,11 @@ window.GW = window.GW || {};
 						border-radius: 20px;
 						padding: 4px;
 					}
+					p {
+						margin: 0;
+						font-size: 0.85em;
+						font-style: italic;
+					}
 				}
 
 				svg {

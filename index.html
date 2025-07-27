@@ -101,7 +101,7 @@
 			}
 		}
 
-		@media(min-width: 569px) {
+		@media(min-width: 571px) {
 			main {
 				#nv1 {
 					li {
@@ -139,7 +139,7 @@
 				}
 			}
 			#lft, #rht {
-				display: none;
+				display: none !important;
 			}
 		}
 
@@ -149,6 +149,7 @@
 			border-radius: 100%;
 			background-color: var(--accent-color);
 			margin-block: 10px;
+			box-shadow: 0px 0px 24px 9px var(--border-color);
 		}
 
 		#nv1 {
@@ -160,6 +161,8 @@
 		#lft {
 			grid-area: lft;
 			overflow: clip;
+			display: flex;
+			justify-content: end;
 		}
 		#rht {
 			grid-area: rht;
@@ -167,18 +170,16 @@
 		}
 		.side-deco {
 			max-height: 700px;
-			max-width: 100%;
-			min-width: 200px;
 		}
 	</style>
 </head>
 <body>
-	<gw-site-header reflowWidth="780px">
+	<gw-site-header reflowWidth="790px">
 		<h1>Grounded Wren</h1>
 	</gw-site-header>
 	<main id="main">
 		<div id="lft">
-			
+			<img class="side-deco" src="./Img/Decorations/90s.png" alt="90s style triange decorations">
 		</div>
 		<img id="traversiaLyalli" src="./Img/Birds/Traversia_lyalli_grunge.png" alt="A drawing of Traversia lyalli with grunge styling">
 		<nav id="nv1" aria-label="Links one of two">
