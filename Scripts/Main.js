@@ -507,14 +507,229 @@ GW.Controls.Search.Data.Site = {
 		Category: "GW",
 		Terms: ["BLOG", "POETRY", "FICTION", "FANFIC", "WRITING", "ARTICLE"],
 	},
-	"LYRICS": {
+	"Lyrics": {
 		URL: "https://groundedwren.neocities.org/",
-		Category: "External",
+		Category: "Projects",
 		Terms: ["LYRICS", "SONG", "SONGS", "WORD", "ANALYSIS", "PARSER", "STEMMER"],
+	},
+	"Text Adventure": {
+		URL: "https://textadventure.groundedwren.com/",
+		Category: "Projects",
+		Terms: ["TEXT", "ADVENTURE", "GTAS", "GAME", "WIP", "STORY", "NOVEL"],
+	},
+	"Winnings Calc": {
+		URL: "https://legacy.groundedwren.com/pages/WinningsCalc.html",
+		Category: "Projects",
+		Terms: ["LEGACY", "WINNINGS", "CALC", "CALCULATOR", "POKER", "CHIPS", "PAYOUT", "PAYMENT"],
+	},
+	"DnD Workbook": {
+		URL: "https://legacy.groundedwren.com/pages/DnDWorkbook.html",
+		Category: "Projects",
+		Terms: ["LEGACY", "DND", "D&D", "DUNGEONS", "DRAGONS", "WORKBOOK", "EXCEL", "VBA"],
 	},
 	"Legacy": {
 		URL: "https://legacy.groundedwren.com/",
-		Category: "External",
-		Terms: ["LEGACY", "OLD", "GROUNDED", "WREN", "COM", "SITE"],
+		Category: "GW",
+		Terms: ["LEGACY", "OLD", "GROUNDED", "WREN", "COM", "SITE", "HOME"],
+	},
+	"Vera": {
+		URL: "https://legacy.groundedwren.com/pages/Character.html?char=Vera",
+		Category: "Character",
+		Terms: ["LEGACY", "CHARACTER", "VERA", "KONIGIN", "TIEFLING"],
+	},
+	"Freya": {
+		URL: "https://legacy.groundedwren.com/pages/Character.html?char=Freya",
+		Category: "Character",
+		Terms: ["LEGACY", "CHARACTER", "FREYA", "VISSER", "HUMAN"],
+	},
+	"Orianna": {
+		URL: "https://legacy.groundedwren.com/pages/Character.html?char=Orianna",
+		Category: "Character",
+		Terms: ["LEGACY", "CHARACTER", "ORIANNA", "NAILO", "ELF", "HIGH"],
+	},
+	"Sindri": {
+		URL: "https://legacy.groundedwren.com/pages/Character.html?char=Sindri",
+		Category: "Character",
+		Terms: ["LEGACY", "CHARACTER", "SINDRI", "LAELIUS", "TURIAN", "MASS", "EFFECT"],
+	},
+	"Veryn": {
+		URL: "https://legacy.groundedwren.com/pages/Character.html?char=Veryn",
+		Category: "Character",
+		Terms: ["LEGACY", "CHARACTER", "VERYN", "LAELIUS", "MOTH", "SCARLET", "TIGER", "CW", "FOXFAER", "COELARY"],
+	},
+	"The Long Haul": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2024_06_08.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "LONG", "HAUL", "PERSONAL"],
+	},
+	"Labelling Strings": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2024_02_10.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "LABELLING", "STRINGS", "ACCESSIBILITY", "A11Y", "TECHNICAL", "WEB", "DEV"],
+	},
+	"Hollowed Bones": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2023_09_26.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "HOLLOWED", "BONES", "PERSONAL"],
+	},
+	"Organizing Information Accessibly": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2023_09_18.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "ORGANIZING", "STRINGS", "ACCESSIBLY", "ACCESSIBILITY", "A11Y", "TECHNICAL", "WEB", "DEV"],
+	},
+	"Vera's Guilde to a Name Change": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2023_06_18.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "VERA", "VERA'S", "GUIDE", "TO", "A", "NAME", "CHANGE", "LEGAL", "PERSONAL"],
+	},
+	"The Social Loom": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2023_06_10.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "THE", "SOCIAL", "LOOM", "A", "HUMAN", "BY", "ANY", "OTHER", "NAME", "PHILOSOPHY", "PERSONAL"],
+	},
+	"Memories and Bedrooms": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2023_01_22.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "MEMORIES", "BEDROOMS", "PERSONAL"],
+	},
+	"Fate of the Flightless": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2022_12_31.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "FATE", "FLIGHTLESS", "PHILOSOPHY", "PERSONAL"],
+	},
+	"Hello blog!": {
+		URL: "https://legacy.groundedwren.com/pages/blog_entries/2022_12_20.html",
+		Category: "Writing / Blog",
+		Terms: ["LEGACY", "WRITING", "BLOG", "HELLO", "WORLD", "PERSONAL"],
+	},
+	"A Road to Chult": {
+		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult.html",
+		Category: "Writing / Fiction",
+		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "VERA", "ORIANNA"],
+	},
+	"The First Diamond": {
+		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult/Chapter_1.html",
+		Category: "Writing / Fiction / A Road to Chult",
+		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "CHAPTER", "ONE", "1", "FIRST", "DIAMOND", "VERA", "ORIANNA"],
+	},
+	"The Ascended Lord": {
+		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult/Chapter_2.html",
+		Category: "Writing / Fiction / A Road to Chult",
+		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "CHAPTER", "TWO", "2", "ASCENDED", "LORD", "VERA", "ORIANNA"],
+	},
+	"Embarking the Brusco": {
+		URL: "https://legacy.groundedwren.com/pages/fiction_entries/EmbarkingTheBrusco.html",
+		Category: "Writing / Fiction",
+		Terms: ["LEGACY", "WRITING", "BLOG", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN"],
+	},
+	"Chapter 1": {
+		URL: "https://legacy.groundedwren.com/pages/fiction_entries/EmbarkingTheBrusco/Chapter_1.html",
+		Category: "Writing / Fiction / Embarking the Brusco",
+		Terms: ["LEGACY", "WRITING", "BLOG", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN", "CHAPTER", "ONE", "1"],
+	},
+	"Grocery Bag": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/GroceryBag.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "GROCERY", "BAG"],
+	},
+	"Past One": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/PastOne.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "PAST", "ONE"],
+	},
+	"Night Flight": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/NightFlight.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "NIGHT", "FLIGHT"],
+	},
+	"The Rain Persists": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/TheRainPersists.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "RAIN", "PERSISTS"],
+	},
+	"The Jester": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/TheJester.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "JESTER"],
+	},
+	"Face": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/Face.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "FACE"],
+	},
+	"Continuum": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/Continuum.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "CONTINUUM"],
+	},
+	"Molasses is Sweet": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/MolassesIsSweet.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "MOLASSES", "SWEET"],
+	},
+	"Ink Black Tea": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/InkBlackTea.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "INK", "BLACK", "TEA"],
+	},
+	"EKG": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/EKG.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "INK", "BLACK", "TEA"],
+	},
+	"Nakedness": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/Nakedness.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "NAKEDNESS"],
+	},
+	"Forgotten Chimney": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/ForgottenChimney.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "FORGOTTEN", "CHIMNEY"],
+	},
+	"Under the Macroscope": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/UnderTheMacroscope.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "UNDER", "MACROSCOPE"],
+	},
+	"My Celebration Day": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/MyCelebrationDay.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "MY", "CELEBRATION", "DAY"],
+	},
+	"Unfinished Question": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/UnfinishedQuestion.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "UNFINISHED", "QUESTION"],
+	},
+	"The Perpetual City": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/ThePerpetualCity.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "PERPETUAL", "CITY"],
+	},
+	"Shades of the Night": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/ShadesOfTheNight.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "SHADES", "NIGHT"],
+	},
+	"Thirteen Crows": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/ThirteenCrows.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "THIRTEEN", "13", "CROWS"],
+	},
+	"Razor Wings": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/RazorWings.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "RAZOR", "WINGS"],
+	},
+	"This New Morning": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/ThisNewMorning.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "THIS", "NEW", "MORNING"],
+	},
+	"Melting": {
+		URL: "https://legacy.groundedwren.com/pages/poetry_entries/Melting.html",
+		Category: "Writing / Poetry",
+		Terms: ["LEGACY", "WRITING", "POETRY", "MELTING"],
 	},
 }
