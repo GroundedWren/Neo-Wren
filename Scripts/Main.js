@@ -141,7 +141,7 @@ window.GW = window.GW || {};
 				if(!GW.Controls?.PersonalizationEl) {
 					const personalizationScript = document.createElement("script");
 					personalizationScript.type = "text/javascript";
-					personalizationScript.src = "https://groundedwren.neocities.org/scripts/controls/personalizationControl.js"; //TODO update
+					personalizationScript.src = "https://groundedwren.com/Scripts/PersonalizationControl.js";
 					document.head.appendChild(personalizationScript);
 					GW.Controls?.Veil?.addDefer("GW.Controls.PersonalizationEl");
 				}
@@ -149,7 +149,7 @@ window.GW = window.GW || {};
 				if(!GW.Controls?.SearchEl) {
 					const searchScript = document.createElement("script");
 					searchScript.type = "text/javascript";
-					searchScript.src = "https://groundedwren.neocities.org/scripts/controls/searchControl.js"; // TODO update
+					searchScript.src = "https://groundedwren.com/Scripts/SearchControl.js";
 					document.head.appendChild(searchScript);
 					GW.Controls?.Veil?.addDefer("GW.Controls.Search");
 				}
@@ -323,39 +323,38 @@ window.GW = window.GW || {};
 				}
 			}`;
 
-			//TODO update href
 			static Buttons = [
 				{
 					Href: "https://pinkvampyr.leprd.space/accessiblenet/index",
-					Src: "./Img/Buttons/accessiblenet-button.png",
+					Src: "https://groundedwren.com/Img/Buttons/accessiblenet-button.png",
 					Alt: "A light purple 88x31 button with the universal access symbol and the words 'accessible net'",
 					Title: "Accessible Net",
 					Caption: "A11y first"
 				},
 				{
 					Href: "https://owlsroost.xyz/webring/index.html",
-					Src: "./Img/Buttons/focusfirst-button.png",
+					Src: "https://groundedwren.com/Img/Buttons/focusfirst-button.png",
 					Alt: "A light brown 88x31 button with the words 'focus first'",
 					Title: "Focus first",
 					Caption: "Anti-distraction"
 				},
 				{
 					Href: "./Img/Buttons/gw-button.png",
-					Src: "./Img/Buttons/gw-button.png",
+					Src: "https://groundedwren.com/Img/Buttons/gw-button.png",
 					Alt: "Grounded Wren 88x31 Button; white text on a swirling purple, red, and black background",
 					Title: "Grounded Wren",
 					Caption: "Created by Vera"
 				},
 				{
 					Href: "https://kalechips.net/responsive/index",
-					Src: "./Img/Buttons/responsiveweb-button.png",
+					Src: "https://groundedwren.com/Img/Buttons/responsiveweb-button.png",
 					Alt: "A dark 88x31 button with white text: 'responsive web directory'",
 					Title: "Responsive Web",
 					Caption: "Mobile visitors welcome"
 				},
 				{
 					Href: "https://bisexualism.emeowly.gay/",
-					Src: "./Img/Buttons/bisexualism-button.png",
+					Src: "https://groundedwren.com/Img/Buttons/bisexualism-button.png",
 					Alt: "A dark 88x31 button dripping with magenta and blue that reads 'bisexualism'",
 					Title: "Bisexualism",
 					Caption: "Proudly queer"

@@ -55,6 +55,7 @@
 			`);
 			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
 				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
 			});
 		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
 	</script>
@@ -176,6 +177,7 @@
 <body>
 	<gw-site-header reflowWidth="790px">
 		<h1>Grounded Wren</h1>
+		<p>Pardon my dust - moving repos</p>
 	</gw-site-header>
 	<main id="main">
 		<div id="lft">
@@ -184,15 +186,15 @@
 		<img id="traversiaLyalli" src="./Img/Birds/Traversia_lyalli_grunge.png" alt="A drawing of Traversia lyalli with grunge styling">
 		<nav id="nv1" aria-label="Links one of two">
 			<ul>
-				<li lvl="1"><a class="full" href="./Pages/About.html">About</a></li>
-				<li><a class="full" href="./Pages/Guestbook.html">Guestbook</a></li>
+				<li lvl="1"><a class="full" href="https://groundedwren.com/pages/AboutMe.html">About</a></li>
+				<li><a class="full" href="https://groundedwren.com/pages/Guestbook.html">Guestbook</a></li>
 				<li><a class="full" href="./Pages/Games.html">Games</a></li>
-				<li lvl="1"><a class="full" href="./Pages/Music.html">Music</a></li>
+				<li lvl="1"><a class="full" href="https://groundedwren.com/pages/Music.html?collection=I%27ll%20Miss%20The%20Winter">Music</a></li>
 			</ul>
 		</nav>
 		<nav id="nv2" aria-label="Links two of two">
 			<ul>
-				<li lvl="1"><a class="full" href="./Pages/Writing.html">Writing</a></li>
+				<li lvl="1"><a class="full" href="https://groundedwren.com/pages/Writing.html?folder=Blog">Writing</a></li>
 				<li><a class="full" href="https://groundedwren.neocities.org/">Web Dev</a></li>
 				<li><a class="full" href="https://lyrics.groundedwren.com/">Lyrics</a></li>
 				<li lvl="1"><a class="full" href="https://legacy.groundedwren.com/">Legacy</a></li>
