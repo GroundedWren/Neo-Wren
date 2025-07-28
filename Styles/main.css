@@ -38,7 +38,7 @@ a {
 		border-radius: 20px;
 		background-color: var(--link-background-color);
 
-		&:hover, &:focus {
+		&:hover {
 			background-color: var(--mark-color);
 		}
 
