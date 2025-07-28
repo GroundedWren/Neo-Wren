@@ -605,27 +605,27 @@ GW.Controls.Search.Data.Site = {
 	"A Road to Chult": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult.html",
 		Category: "Writing / Fiction",
-		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "VERA", "ORIANNA"],
+		Terms: ["LEGACY", "WRITING", "DND", "ROAD", "CHULT", "VERA", "ORIANNA"],
 	},
 	"The First Diamond": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult/Chapter_1.html",
 		Category: "Writing / Fiction / A Road to Chult",
-		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "CHAPTER", "ONE", "1", "FIRST", "DIAMOND", "VERA", "ORIANNA"],
+		Terms: ["LEGACY", "WRITING", "DND", "ROAD", "CHULT", "CHAPTER", "ONE", "1", "FIRST", "DIAMOND", "VERA", "ORIANNA"],
 	},
 	"The Ascended Lord": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult/Chapter_2.html",
 		Category: "Writing / Fiction / A Road to Chult",
-		Terms: ["LEGACY", "WRITING", "BLOG", "DND", "ROAD", "CHULT", "CHAPTER", "TWO", "2", "ASCENDED", "LORD", "VERA", "ORIANNA"],
+		Terms: ["LEGACY", "WRITING", "DND", "ROAD", "CHULT", "CHAPTER", "TWO", "2", "ASCENDED", "LORD", "VERA", "ORIANNA"],
 	},
 	"Embarking the Brusco": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/EmbarkingTheBrusco.html",
 		Category: "Writing / Fiction",
-		Terms: ["LEGACY", "WRITING", "BLOG", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN"],
+		Terms: ["LEGACY", "WRITING", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN"],
 	},
 	"Chapter 1": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/EmbarkingTheBrusco/Chapter_1.html",
 		Category: "Writing / Fiction / Embarking the Brusco",
-		Terms: ["LEGACY", "WRITING", "BLOG", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN", "CHAPTER", "ONE", "1"],
+		Terms: ["LEGACY", "WRITING", "MASS", "EFFECT", "EMBARKING", "BRUSCO", "SINDRI", "TURIAN", "CHAPTER", "ONE", "1"],
 	},
 	"Grocery Bag": {
 		URL: "https://legacy.groundedwren.com/pages/poetry_entries/GroceryBag.html",
