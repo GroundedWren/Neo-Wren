@@ -72,17 +72,90 @@
 			padding: 5px;
 			flex-grow: 1;
 
-			max-width: 1100px;
-			margin-inline: auto;
+			width: 100%;
+		}
+
+		#ulGames {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			align-content: space-around;
+			gap: 10px;
+			padding: 0;
+
+			li {
+				flex-basis: 200px;
+				flex-grow: 1;
+
+				display: grid;
+				grid-template-rows: 0fr 0fr auto 0fr;
+				grid-template-columns: minmax(200px, 1fr);
+				gap: 4px;
+
+				background-color: var(--background-color-2);
+				max-width: 350px;
+				padding: 4px;
+				border-radius: 10px;
+
+				h2 {
+					text-align: center;
+				}
+
+				img {
+					min-width: 200px;
+					width: 100%;
+				}
+
+				p {
+					margin: 0;
+				}
+
+				a.full {
+					text-align: center;
+				}
+			}
 		}
 	</style>
 </head>
 <body>
-	<gw-site-header reflowWidth="650px">
+	<gw-site-header
+		crumbs="index.html|Grounded Wren"
+		curcrumbtxt="Games"
+		reflowWidth="650px"
+	>
 		<h1>Games</h1>
 	</gw-site-header>
 	<main id="main">
-		<p>Todo</p>
+		<ul id="ulGames">
+			<li>
+				<h2>Chess</h2>
+				<img src="../Img/Games/Chess.png" alt="A chessboard">
+				<p>
+					The only winning move may be not to play, but where's the fun in that?
+					Play this timeless classic with a friend correspondance-style, or test your skills against my basic computer opponent!
+				</p>
+				<a href="https://chess.groundedwren.com/" class="full">Play Chess</a>
+			</li>
+			<li>
+				<h2>Minesweeper</h2>
+				<img src="../Img/Games/Minesweeper.png" alt="A minesweeper game board">
+				<p>
+					Relive whittling away the hours on your grandmother's Windows 97 machine with a game of Minesweeper!
+					This game supports minefields of all sizes and difficulties - your degree of peril is up to you. Happy digging!
+				</p>
+				<a href="https://minesweeper.groundedwren.com/" class="full">Play Minesweeper</a>
+			</li>
+			<li>
+				<h2>Sudoku</h2>
+				<img src="../Img/Games/Sudoku.png" alt="A partially-solved sudoku grid">
+				<p>
+					Need to waste an hour at the airport? Look no further, this Sudoku player has you covered!
+					Customize the appearance of the grid exactly to your liking and get ready for some head-scratchers!
+				</p>
+				<a href="https://sudoku.groundedwren.com/" class="full">Play Sudoku</a>
+			</li>
+		</ul>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
