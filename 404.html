@@ -7,20 +7,14 @@
 	<title>404</title>
 
 	<script>
-		const legacyPaths = new Set([
-			"/pages/Music.html",
-			"/pages/Art.html",
-			"/pages/Character.html",
-			"/pages/Writing.html",
-			"/pages/WinningsCalc.html",
-			"/pages/DnDWorkbook.html",
-			"/pages/AboutMe.html",
-			"/pages/Guestbook.html",
-			"/pages/Example.html",
-		]);
+		const legacyPaths = [
+			"/pages/",
+			"/img/",
+			"/music/"
+		];
 		
 		const pathName = window.location.pathname;
-		if(legacyPaths.has(pathName)) {
+		if(legacyPaths.filter(lPath => pathName.includes(lPath)).length) {
 			window.location.href = window.location.href.replace("/groundedwren.com", "/legacy.groundedwren.com");
 		}
 	</script>
