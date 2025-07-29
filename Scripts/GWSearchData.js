@@ -455,6 +455,9 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 	},
 };
 
-document.querySelectorAll(`gw-search[datakey="Global"]`).forEach(
-	searchEl => searchEl.buildSearchIndex()
+document.querySelectorAll(`gw-search[datakey="Global"]`).forEach(searchEl =>  {
+		if(searchEl.buildSearchIndex) {
+			searchEl.buildSearchIndex();
+		}
+	}
 );
