@@ -321,6 +321,10 @@ window.GW = window.GW || {};
 					grid-template-rows: auto auto;
 					justify-items: center;
 					margin: 5px;
+
+					img {
+						aspect-radio: 88 / 31 auto;
+					}
 					
 					figcaption {
 						font-size: 0.9em;

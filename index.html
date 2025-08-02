@@ -76,7 +76,7 @@
 			max-height: 900px;
 
 			display: grid;
-			grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(250px, auto) minmax(150px, auto) minmax(0, 1fr);
+			grid-template-columns: minmax(0, 1fr) minmax(150px, auto) minmax(250px,  auto) minmax(150px, auto) minmax(0, 1fr);
 			grid-template-areas: 
 				"lft nv1 brd nv2 rht";
 			align-items: center;
@@ -147,6 +147,7 @@
 		#traversiaLyalli {
 			grid-area: brd;
 			width: 100%;
+			aspect-ratio: 1 / 1 auto;
 			border-radius: 100%;
 			background-color: var(--accent-color);
 			margin-block: 10px;
@@ -183,7 +184,10 @@
 		<div id="lft">
 			<img class="side-deco" src="./Img/Decorations/90s.png" alt="90s style triange decorations">
 		</div>
-		<img id="traversiaLyalli" src="./Img/Birds/Traversia_lyalli_grunge.png" alt="A drawing of Traversia lyalli with grunge styling">
+		<img id="traversiaLyalli" 
+			src="./Img/Birds/Traversia_lyalli_grunge.png"
+			alt="A drawing of Traversia lyalli with grunge styling"
+		>
 		<nav id="nv1" aria-label="Links one of two">
 			<ul>
 				<li lvl="1"><a class="full" href="https://groundedwren.com/pages/AboutMe.html">About</a></li>
