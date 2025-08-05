@@ -31,7 +31,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 	"Games": {
 		URL: "https://groundedwren.com/Pages/Games.html",
 		Category: "GW",
-		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "SUDOKU", "CHESS", "MINESWEEPER"],
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "SUDOKU", "CHESS", "MINESWEEPER", "REVERSI"],
 	},
 	"Music": {
 		URL: "https://legacy.groundedwren.com/pages/Music.html?collection=I%27ll%20Miss%20The%20Winter",
@@ -47,6 +47,30 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		URL: "https://legacy.groundedwren.com/",
 		Category: "GW",
 		Terms: ["GW", "LEGACY", "OLD", "GROUNDED", "WREN", "COM", "SITE", "HOME"],
+	},
+};
+
+/** Games */
+GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
+	"Chess": {
+		URL: "https://chess.groundedwren.com/",
+		Category: "Games",
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "CHESS", "GLOBAL", "THERMONUCLEAR", "WAR"],
+	},
+	"Minesweeper": {
+		URL: "https://minesweeper.groundedwren.com/",
+		Category: "Games",
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "MINESWEEPER", "MINE", "SWEEPER"],
+	},
+	"Sudoku": {
+		URL: "https://sudoku.groundedwren.com/",
+		Category: "Games",
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "SUDOKU"],
+	},
+	"Reversi": {
+		URL: "https://reversi.groundedwren.com/",
+		Category: "Games",
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "REVERSI", "OTHELLO"],
 	},
 };
 
