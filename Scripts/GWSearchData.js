@@ -166,6 +166,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW Neocities / Gizmos",
 		Terms: ["NEOCITIES", "GIZMOS", "GIZMO", "INDEX"]
 	},
+	"Veuk": {
+		URL: "https://groundedwren.neocities.org/pages/gizmos/veilDemo.html",
+		Category: "GW Neocities / Gizmos",
+		Terms: ["NEOCITIES", "VEIL", "LOADING", "LOAD", "SCRIPT", "JAVASCRIPT", "JS", "CODE", "GIZMOS", "GIZMO"]
+	},
 	"Custom Element Template": {
 		URL: "https://groundedwren.neocities.org/pages/gizmos/customElementTemplate.html",
 		Category: "GW Neocities / Gizmos",
