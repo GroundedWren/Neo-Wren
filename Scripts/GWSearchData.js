@@ -72,6 +72,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "Games",
 		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "REVERSI", "OTHELLO"],
 	},
+	"Reversi": {
+		URL: "https://hangman.groundedwren.com/",
+		Category: "Games",
+		Terms: ["GW", "GAMES", "GAME", "JAVASCRIPT", "HANGMAN", "WORD", "GUESS"],
+	},
 };
 
 /** Neocities */
