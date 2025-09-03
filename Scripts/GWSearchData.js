@@ -171,7 +171,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW Neocities / Gizmos",
 		Terms: ["NEOCITIES", "GIZMOS", "GIZMO", "INDEX"]
 	},
-	"Veuk": {
+	"Veil": {
 		URL: "https://groundedwren.neocities.org/pages/gizmos/veilDemo.html",
 		Category: "GW Neocities / Gizmos",
 		Terms: ["NEOCITIES", "VEIL", "LOADING", "LOAD", "SCRIPT", "JAVASCRIPT", "JS", "CODE", "GIZMOS", "GIZMO"]
@@ -230,6 +230,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		URL: "https://groundedwren.neocities.org/pages/tools/bookmarkletWorkbench.html",
 		Category: "GW Neocities / Tools",
 		Terms: ["NEOCITIES", "BOOKMARKLET", "BOOKMARK", "SCRIPT", "LINK", "CSS", "JS", "WORKBENCH", "TEST", "TESTBENCH", "BENCH", "WORK", "TOOL", "TOOLS"]
+	},
+	"CSS Playground": {
+		URL: "https://groundedwren.neocities.org/pages/tools/CssPlayground.html",
+		Category: "GW Neocities / Tools",
+		Terms: ["NEOCITIES", "CSS", "PLAYGROUND", "WORKBENCH", "STYLE", "LAYOUT", "VISUALIZER", "WORK", "BENCH", "TOOL", "TOOLS"]
 	},
 	"Tutorials Index": {
 		URL: "https://groundedwren.neocities.org/pages/tutorials/index.html",
