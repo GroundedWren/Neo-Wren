@@ -133,6 +133,7 @@ window.GW = window.GW || {};
 								}
 							}
 						}
+						${this.#getDimensionsRuleset()}
 					}
 				}
 			</style>`);
@@ -162,9 +163,23 @@ window.GW = window.GW || {};
 			return "";
 		}
 
+		#getDimensionsRuleset() {
+			const width = parseFloat(this.getAttribute("data-w"));
+			const height = parseFloat(this.getAttribute("data-h"));
+			if(isNaN(width) || isNaN(height)) {
+				return "";
+			}
+			return `
+				aspect-ratio: ${width} / ${height};
+				max-width: ${width}px;
+				width: 100%;
+				height: 100%;
+			`;
+		}
+
 		async #updateImages() {
 			await new Promise(resolve => setTimeout(resolve, 0));
-			
+
 			this.querySelectorAll(`img:not(.staged)`).forEach(imgEl => {
 				imgEl.classList.add("staged");
 			});

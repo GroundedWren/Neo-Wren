@@ -64,6 +64,7 @@
 	<script src="../Scripts/Main.js"></script>
 
 	<script src="../Scripts/TooltipsControl.js"></script>
+	<script src="../Scripts/ImageLoaderControl.js"></script>
 
 	<style>
 		body {
@@ -106,7 +107,6 @@
 
 				img {
 					min-width: 200px;
-					width: 100%;
 				}
 
 				p {
@@ -132,11 +132,14 @@
 		<ul id="ulGames">
 			<li>
 				<h2>Chess</h2>
-				<gw-image-loader data-color="#525dff">
+				<gw-image-loader
+					data-w="605"
+					data-h="605"
+					data-color="#525dff"
+				>
 					<img 
 						src="../Img/Games/Chess.png"
 						alt="A chessboard"
-						style="aspect-ratio: 1 / 1 auto;"
 					>
 				</gw-image-loader>
 				<p>
@@ -147,11 +150,14 @@
 			</li>
 			<li>
 				<h2>Minesweeper</h2>
-				<gw-image-loader data-color="#474747">
+				<gw-image-loader
+					data-w="601"
+					data-h="699"
+					data-color="#474747"
+				>
 					<img
 						src="../Img/Games/Minesweeper.png"
 						alt="A minesweeper game board"
-						style="aspect-ratio: 342 / 397.77 auto;"
 					>
 				</gw-image-loader>
 				<p>
@@ -162,7 +168,11 @@
 			</li>
 			<li>
 				<h2>Sudoku</h2>
-				<gw-image-loader data-color="#3f0c3a">
+				<gw-image-loader
+					data-w="450"
+					data-h="450"
+					data-color="#3f0c3a"
+				>
 					<img
 						src="../Img/Games/Sudoku.png"
 						alt="A partially-solved sudoku grid"
@@ -177,11 +187,14 @@
 			</li>
 			<li>
 				<h2>Reversi</h2>
-				<gw-image-loader data-color="#a87143">
+				<gw-image-loader
+					data-w="642"
+					data-h="642"
+					data-color="#a87143"
+				>
 					<img
 						src="../Img/Games/Reversi.png"
 						alt="The initial state of a game of Othello"
-						style="aspect-ratio: 1 / 1 auto;"
 					>
 				</gw-image-loader>
 				<p>
@@ -195,11 +208,14 @@
 			</li>
 			<li>
 				<h2>Hangman</h2>
-				<gw-image-loader data-color="#FFFFFF">
+				<gw-image-loader
+					data-w="422"
+					data-h="550"
+					data-color="#FFFFFF"
+				>
 					<img
 						src="../Img/Games/Hangman.png"
 						alt="A hangman game right before the player loses"
-						style="aspect-ratio: 422 / 550 auto;"
 					>
 				</gw-image-loader>
 				<p>
