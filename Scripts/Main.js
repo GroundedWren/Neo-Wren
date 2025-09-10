@@ -323,7 +323,8 @@ window.GW = window.GW || {};
 					margin: 5px;
 
 					img {
-						aspect-radio: 88 / 31 auto;
+						width: 88px;
+						height: 31px;
 					}
 					
 					figcaption {
@@ -339,35 +340,40 @@ window.GW = window.GW || {};
 					Src: "https://groundedwren.com/Img/Buttons/accessiblenet-button.png",
 					Alt: "A light purple 88x31 button with the universal access symbol and the words 'accessible net'",
 					Title: "Accessible Net",
-					Caption: "A11y first"
+					Caption: "A11y first",
+					Color: "#e4d5df",
 				},
 				{
 					Href: "https://owlsroost.xyz/webring/index.html",
 					Src: "https://groundedwren.com/Img/Buttons/focusfirst-button.png",
 					Alt: "A light brown 88x31 button with the words 'focus first'",
 					Title: "Focus first",
-					Caption: "Anti-distraction"
+					Caption: "Anti-distraction",
+					Color: "#edeae3",
 				},
 				{
 					Href: "./Img/Buttons/gw-button.png",
 					Src: "https://groundedwren.com/Img/Buttons/gw-button.png",
 					Alt: "Grounded Wren 88x31 Button; white text on a swirling purple, red, and black background",
 					Title: "Grounded Wren",
-					Caption: "Created by Vera"
+					Caption: "Created by Vera",
+					Color: "#663399",
 				},
 				{
 					Href: "https://kalechips.net/responsive/index",
 					Src: "https://groundedwren.com/Img/Buttons/responsiveweb-button.png",
 					Alt: "A dark 88x31 button with white text: 'responsive web directory'",
 					Title: "Responsive Web",
-					Caption: "Mobile visitors welcome"
+					Caption: "Mobile visitors welcome",
+					Color: "#283244",
 				},
 				{
 					Href: "https://bisexualism.emeowly.gay/",
 					Src: "https://groundedwren.com/Img/Buttons/bisexualism-button.png",
 					Alt: "A dark 88x31 button dripping with magenta and blue that reads 'bisexualism'",
 					Title: "Bisexualism",
-					Caption: "Proudly queer"
+					Caption: "Proudly queer",
+					Color: "#5b264b",
 				},
 			];
 
@@ -382,6 +388,14 @@ window.GW = window.GW || {};
 					Object.setPrototypeOf(this, customElements.get(ButtonsList.Name).prototype);
 				}
 				this.InstanceId = ButtonsList.InstanceCount++;
+
+				if(!GW.Controls?.ImageLoaderEl) {
+					const imageLoaderScript = document.createElement("script");
+					imageLoaderScript.type = "text/javascript";
+					imageLoaderScript.src = "https://groundedwren.com/Scripts/ImageLoaderControl.js";
+					document.head.appendChild(imageLoaderScript);
+					GW.Controls?.Veil?.addDefer("GW.Controls.ImageLoaderEl");
+				}
 			}
 
 			/** Shortcut for the root node of the element */
@@ -463,12 +477,14 @@ window.GW = window.GW || {};
 						${ButtonsList.Buttons.map(btnObj => 
 							`<li>
 								<figure>
-									${btnObj.Href ? `<a href="${btnObj.Href}" target="_blank">` : ""}
-										<img src="${btnObj.Src}" alt="${btnObj.Alt}" title="${btnObj.Title}">
-									${btnObj.Href ? `</a>` : ""}
-									<figcaption>
-										${btnObj.Caption}
-									</figcaption>
+									<gw-image-loader data-color="${btnObj.Color}">
+										${btnObj.Href ? `<a href="${btnObj.Href}" target="_blank">` : ""}
+											<img src="${btnObj.Src}" alt="${btnObj.Alt}" title="${btnObj.Title}">
+										${btnObj.Href ? `</a>` : ""}
+										<figcaption>
+											${btnObj.Caption}
+										</figcaption>
+									</gw-image-loader>
 								</figure>
 							</li>`
 						).join("\n")}

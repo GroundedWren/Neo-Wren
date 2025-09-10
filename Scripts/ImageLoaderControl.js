@@ -50,7 +50,7 @@ window.GW = window.GW || {};
 		/** How long the loading transition is in ms */
 		get TransitionLength() {
 			const attrInt = parseInt(this.getAttribute("data-transition"))
-			return isNaN(attrInt) ? 250 : attrInt;
+			return isNaN(attrInt) ? 120 : attrInt;
 		}
 
 		/**
