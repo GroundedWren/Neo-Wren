@@ -166,6 +166,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW Neocities / Controls",
 		Terms: ["NEOCITIES", "SWITCH", "CHECKBOX", "TOGGLE", "WEB", "COMPONENT", "CONTROLS", "CONTROL"]
 	},
+	"Progress Ring": {
+		URL: "https://groundedwren.neocities.org/pages/controls/progressRingDemo.html",
+		Category: "GW Neocities / Controls",
+		Terms: ["NEOCITIES", "PROGRESS", "RING", "BAR", "LOADING", "WEB", "ANIMATION", "COMPONENT", "CONTROLS", "CONTROL"]
+	},
 	"Gizmos Index": {
 		URL: "https://groundedwren.neocities.org/pages/gizmos/index.html",
 		Category: "GW Neocities / Gizmos",
