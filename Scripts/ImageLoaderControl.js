@@ -107,10 +107,12 @@ window.GW = window.GW || {};
 		#initialize() {
 			if(this.IsInitialized) { return; }
 
-			this.setAttribute("id", this.getId());
+			if(!this.getAttribute("id")) {
+				this.setAttribute("id", this.getId());
+			}
 
 			this.insertAdjacentHTML("afterbegin", `<style>
-				${`#${this.getId()}`} {
+				${`#${this.getAttribute("id")}`} {
 					img {
 						&:not(.loaded) {
 							opacity: 0;
@@ -173,7 +175,6 @@ window.GW = window.GW || {};
 				aspect-ratio: ${width} / ${height};
 				max-width: ${width}px;
 				width: 100%;
-				height: 100%;
 			`;
 		}
 
