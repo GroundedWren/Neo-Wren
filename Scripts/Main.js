@@ -121,7 +121,7 @@ window.GW = window.GW || {};
 				}
 
 				gw-personalization {
-					min-width: 250px;
+					min-width: 250px !important;
 				}
 			}`;
 
@@ -241,9 +241,11 @@ window.GW = window.GW || {};
 						#${this.getId("header")} {
 							grid-template-columns: 1fr;
 							justify-items: center;
-						}
-						#${this.getId("p13n")} {
-							display: contents;
+
+							> :last-child {
+								justify-self: stretch;
+								justify-content: center;
+							}
 						}
 					}
 				</style>
