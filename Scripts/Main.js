@@ -76,6 +76,7 @@ window.GW = window.GW || {};
 						display: flex;
 						flex-direction: row;
 						flex-wrap: wrap;
+						row-gap: 2px;
 						
 						li {
 							display: inline-block;
@@ -247,6 +248,10 @@ window.GW = window.GW || {};
 						#${this.getId("header")} {
 							grid-template-columns: 1fr;
 							justify-items: center;
+
+							> :first-child {
+								justify-items: center;
+							}
 
 							> :last-child {
 								justify-self: stretch;
