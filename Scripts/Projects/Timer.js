@@ -179,9 +179,22 @@ GW.Pages = GW.Pages || {};
 	function getLocalStorageStartTime() {
 		return localStorage.getItem("start") ? new Date(localStorage.getItem("start")) : NaN;
 	}
+
+	function getLocalStorageTicks() {
+		return parseInt(localStorage.getItem("ticks")) || 0;
+	}
 	
 	ns.Ticks = 0;
 	const onTick = () => {
+		const lsStart = getLocalStorageStartTime();
+		if(!isNaN(lsStart)) {
+			const secDiff = parseInt((new Date() - lsStart) / 1000);
+			const lsTicks = getLocalStorageTicks();
+			if(Math.abs(secDiff - ns.Ticks + lsTicks) >= 2) {
+				ns.Ticks = secDiff + lsTicks - 1;
+			}
+		}
+
 		ns.Ring.setAttribute("numerator", ++ns.Ticks);
 		if(ns.Ticks === getTotalSeconds() + 1) {
 			ns.AlarmCbx.checked = true;
