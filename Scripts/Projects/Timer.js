@@ -118,6 +118,7 @@ GW.Pages = GW.Pages || {};
 
 		ns.Ring = ns.Ring = document.querySelector(`gw-progress-ring`);
 		ns.Ring.DisplayTextCallback = getRingText;
+		ns.Ring.querySelector(`.dot`).setAttribute("r", "5");
 
 		ns.MinutesInput = document.querySelector(`input[name="minutes"]`);
 		ns.SecondsInput = document.querySelector(`input[name="seconds"]`);
