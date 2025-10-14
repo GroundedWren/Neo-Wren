@@ -42,6 +42,12 @@ window.GW = window.GW || {};
 						gap: 5px;
 						justify-content: flex-end;
 					}
+
+					button {
+						display: flex;
+						align-items: center;
+						justify-content: center;
+					}
 				}
 
 				[href="#main"] {
@@ -253,6 +259,8 @@ window.GW = window.GW || {};
 
 				const headerText = this.querySelector(`h1`)?.innerText || "Header";
 				const subtitleText = this.querySelector(`p`)?.innerText;
+				const rightContent = this.querySelector(`.right-content`);
+
 				this.innerHTML = `
 				<header id=${this.getId("header")}>
 					<div>
@@ -274,7 +282,7 @@ window.GW = window.GW || {};
 						<h1>${headerText}</h1>
 						${subtitleText  ? `<p>${subtitleText}</p>` : ""}
 					</hgroup>
-					<div class="bubble-container">
+					<div class="right-container bubble-container">
 						<details class="bubbler">
 							<summary>
 								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -287,6 +295,11 @@ window.GW = window.GW || {};
 						</details>
 					</div>
 				</header>`;
+
+				if(rightContent) {
+					this.querySelector(`.right-container`).prepend(rightContent);
+				}
+
 				this.IsInitialized = true;
 			}
 		}

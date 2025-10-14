@@ -48,6 +48,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW",
 		Terms: ["GW", "LEGACY", "OLD", "GROUNDED", "WREN", "COM", "SITE", "HOME"],
 	},
+	"Projects": {
+		URL: "https://groundedwren.com/Pages/Projects/index.html",
+		Category: "GW",
+		Terms: ["GW", "PROJECTS", "PROJECT", "INDEX"],
+	},
 };
 
 /** Games */
@@ -263,22 +268,27 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 	"Lyrics": {
 		URL: "https://lyrics.groundedwren.com/",
 		Category: "Projects",
-		Terms: ["LYRICS", "SONG", "SONGS", "WORD", "ANALYSIS", "PARSER", "STEMMER"],
+		Terms: ["GW", "PROJECT", "PROJECTS", "LYRICS", "SONG", "SONGS", "WORD", "ANALYSIS", "PARSER", "STEMMER"],
 	},
 	"Text Adventure": {
 		URL: "https://textadventure.groundedwren.com/",
 		Category: "Projects",
-		Terms: ["TEXT", "ADVENTURE", "GTAS", "GAME", "WIP", "STORY", "NOVEL"],
+		Terms: ["GW", "PROJECT", "PROJECTS", "TEXT", "ADVENTURE", "GTAS", "GAME", "WIP", "STORY", "NOVEL"],
 	},
 	"Winnings Calc": {
 		URL: "https://legacy.groundedwren.com/pages/WinningsCalc.html",
 		Category: "Projects",
-		Terms: ["LEGACY", "WINNINGS", "CALC", "CALCULATOR", "POKER", "CHIPS", "PAYOUT", "PAYMENT"],
+		Terms: ["LEGACY", "PROJECT", "PROJECTS", "WINNINGS", "CALC", "CALCULATOR", "POKER", "CHIPS", "PAYOUT", "PAYMENT"],
 	},
 	"DnD Workbook": {
 		URL: "https://legacy.groundedwren.com/pages/DnDWorkbook.html",
 		Category: "Projects",
-		Terms: ["LEGACY", "DND", "D&D", "DUNGEONS", "DRAGONS", "WORKBOOK", "EXCEL", "VBA"],
+		Terms: ["LEGACY", "PROJECT", "PROJECTS", "DND", "D&D", "DUNGEONS", "DRAGONS", "WORKBOOK", "EXCEL", "VBA"],
+	},
+	"Timer": {
+		URL: "https://groundedwren.com/Pages/Projects/Timer.html",
+		Category: "Projects",
+		Terms: ["GW", "PROJECT", "PROJECTS", "TIMER", "COUNTDOWN", "STOPWATCH", "TIME"],
 	},
 };
 

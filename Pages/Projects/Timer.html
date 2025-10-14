@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A simple timer">
+	<title>Timer</title>
+	
+	<script>
+		/**
+		 * A script for a loading veil
+		 * @author Vera Konigin vera@groundedwren.com
+		 * https://groundedwren.neocities.org
+		 */
+		window.GW = window.GW || {};
+		window.GW.Controls = window.GW.Controls || {};
+		(function Veil(ns) {
+			ns.DeferKeys = {"DOMContentLoaded": true};
+			
+			/**
+			 * Defers the lowering of the veil until a key is cleared
+			 * @param {string} key The defer key to keep the veil up
+			 */
+			ns.addDefer = function addDefer(key) {
+				ns.DeferKeys[key] = true;
+			}
+			
+			/**
+			 * Marks a defer key as complete and clears the veil if no remain
+			 * @param {string} key The key to clear
+			 */
+			ns.clearDefer = function clearDefer(key) {
+				delete ns.DeferKeys[key];
+				if(Object.keys(ns.DeferKeys).length === 0) {
+					requestAnimationFrame(() => document.getElementById("styGwLoad")?.remove());
+				}
+			}
+			
+			document.head.insertAdjacentHTML("beforeend", `
+				<style id="styGwLoad">
+					body {
+						opacity: 0;
+					}
+					html {
+						width: 100vw;
+						height: 100vh;
+						background-color: var(--veil-light-color, #E3E3E3) !important;
+					}
+					@media(prefers-color-scheme: dark) {
+						html {
+							background-color: var(--veil-dark-color, #242424) !important;
+						}
+					}
+				</style>
+			`);
+			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
+				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
+			});
+		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
+	</script>
+
+	<link href="../../Styles/main.css" rel="stylesheet" type="text/css">
+	<link href="../../Styles/variables.css" rel="stylesheet" type="text/css">
+	<link href="../../Styles/InputGrid.css" rel="stylesheet" type="text/css">
+	<script src="../../Scripts/Main.js"></script>
+	<script src="../../Scripts/ProgressRingControl.js"></script>
+	<script src="../../Scripts/SwitchControl.js"></script>
+	<script src="../../Scripts/SVGIconControl.js"></script>
+	<script src="../../Scripts/Projects/Timer.js"></script>
+
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+
+			main {
+				flex-grow: 1;
+			}
+
+			&:has(#cbxMaximize:checked) {
+				header, footer, main > article {
+					display: none;
+				}
+			}
+
+			button {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+		}
+		main {
+			margin-block: 5px;
+			display: grid;
+			grid-template-rows: auto 1fr minmax(auto, 50px) auto auto;
+			grid-template-columns: 1fr;
+			justify-items: center;
+			align-items: start;
+
+			gw-progress-ring {
+				justify-self: center;
+				height: 100%;
+				max-width: 100vw;
+				min-height: 200px;
+				--animation-duration: 1s;
+			}
+
+			#switches {
+				justify-self: stretch;
+				font-size: 2em;
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				justify-items: center;
+
+				#btnReset {
+					border-radius: 20px;
+					aspect-ratio: 1 /1;
+				}
+
+				label {
+					border-radius: 20px;
+					padding-inline: 10px;
+					&:not(:has(:checked)) {
+						background-color: var(--button-face-color);
+					}
+					fill: var(--button-text-color);
+				}
+			}
+
+			article {
+				margin-block: 5px;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 10px;
+				justify-content: center;
+
+				fieldset {
+					background-color: var(--background-color-2);
+					legend {
+						background-color: var(--accent-color);
+					}
+				}
+			}
+		}
+		#diaCite {
+			padding: 0px;
+			border: none;
+
+			article {
+				display: grid;
+
+				header {
+					display: grid;
+					grid-template-columns: 1fr auto;
+					align-items: start;
+					background-color: var(--accent-color);
+
+					button {
+						justify-self: end;
+					}
+				}
+
+				th {
+					word-break: keep-all;
+				}
+			}
+		}
+	</style>
+</head>
+<body>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren; Pages/Projects/index.html|Projects"
+		curcrumbtxt="Timer"
+		reflowWidth="660px"
+	>
+		<h1>Timer</h1>
+		<button class="right-content" onclick="document.getElementById('diaCite').showModal()">
+			<gw-icon iconKey="circle-info" name="Info"></gw-icon>
+		</button>
+	</gw-site-header>
+	<audio id="audBeep" src="../../Audio/Timer/Dooo.mp3"></audio>
+	<main id="main">
+		<div id="switches">
+			<button id="btnReset" onclick="GW.Pages.Timer.onReset()">
+				<gw-icon iconKey="rotate-left" name="Reset"></gw-icon>
+			</button>
+			<label>
+				<gw-switch><input type="checkbox" id="cbxRun" autocomplete="off"></gw-switch>
+				<gw-icon iconKey="play" name="Run"></gw-icon>
+			</label>
+			<label>
+				<gw-switch><input type="checkbox" id="cbxMaximize" autocomplete="off"></gw-switch>
+				<gw-icon iconKey="expand" name="Maximize"></gw-icon>
+			</label>
+		</div>
+		<gw-progress-ring name="Timer" forceAnimate></gw-progress-ring>
+		<audio id="audAlarm" controls loop></audio>
+		<article>
+			<fieldset>
+				<legend>Settings</legend>
+				<div class="input-grid">
+					<label>
+						<span>Minutes:</span>
+						<input type="number" name="minutes" required oninput="GW.Pages.Timer.onTimeInput()" autocomplete="off">
+					</label>
+					<label>
+						<span>Seconds:</span>
+						<input type="number" name="seconds" required oninput="GW.Pages.Timer.onTimeInput()" autocomplete="off">
+					</label>
+					<label>
+						<span>Color:</span>
+						<input
+							type="color"
+							name="color"
+							onchange="GW.Pages.Timer.updateThresholds()"
+							autocomplete="off"
+						>
+					</label>
+					<label>
+						<span>Sound:</span>
+						<select name="sound" required autocomplete="off" oninput="GW.Pages.Timer.onSoundInput()">
+							<option value="../../Audio/Timer/Alarm_Clock.mp3" selected>Alarm Clock</option>
+							<option value="../../Audio/Timer/Groove.mp3" selected>Groove</option>
+							<option value="../../Audio/Timer/Halloween.mp3" selected>Halloween</option>
+							<option value="../../Audio/Timer/Bells.mp3" selected>Bells</option>
+							<option value="../../Audio/Timer/Christmas.mp3" selected>Christmas</option>
+							<option value="../../Audio/Timer/Applause.mp3" selected>Applause</option>
+							<option value="../../Audio/Timer/Chimes.mp3" selected>Chimes</option>
+						</select>
+					</label>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Warning 1</legend>
+				<div class="input-grid">
+					<label>
+						<span>Minutes:</span>
+						<input type="number" name="w1mins" oninput="GW.Pages.Timer.updateThresholds()" autocomplete="off">
+					</label>
+					<label>
+						<span>Seconds:</span>
+						<input type="number" name="w1secs" oninput="GW.Pages.Timer.updateThresholds()" autocomplete="off">
+					</label>
+					<label>
+						<span>Color:</span>
+						<input
+							type="color"
+							name="w1color"
+							onchange="GW.Pages.Timer.updateThresholds()"
+							autocomplete="off"
+						>
+					</label>
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Warning 2</legend>
+				<div class="input-grid">
+					<label>
+						<span>Minutes:</span>
+						<input type="number" name="w2mins" oninput="GW.Pages.Timer.updateThresholds()" autocomplete="off">
+					</label>
+					<label>
+						<span>Seconds:</span>
+						<input type="number" name="w2secs" oninput="GW.Pages.Timer.updateThresholds()" autocomplete="off">
+					</label>
+					<label>
+						<span>Color:</span>
+						<input
+							type="color"
+							name="w2color"
+							onchange="GW.Pages.Timer.updateThresholds()"
+							autocomplete="off"
+						>
+					</label>
+				</div>
+			</fieldset>
+		</article>
+	</main>
+	<footer>
+		<gw-buttons-list></gw-buttons-list>
+	</footer>
+	<dialog id="diaCite" aria-labelledby="hWorksCited">
+		<article>
+			<header>
+				<h1 id="hWorksCited">Works Cited</h1>
+				<button onclick="document.getElementById('diaCite').close()">
+					<gw-icon iconKey="xmark" name="close"></gw-icon>
+				</button>
+			</header>
+			<table aria-labelledby="diaCite">
+				<thead>
+					<tr>
+						<th scope="col">Sound</th>
+						<th scope="col">Citation</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope="row">Warning dooo</th>
+						<td>
+							<a href="https://freesound.org/people/JustInvoke/sounds/446130/">Race Start Countdown</a> by <a href="https://freesound.org/people/JustInvoke/">JustInvoke</a> | License: <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Alarm Clock</th>
+						<td>
+							<a href="https://freesound.org/people/Kesu/sounds/182351/">Alarm clock beep</a> by <a href="https://freesound.org/people/Kesu/">Kesu</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Groove</th>
+						<td>
+							<a href="https://freesound.org/people/Victor_Natas/sounds/626545/">Floating on bad conscience</a> by <a href="https://freesound.org/people/Victor_Natas/">Victor_Natas</a> | License: <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Halloween</th>
+						<td>
+							<a href="https://freesound.org/people/batmetal/sounds/391433/">Halloween 8-bit (forward reverse).mp3</a> by <a href="https://freesound.org/people/batmetal/">batmetal</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Bells</th>
+						<td>
+							<a href="https://freesound.org/people/Cinetony/sounds/560741/">Church-bell clock in small village</a> by <a href="https://freesound.org/people/Cinetony/">Cinetony</a> | License: <a href="http://creativecommons.org/publicdomain/zero/1.0/">Creative Commons 0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Christmas</th>
+						<td>
+							<a href="https://freesound.org/people/Jghoffman418/sounds/713349/">trapsleighride</a> by <a href="https://freesound.org/people/Jghoffman418/">Jghoffman418</a> | License: <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Christmas</th>
+						<td>
+							<a href="https://freesound.org/people/kevp888/sounds/763630/">240615-15_FR_Applause_indoor</a> by <a href="https://freesound.org/people/kevp888/">kevp888</a> | License: <a href="https://creativecommons.org/licenses/by/4.0/">Attribution 4.0</a>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row">Chimes</th>
+						<td>
+							<a href="https://freesound.org/people/CharleneZ/sounds/326342/">Wind Chime.wav</a> by <a href="https://freesound.org/people/CharleneZ/">CharleneZ</a> | License: <a href="http://creativecommons.org/licenses/by-nc/3.0/">Attribution NonCommercial 3.0</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</article>
+	</dialog>
+</body>
+</html>
