@@ -98,6 +98,12 @@
 			justify-items: center;
 			align-items: start;
 
+			@media(width <= 450px) {
+				&:has(#cbxMaximize:checked) {
+					margin-block-start: 50px;
+				}
+			}
+
 			gw-progress-ring {
 				justify-self: center;
 				height: 100%;
