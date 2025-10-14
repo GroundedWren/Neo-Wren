@@ -87,10 +87,20 @@ GW.Pages = GW.Pages || {};
 			}
 		}
 		else {
-			ns.Alarm.pause();
+			ns.AlarmCbx.checked = false;
 			clearInterval(ns.RunInterval);
 			localStorage.removeItem("start");
 			localStorage.setItem("ticks", ns.Ticks);
+		}
+	};
+
+	const onAlarmSwitch = () => {
+		if(ns.AlarmCbx.checked) {
+			ns.Alarm.currentTime = 0;
+			ns.Alarm.play();
+		}
+		else {
+			ns.Alarm.pause();
 		}
 	};
 
@@ -126,6 +136,9 @@ GW.Pages = GW.Pages || {};
 
 		ns.RunCbx = document.getElementById("cbxRun");
 		ns.RunCbx.addEventListener("switch", onRunChange);
+
+		ns.AlarmCbx = document.getElementById("cbxAlarm");
+		ns.AlarmCbx.addEventListener("switch", onAlarmSwitch);
 
 		ns.MaximizeCbx = document.getElementById("cbxMaximize");
 		ns.MaximizeCbx.addEventListener("switch", onMaximizeChange);
@@ -171,8 +184,7 @@ GW.Pages = GW.Pages || {};
 	const onTick = () => {
 		ns.Ring.setAttribute("numerator", ++ns.Ticks);
 		if(ns.Ticks === getTotalSeconds() + 1) {
-			ns.Alarm.currentTime = 0;
-			ns.Alarm.play();
+			ns.AlarmCbx.checked = true;
 		}
 		checkThresholds();
 	};
@@ -214,7 +226,7 @@ GW.Pages = GW.Pages || {};
 	ns.onReset = () => {
 		ns.Ticks = 0;
 		ns.Ring.setAttribute("numerator", 0);
-		ns.Alarm.pause();
+		ns.AlarmCbx.checked = false;
 
 		if(ns.RunCbx.checked) {
 			localStorage.setItem("start", new Date());

@@ -93,7 +93,7 @@
 		main {
 			margin-block: 5px;
 			display: grid;
-			grid-template-rows: auto 1fr minmax(auto, 50px) auto auto;
+			grid-template-rows: auto 1fr auto auto auto;
 			grid-template-columns: 1fr;
 			justify-items: center;
 			align-items: start;
@@ -106,9 +106,20 @@
 				--animation-duration: 1s;
 			}
 
+			label:has(gw-switch) {
+				border-radius: 20px;
+				padding-inline: 10px !important;
+				
+				fill: var(--button-text-color);
+				font-size: 2em;;
+
+				&:not(:has(:checked)) {
+					background-color: var(--button-face-color);
+				}
+			}
+
 			#switches {
 				justify-self: stretch;
-				font-size: 2em;
 				display: grid;
 				grid-template-columns: 1fr 1fr 1fr;
 				justify-items: center;
@@ -116,15 +127,6 @@
 				#btnReset {
 					border-radius: 20px;
 					aspect-ratio: 1 /1;
-				}
-
-				label {
-					border-radius: 20px;
-					padding-inline: 10px;
-					&:not(:has(:checked)) {
-						background-color: var(--button-face-color);
-					}
-					fill: var(--button-text-color);
 				}
 			}
 
@@ -181,6 +183,7 @@
 		</button>
 	</gw-site-header>
 	<audio id="audBeep" src="../../Audio/Timer/Dooo.mp3"></audio>
+	<audio id="audAlarm" loop></audio>
 	<main id="main">
 		<div id="switches">
 			<button id="btnReset" onclick="GW.Pages.Timer.onReset()">
@@ -196,7 +199,10 @@
 			</label>
 		</div>
 		<gw-progress-ring name="Timer" forceAnimate></gw-progress-ring>
-		<audio id="audAlarm" controls loop></audio>
+		<label>
+				<gw-switch><input type="checkbox" id="cbxAlarm" autocomplete="off"></gw-switch>
+				<gw-icon iconKey="volume" name="Alarm"></gw-icon>
+			</label>
 		<article>
 			<fieldset>
 				<legend>Settings</legend>
