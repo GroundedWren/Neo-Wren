@@ -100,12 +100,16 @@
 
 			@media(width <= 450px) {
 				&:has(#cbxMaximize:checked) {
-					margin-block-start: 50px;
+					grid-template-rows: auto 1fr auto;
+					margin-block: auto;
+					max-height: 80vh;
+					align-content: center;
 				}
 			}
 
 			gw-progress-ring {
 				justify-self: center;
+				align-items: center;
 				height: 100%;
 				max-width: 100vw;
 				min-height: 200px;
