@@ -43,7 +43,9 @@ GW.Pages = GW.Pages || {};
 			"src",
 			document.querySelector(`select[name="sound"]`).value
 		);
-		ns.Alarm.currentTime = 0;
+		if(ns.AlarmCbx.checked) {
+			ns.Alarm.play();
+		}
 		localStorage.setItem("sound", ns.SoundSelect.value);
 	};
 
