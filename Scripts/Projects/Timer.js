@@ -168,7 +168,7 @@ GW.Pages = GW.Pages || {};
 		const startTime = getLocalStorageStartTime();
 		const ticks = parseInt(localStorage.getItem("ticks"));
 		if(!isNaN(startTime)) {
-			ns.Ticks = Math.floor((new Date() - startTime) / 1000);
+			ns.Ticks = Math.floor((new Date() - startTime) / 1000) + (ticks || 0);
 			ns.RunCbx.checked = true;
 		}
 		else if(!isNaN(ticks)) {
@@ -180,19 +180,17 @@ GW.Pages = GW.Pages || {};
 	function getLocalStorageStartTime() {
 		return localStorage.getItem("start") ? new Date(localStorage.getItem("start")) : NaN;
 	}
-
-	function getLocalStorageTicks() {
-		return parseInt(localStorage.getItem("ticks")) || 0;
-	}
 	
 	ns.Ticks = 0;
 	const onTick = () => {
 		const lsStart = getLocalStorageStartTime();
 		if(!isNaN(lsStart)) {
-			const secDiff = parseInt((new Date() - lsStart) / 1000);
-			const lsTicks = getLocalStorageTicks();
-			if(Math.abs(secDiff - ns.Ticks + lsTicks) >= 2) {
-				ns.Ticks = secDiff + lsTicks - 1;
+			const secSinceStart = parseInt((new Date() - lsStart) / 1000);
+			const ticksAtStart = parseInt(localStorage.getItem("ticks")) || 0;;
+			const ticksSinceStart = ns.Ticks - ticksAtStart;
+			if(Math.abs(secSinceStart - ticksSinceStart) >= 2) {
+				//Ticks are out of sync with real time difference - adjust to match real time.
+				ns.Ticks = secSinceStart + ticksAtStart - 1;
 			}
 		}
 
@@ -244,6 +242,7 @@ GW.Pages = GW.Pages || {};
 
 		if(ns.RunCbx.checked) {
 			localStorage.setItem("start", new Date());
+			localStorage.removeItem("ticks");
 		}
 		else {
 			localStorage.removeItem("start");
