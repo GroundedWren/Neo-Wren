@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="About Vera Konigin">
-	<title>Vera</title>
+	<title>About</title>
 	
 	<script>
 		/**
@@ -64,6 +64,60 @@
 	<link href="../Styles/variables.css" rel="stylesheet" type="text/css">
 	<script src="../Scripts/Main.js"></script>
 
+	<script src="../Scripts/GalleryControl.js"></script>
+	<script src="../Scripts/ImageLoaderControl.js"></script>
+
+	<script>
+		window.GW = window.GW || {};
+		GW.Controls = GW.Controls || {};
+		GW.Controls.Gallery = GW.Controls.Gallery || {};
+		GW.Controls.Gallery.Data = GW.Controls.Gallery.Data || {};
+		GW.Controls.Gallery.Data.Vera = {
+			ImageList: [
+				"Vera Flowers - Ewylana - 2024-06-04",
+				"WrenDoot",
+				"Human",
+			],
+			ImageFolder: "../Img/Gallery/Vera",
+			ImageInfo: {
+				"Vera Flowers - Ewylana - 2024-06-04": {
+					Title: "Vera the character",
+					Date: new Date(2024, 5, 4),
+					Alt: "A tielfing woman in purple robes sitting in a field of lavender looking contemplatively into the middle distance.",
+					Cite: "https://www.tumblr.com/ewylana",
+					Extension: "png",
+				},
+				"WrenDoot": {
+					Title: "Vera the pseudonym",
+					Date: new Date(2023, 9, 20),
+					Alt: `A doodle of a wren saying &quot;i am off to code doot doot doot doot doot&quot;`,
+					Cite: "https://damosden.neocities.org/",
+					Extension: "png",
+				},
+				"Human": {
+					Title: "Vera the human",
+					Date: new Date(2023, 7, 4),
+					Alt: `A photo of a bespectacled human with a medical mask over her face and a sleeping mask on her forehead.`,
+					Extension: "png",
+				},
+			},
+		};
+
+		const updateTime = () => {
+			const timVera = document.getElementById("timVera");
+			if(!timVera) { return; }
+
+			const now = new Date();
+			timVera.setAttribute("datetime", now.toISOString())
+			timVera.innerText = now.toLocaleString(undefined, { timeZone: "America/Chicago", timeStyle: "short", });
+		};
+
+		window.addEventListener("DOMContentLoaded", () => {
+			updateTime();
+			setInterval(updateTime, 1000);
+		});
+	</script>
+
 	<style>
 		body {
 			display: flex;
@@ -75,15 +129,222 @@
 
 			max-width: 1100px;
 			margin-inline: auto;
+
+			width: 100%;
+
+			h1, h2, h3, h4, h5, h6 {
+				margin-block-end: 0px;
+
+				+ p {
+					margin-block-start: 0px;
+				}
+			}
+
+			gw-gallery {
+				display: block;
+				width: 400px;
+				background-color: var(--background-color-2);
+			}
+
+			> article {
+				header {
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: center;
+					gap: 10px;
+
+					> hgroup {
+						flex-grow: 1;
+						text-align: center;
+						display: grid;
+						grid-template-columns: auto 1fr auto;
+						grid-template-areas: 
+							"before header after"
+							"before paragr after";
+						align-items: center;
+
+						&::before {
+							grid-area: before;
+							content: "{";
+							font-size: 2em;
+						}
+						&::after {
+							grid-area: after;
+							content: "}";
+							font-size: 2em;
+						}
+
+						h1, h2, h3, h4, h5, h6 {
+							grid-area: header;
+							border-block-end: 1px solid var(--accent-color);
+						}
+
+						p {
+							grid-area: paragr;
+							margin: 0;
+							font-style: italic;
+						}
+					}
+				}
+
+				@media(width > 400px) {
+					.right {
+						float: inline-end;
+						clear: right;
+					}
+				}
+				@media(width <= 400px) {
+					.right {
+						margin-inline: auto;
+					}
+				}
+			}
+
+			.callout-quote {
+				max-width: 600px;
+				width: fit-content;
+				background-color: var(--background-color-2);
+				border-radius: 20px;
+				padding-inline: 6px;
+				display: grid;
+				grid-auto-flow: row;
+				justify-items: center;
+
+				blockquote {
+					position: relative;
+					margin: 0;
+					padding: 1em;
+
+					&::before, &::after {
+						position: absolute;
+						font-size: 2em;
+					}
+					&::before {
+						content: "“";
+						top: 0;
+						left: 0;
+					}
+					&::after {
+						content: "”";
+						bottom: 0;
+						right: 0;
+					}
+				}
+			}
 		}
 	</style>
 </head>
 <body>
-	<gw-site-header reflowWidth="650px">
-		<h1>Vera</h1>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren"
+		curcrumbtxt="About"
+		reflowWidth="650px"
+	>
+		<h1>About</h1>
 	</gw-site-header>
 	<main id="main">
-		<p>Todo</p>
+		<article>
+			<header>
+				<hgroup>
+					<h2>Vera Konigin</h2>
+					<p>Webmaster</p>
+				</hgroup>
+				<gw-gallery
+					name="Vera"
+					maxImgHeight="200px"
+					minImgHeight="200px"
+					reflowWidth="399px"
+					startAt="0"
+				></gw-gallery>
+			</header>
+			<p>
+				Hello! Call me Vera; it's not my name, but it also is. I've had many names over
+				the years - nicknames, usernames, handles, titles, identifiers. Some of them were my choice, others prescribed, but all gesture
+				through various lenses and perspectives at the same basic concept. Vera is one of my chosen names - an aspect of myself
+				that I choose to primarily present in online spaces. It holds a special significance to me, and is in some ways more meaningful
+				than the names I use formally.
+			</p>
+			<h3>Character</h3>
+			<p>
+				Vera Konigin is a Dungeons and Dragons character. She was created by the dungeon master as a Non-Player Character to serve
+				an expository role in the narrative arc of the moment. When my Player Character was killed, Vera was repurposed into his
+				role and remained with me for the duration of the game, which was many years.
+			</p>
+			<p>
+				I've used the medium of roleplay to express and ruminate on aspects of my personality I don't generally front, and
+				Vera has been perhaps the most pointed instance.
+			</p>
+			<p>
+				<em>I am not Vera</em>. She is jealous, aloof, arrogant, and demeaning.
+				<em>I am not Vera</em>. She is determined, corageous, defiant, and just.
+				<em>I am not Vera</em>. She is frightened, insecure, avoidant, and suspicious.
+				<em>I am not Vera</em>. She is idealistic, unrealistic, and rigid.
+				<em>I am not Vera</em>. She believes in people.
+				<em>I am not Vera</em>. She disbelieves in herself.
+				<em>I am not Vera</em>. She bullies.
+				<em>I am not Vera</em>. She cares deeply.
+				<em>I am not Vera</em>. Vera is me.
+			</p>
+			<h3>Pseudonym</h3>
+			<p>
+				Vera Konigin is a name I give when I wish to remain (pseudo-)anonymous. It's the mechanism by which I keep my physical self
+				insulated from my online exposure. It is a barrier I place between myself and systems I must engage with that wish to know
+				me. It is distance between my professional self and my prototypal, hobbyist work.
+			</p>
+			<p>
+				I've also found that doing work under a pen name enables me to trick my brain into not tying my ego into things quite so much.
+				 This helps me receive criticism without taking it as personally as I otherwise tend to and helps me avoid the non-starting
+				 variety of procrastination.
+			</p>
+			<h3>Human</h3>
+			<p>
+				Vera is what some of my friends actually call me. There are times and contexts where my formal names, and even their informal
+				variants, simply feel incorrect. If all you've known me as is Vera, then I am Vera. I respond to Vera. I think of myself as
+				Vera. You can call me Vera.
+			</p>
+			<p>
+				Vera is a midwestern American woman nearing her thirties. She's a programmer by day trying to lean into the accessibility
+				 side of things. She likes a bunch of things including folk music, cooking, card games,
+				 and (wouldn't you know it) making websites.
+			</p>
+			<p>
+				If you want to get in touch, you may do so via <a href="mailto:vera@groundedwren.com">vera@groundedwren.com</a> 
+				 or reach out on discord to <q>groundedwren</q>. Note: it is currently <time id="timVera"></time> where I live.
+			</p>
+		</article>
+		<article>
+			<header>
+				<gw-image-loader data-color="#FFFFFF" data-w="250px" data-h="250px">
+					<img
+						src="../Img/Birds/Traversia_lyalli.png" 
+						alt="A depiction of Traversia Lyalli"
+						style="border-radius: 20px;"
+					>
+				</gw-image-loader>
+				<hgroup>
+					<h2>Grounded Wren</h2>
+					<p>This Place</p>
+				</hgroup>
+			</header>
+			<p>
+				<div class="callout-quote right">
+					<blockquote>
+						Have I found you, flightless bird?<br>
+						Grounded, bleeding
+					</blockquote>
+					<cite>Iron &amp; Wine</cite>
+				</div>
+				I first made GroundedWren.com back in 2022 when I was just dipping my toes into the personal web. Its stated purpose was
+				 as a personal sandbox where I could have fun getting better at web development. I've made a lot of websites and web
+				 content since then, and the original GroundedWren.com stagnated as my techniques evolved.
+			</p>
+			<p>
+				This is the second iteration of Groundedwren.com, and its goal is pretty much the same. I do also intend for it to be
+				 a sort of nexus that connects my other projects - Vera's Frontpage, if I may. I don't know - we'll see where it goes.
+			</p>
+		</article>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
