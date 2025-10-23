@@ -144,6 +144,16 @@ window.GW = window.GW || {};
 					Object.setPrototypeOf(this, customElements.get(SiteHeader.Name).prototype);
 				}
 				this.InstanceId = SiteHeader.InstanceCount++;
+
+				document.head.insertAdjacentHTML(
+					`beforeend`,
+					`<link href="https://groundedwren.com/Styles/PersonalizationFonts.css" rel="stylesheet" type="text/css">`
+				);
+
+				document.head.insertAdjacentHTML(
+					`beforeend`,
+					`<link href="https://groundedwren.com/Styles/Bubbler.css" rel="stylesheet" type="text/css">`
+				);
 				
 				if(!GW.Controls?.PersonalizationEl) {
 					const personalizationScript = document.createElement("script");
