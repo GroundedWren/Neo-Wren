@@ -23,7 +23,8 @@ window.GW = window.GW || {};
 					gap: 10px;
 					padding-block: 10px;
 					border-block-end: 1px solid color-mix(in oklab, var(--border-color), transparent 80%);
-					margin-inline: 4px;
+					padding-inline: 4px;
+					background-color: var(--background-color);
 
 					> :first-child {
 						display: grid;
