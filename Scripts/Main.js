@@ -340,6 +340,7 @@ window.GW = window.GW || {};
 					flex-wrap: wrap;
 					justify-content: space-evenly;
 					padding: 0;
+					margin: 0;
 
 					li {
 						list-style: none;
