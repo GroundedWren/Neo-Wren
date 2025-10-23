@@ -130,8 +130,6 @@
 			max-width: 1100px;
 			margin-inline: auto;
 
-			width: 100%;
-
 			h1, h2, h3, h4, h5, h6 {
 				margin-block-end: 0px;
 
@@ -142,7 +140,7 @@
 
 			gw-gallery {
 				display: block;
-				width: 400px;
+				flex-basis: 400px;
 				background-color: var(--background-alt-color);
 			}
 
@@ -189,13 +187,13 @@
 					}
 				}
 
-				@media(width > 400px) {
+				@media(width > 475px) {
 					.right {
 						float: inline-end;
 						clear: right;
 					}
 				}
-				@media(width <= 400px) {
+				@media(width <= 475px) {
 					.right {
 						margin-inline: auto;
 					}
@@ -207,6 +205,7 @@
 				width: fit-content;
 				background-color: var(--background-alt-color);
 				border-radius: 20px;
+				margin-block: 2px;
 				padding-inline: 6px;
 				display: grid;
 				grid-auto-flow: row;
@@ -277,15 +276,17 @@
 				Vera has been perhaps the most pointed instance.
 			</p>
 			<p>
-				<em>I am not Vera</em>. She is jealous, aloof, arrogant, and demeaning.
-				<em>I am not Vera</em>. She is determined, corageous, defiant, and just.
-				<em>I am not Vera</em>. She is frightened, insecure, avoidant, and suspicious.
-				<em>I am not Vera</em>. She is idealistic, unrealistic, and rigid.
-				<em>I am not Vera</em>. She believes in people.
-				<em>I am not Vera</em>. She disbelieves in herself.
-				<em>I am not Vera</em>. She bullies.
-				<em>I am not Vera</em>. She cares deeply.
-				<em>I am not Vera</em>. Vera is me.
+				<i>I am not Vera</i>. She is jealous, aloof, arrogant, and demeaning.
+				<i>I am not Vera</i>. She is determined, corageous, defiant, and just.
+				<i>I am not Vera</i>. She is frightened, insecure, avoidant, and suspicious.
+				<i>I am not Vera</i>. She is idealistic, unrealistic, and rigid.
+				<i>I am not Vera</i>. She believes in people.
+				<i>I am not Vera</i>. She disbelieves in herself.
+				<i>I am not Vera</i>. She bullies.
+				<i>I am not Vera</i>. She cares deeply.
+			</p>
+			<p>
+				I am <strong>not</strong> Vera. But she is me.
 			</p>
 			<h3>Pseudonym</h3>
 			<p>
@@ -328,14 +329,14 @@
 					<p>This Place</p>
 				</hgroup>
 			</header>
+			<div class="callout-quote right">
+				<blockquote>
+					Have I found you, flightless bird?<br>
+					Grounded, bleeding
+				</blockquote>
+				<cite>Iron &amp; Wine</cite>
+			</div>
 			<p>
-				<div class="callout-quote right">
-					<blockquote>
-						Have I found you, flightless bird?<br>
-						Grounded, bleeding
-					</blockquote>
-					<cite>Iron &amp; Wine</cite>
-				</div>
 				I first made GroundedWren.com back in 2022 when I was just dipping my toes into the personal web. Its stated purpose was
 				 as a personal sandbox where I could have fun getting better at web development. I've made a lot of websites and web
 				 content since then, and the original GroundedWren.com stagnated as my techniques evolved.
