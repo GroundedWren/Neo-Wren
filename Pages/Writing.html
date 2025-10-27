@@ -62,18 +62,149 @@
 
 	<link href="../Styles/MainBundle.css" rel="stylesheet" type="text/css">
 	<script src="../Scripts/Main.js"></script>
+	<script src="../Scripts/TablistControl.js"></script>
+	<script src="../Scripts/RadioMenuControl.js"></script>
+	<script src="../Scripts/WritingData.js"></script>
+	<script src="../Scripts/Writing.js"></script>
 
 	<style>
 		body {
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-rows: auto 1fr auto;
+			max-height: 100vh;
 		}
 		main {
-			padding: 5px;
-			flex-grow: 1;
+			display: grid;
+			grid-template-areas:
+				"fol fol"
+				"pnl frm";
+			grid-template-columns: minmax(200px, 20vw) 1fr;
+			grid-template-rows: auto 1fr;
+			overflow: hidden;
 
-			max-width: 1100px;
-			margin-inline: auto;
+			@media(width <= 650px) {
+				display: flex;
+				flex-direction: column;
+				iframe {
+					display: none;
+				}
+			}
+			
+			#tblstFolders {
+				grid-area: fol;
+				
+				fieldset {
+					border: none;
+					padding: 0;
+					margin: 0;
+
+					> div {
+						display: grid;
+						grid-auto-flow: column;
+						grid-auto-columns: 1fr;
+						gap: 5px;
+
+						button {
+							font-weight: bold;
+							border-block-start: 3px solid var(--background-color);
+
+							&[tabindex="-1"]:focus {
+								outline: none !important;
+							}
+							
+							&[aria-selected="true"] {
+								border-block-start-color: var(--border-color);
+							}
+
+							.radio {
+								display: none;
+							}
+						}
+					}
+				}
+			}
+			#divPanels {
+				position: relative;
+				grid-area: pnl;
+				overflow-y: auto;
+
+				display: grid;
+				grid-template-rows: 1fr auto;
+				flex-grow: 1;
+
+				[role="tabpanel"] {
+					fieldset {
+						border: none;
+						margin: 0;
+					}
+				}
+
+				#artInfo:not(:empty) {
+					position: sticky;
+					bottom: 0;
+					background-color: var(--background-alt-color);
+					padding: 4px;
+
+					display: grid;
+					row-gap: 2px;
+					grid-template-areas:
+						"link link"
+						"auth time";
+					text-align: center;
+
+					a {
+						grid-area: link;
+					}
+					cite {
+						grid-area: auth;
+					}
+					time {
+						grid-area: time;
+					}
+				}
+			}
+			iframe {
+				grid-area: frm;
+				width: 100%;
+				height: 100%;
+
+				&[data-hascontent="false"] {
+					content-visibility: hidden;
+					background: radial-gradient(circle, var(--accent-color) 0%, var(--background-alt-color) 100%);
+				}
+			}
+		}
+
+		button.borderless, gw-radiomenu button {
+			border: none;
+			--button-face-color: var(--misc-interactive-color);
+			--selected-color: var(--selected-alt-color);
+
+			display: grid;
+			align-items: center;
+			justify-content: center;
+
+			.text {
+				padding-block: 2px;
+				padding-inline: 4px;
+				border-radius: 20px;
+				background-color: var(--background-alt-color);
+				background-color: color-mix(in oklab, var(--background-alt-color) 60%, transparent);
+			}
+		}
+
+		gw-radiomenu {
+			display: grid;
+			grid-auto-flow: row;
+			grid-auto-rows: minmax(auto, 40px);
+			gap: 5px;
+
+			[role="menuitemradio"] {
+				border-inline: 4px solid transparent;
+				&[aria-checked="true"] {
+					border-inline-start-color: var(--border-color);
+				}
+			}
 		}
 	</style>
 </head>
@@ -82,7 +213,35 @@
 		<h1>Writing</h1>
 	</gw-site-header>
 	<main id="main">
-		<p>Todo</p>
+		<gw-tablist id="tblstFolders">
+			<fieldset>
+				<legend class="sr-only">Folders</legend>
+				<div>
+					<button id="btnBlog" class="borderless" aria-controls="pnlBlog"><div class="text">Blog</div></buttton>
+					<button class="borderless" aria-controls="pnlFiction"><div class="text">Fiction</div></buttton>
+					<button class="borderless" aria-controls="pnlPoetry"><div class="text">Poetry</div></buttton>
+				</div>
+			</fieldset>
+		</gw-tablist>
+		<div id="divPanels">
+			<article id="pnlBlog">
+				<fieldset>
+					<legend class="sr-only">Entries</legend>
+				</fieldset>
+			</article>
+			<article id="pnlFiction">
+				<fieldset>
+					<legend class="sr-only">Entries</legend>
+				</fieldset>
+			</article>
+			<article id="pnlPoetry">
+				<fieldset>
+					<legend class="sr-only">Entries</legend>
+				</fieldset>
+			</article>
+			<article id="artInfo"></article>
+		</div>
+		<iframe title="" data-hascontent="false"></iframe>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
