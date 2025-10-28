@@ -72,6 +72,10 @@
 			display: grid;
 			grid-template-rows: auto 1fr auto;
 			max-height: 100vh;
+
+			@media(height < 515px) {
+				max-height: unset;
+			}
 		}
 		main {
 			display: grid;
@@ -81,8 +85,9 @@
 			grid-template-columns: minmax(200px, 20vw) 1fr;
 			grid-template-rows: auto 1fr;
 			overflow: hidden;
+			min-height: 200px;
 
-			@media(width <= 650px) {
+			@media(width <= 650px) or (height < 515px) {
 				display: flex;
 				flex-direction: column;
 				iframe {
