@@ -186,7 +186,7 @@
 					border: none;
 					opacity: 0;
 
-					&[data-hascontent="true"] {
+					&:not([src="about:blank"]) {
 						opacity: 1;
 						transition: opacity ease-in 0.5s;
 					}
@@ -260,7 +260,7 @@
 			</article>
 			<article id="artInfo"></article>
 		</div>
-		<div class="frame"><iframe title="" data-hascontent="false"></iframe></div>
+		<div class="frame"><iframe title=""></iframe></div>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>

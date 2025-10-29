@@ -93,8 +93,13 @@ GW.Pages = GW.Pages || {};
 
 		const iframe = document.querySelector(`iframe`);
 		const entryData = (ns.Data[selectedFolder] || {})[selectedEntry];
-		iframe.contentWindow.location.replace(entryData ? entryData.URL : null);
-		iframe.setAttribute("data-hascontent", !!entryData?.URL);
+		if(entryData) {
+			iframe.removeAttribute("src");
+			iframe.contentWindow.location.replace(entryData.URL);
+		}
+		else {
+			iframe.setAttribute("src", "about:blank");
+		}
 
 		document.getElementById("artInfo").innerHTML = entryData
 			? `<a href="${entryData.URL}" class="full">${selectedEntry}</a>
