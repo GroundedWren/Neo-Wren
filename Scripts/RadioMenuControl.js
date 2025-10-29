@@ -125,6 +125,8 @@ window.GW = window.GW || {};
 		#initialize() {
 			if(this.IsInitialized) { return; }
 
+			this.setAttribute("role", "menu");
+
 			this.#ButtonList = Array.from(this.querySelectorAll(`button`));
 
 			for(let i = 0; i < this.#ButtonList.length; i++) {
