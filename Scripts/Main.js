@@ -19,6 +19,8 @@ window.GW = window.GW || {};
 				header {
 					display: grid;
 					grid-template-columns: 1fr 1fr 1fr;
+					grid-template-areas:
+						"left head right";
 					align-items: center;
 					gap: 10px;
 					padding-block: 10px;
@@ -27,6 +29,7 @@ window.GW = window.GW || {};
 					background-color: var(--background-color);
 
 					> :first-child {
+						grid-area: left;
 						display: grid;
 						grid-template-areas:
 							"j s"
@@ -38,6 +41,7 @@ window.GW = window.GW || {};
 					}
 
 					> :last-child {
+						grid-area: right;
 						display: flex;
 						flex-direction: row;
 						gap: 5px;
@@ -104,6 +108,7 @@ window.GW = window.GW || {};
 				}
 
 				hgroup {
+					grid-area: head;
 					display: flex;
 					flex-direction: column;
 					align-items: center;
@@ -257,15 +262,18 @@ window.GW = window.GW || {};
 				<style>
 					@media (max-width: ${this.getAttribute("reflowWidth") || "450px"}) {
 						#${this.getId("header")} {
-							grid-template-columns: 1fr;
-							justify-items: center;
+							grid-template-columns: 1fr auto;
+							grid-template-areas: 
+								"left right"
+								"head head";
+							align-items: start;
 
 							> :first-child {
-								justify-items: center;
+								justify-items: start;
 							}
 
 							> :last-child {
-								justify-self: stretch;
+								justify-self: end;
 								justify-content: center;
 							}
 						}
