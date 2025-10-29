@@ -269,7 +269,7 @@ window.GW = window.GW || {};
 							align-items: start;
 
 							> :first-child {
-								justify-items: start;
+								justify-self: start;
 							}
 
 							> :last-child {
