@@ -3,6 +3,16 @@ GW.Pages = GW.Pages || {};
 GW.Pages.Writing = GW.Pages.Writing || {};
 (function Data(ns) {
 	ns.Blog =  {
+		"Tapping Into Element Setters": {
+			Author: "Vera",
+			Date: new Date(2025, 1, 9),
+			URL: "https://groundedwren.neocities.org/pages/tutorials/elementSetters.html"
+		},
+		"Tabs Pattern": {
+			Author: "Vera",
+			Date: new Date(2024, 6, 21),
+			URL: "https://groundedwren.neocities.org/pages/tutorials/tabsPattern.html"
+		},
 		"The Long Haul": {
 			Author: "Vera",
 			Date: new Date(2024, 5, 8),
