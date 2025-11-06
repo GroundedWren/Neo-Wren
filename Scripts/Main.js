@@ -163,7 +163,7 @@ window.GW = window.GW || {};
 				if(!GW.Controls?.PersonalizationEl) {
 					const personalizationScript = document.createElement("script");
 					personalizationScript.type = "text/javascript";
-					personalizationScript.src = "https://groundedwren.com/Scripts/PersonalizationControl.js";
+					personalizationScript.src = "https://groundedwren.com/Scripts/Controls/PersonalizationControl.js";
 					document.head.appendChild(personalizationScript);
 					GW.Controls?.Veil?.addDefer("GW.Controls.PersonalizationEl");
 				}
@@ -171,7 +171,7 @@ window.GW = window.GW || {};
 				if(!GW.Controls?.SearchEl) {
 					const searchScript = document.createElement("script");
 					searchScript.type = "text/javascript";
-					searchScript.src = "https://groundedwren.com/Scripts/SearchControl.js";
+					searchScript.src = "https://groundedwren.com/Scripts/Controls/SearchControl.js";
 					document.head.appendChild(searchScript);
 					GW.Controls?.Veil?.addDefer("GW.Controls.Search");
 				}
@@ -432,7 +432,7 @@ window.GW = window.GW || {};
 				if(!GW.Controls?.ImageLoaderEl) {
 					const imageLoaderScript = document.createElement("script");
 					imageLoaderScript.type = "text/javascript";
-					imageLoaderScript.src = "https://groundedwren.com/Scripts/ImageLoaderControl.js";
+					imageLoaderScript.src = "https://groundedwren.com/Scripts/Controls/ImageLoaderControl.js";
 					document.head.appendChild(imageLoaderScript);
 					GW.Controls?.Veil?.addDefer("GW.Controls.ImageLoaderEl");
 				}
