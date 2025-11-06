@@ -219,7 +219,7 @@
 			gap: 5px;
 
 			[role="menuitemradio"] {
-				border-inline: 4px solid transparent;
+				border-inline: 4px solid var(--background-color);
 				&[aria-checked="true"] {
 					border-inline-start-color: var(--border-color);
 				}
@@ -242,7 +242,7 @@
 				</div>
 			</fieldset>
 		</gw-tablist>
-		<div id="divPanels">
+		<div id="divPanels" tabindex="-1">
 			<article id="pnlBlog">
 				<fieldset>
 					<legend class="sr-only">Entries</legend>
