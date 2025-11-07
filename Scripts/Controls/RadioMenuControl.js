@@ -179,7 +179,7 @@ window.GW = window.GW || {};
 			if(button.getAttribute("aria-checked") !== "true") {
 				this.#ButtonList.forEach(button => button.setAttribute("aria-checked", "false"));
 				button.setAttribute("aria-checked", "true");
-				this.dispatchEvent(new Event("change"));
+				this.dispatchEvent(new CustomEvent("change", {detail: {Selection: button}}));
 			}
 		};
 	}

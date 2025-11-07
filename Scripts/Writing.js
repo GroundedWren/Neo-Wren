@@ -63,7 +63,14 @@ GW.Pages = GW.Pages || {};
 		displayCurrentEntry();
 	};
 
-	const onRadMenuChange = (_event) => {
+	const onRadMenuChange = (event) => {
+		setTimeout(() => {
+			const artInfoRect = document.getElementById("artInfo").getBoundingClientRect();
+			const selectionRect = event.detail.Selection.getBoundingClientRect();
+			if(artInfoRect.top < selectionRect.bottom) {
+				event.detail.Selection.scrollIntoView();
+			}
+		}, 0);
 		displayCurrentEntry();
 	};
 
