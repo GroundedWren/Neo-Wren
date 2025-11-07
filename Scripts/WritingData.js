@@ -75,6 +75,11 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Poetry = {
+		"I Hear The World End": {
+			Author: "Vera",
+			Date: new Date(2025, 10, 4),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/I_Hear_The_World_End.html",
+		},
 		"Grocery Bag": {
 			Author: "Vera",
 			Date: new Date(2023, 10, 20),

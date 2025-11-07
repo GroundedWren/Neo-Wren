@@ -102,6 +102,9 @@ GW.Pages = GW.Pages || {};
 		const entryData = (ns.Data[selectedFolder] || {})[selectedEntry];
 		if(entryData) {
 			iframe.removeAttribute("src");
+			iframe.onload = () => {
+				iframe.contentDocument?.querySelectorAll(`.no-embed`).forEach(el => el.remove());
+			};
 			iframe.contentWindow.location.replace(entryData.URL);
 		}
 		else {

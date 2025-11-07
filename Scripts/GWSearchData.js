@@ -402,6 +402,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Poetry */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"I Hear The World End": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/I_Hear_The_World_End.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "I", "HEAR", "THE", "WORLD", "END"],
+	},
 	"Grocery Bag": {
 		URL: "https://legacy.groundedwren.com/pages/poetry_entries/GroceryBag.html",
 		Category: "Writing / Poetry",
