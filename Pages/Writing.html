@@ -186,9 +186,9 @@
 					border: none;
 					opacity: 0;
 
-					&:not([src="about:blank"]) {
-						opacity: 1;
+					&:not(.empty) {
 						transition: opacity ease-in 0.5s;
+						opacity: 1;
 					}
 				}
 			}
@@ -260,7 +260,7 @@
 			</article>
 			<article id="artInfo"></article>
 		</div>
-		<div class="frame"><iframe title=""></iframe></div>
+		<div class="frame"><iframe title="" class="empty"></iframe></div>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>

@@ -65,6 +65,7 @@ GW.Pages = GW.Pages || {};
 
 	const onRadMenuChange = (event) => {
 		setTimeout(() => {
+			if(!event.detail.Selection) { return; }
 			const artInfoRect = document.getElementById("artInfo").getBoundingClientRect();
 			const selectionRect = event.detail.Selection.getBoundingClientRect();
 			if(artInfoRect.top < selectionRect.bottom) {
@@ -93,22 +94,32 @@ GW.Pages = GW.Pages || {};
 		IsUpdatingDisplay = true;
 
 		const tab = document.querySelector(`[aria-controls="pnl${selectedFolder}"]`);
-		tab?.click();
+		if(tab && tab.getAttribute("aria-selected") !== "true") {
+			tab.click();
+		}
 
 		const mnuItmRad = document.querySelector(`[role="menuitemradio"][data-entry="${selectedEntry}"]`);
-		mnuItmRad?.click();
+		if(mnuItmRad && mnuItmRad.getAttribute("aria-checked") !== "true") {
+			mnuItmRad.click();
+		}
+		if(!selectedEntry) {
+			document.querySelectorAll(`gw-radiomenu`).forEach(radioMenu => radioMenu.uncheck());
+		}
 
 		const iframe = document.querySelector(`iframe`);
 		const entryData = (ns.Data[selectedFolder] || {})[selectedEntry];
 		if(entryData) {
-			iframe.removeAttribute("src");
+			iframe.classList.add("empty");
 			iframe.onload = () => {
 				iframe.contentDocument?.querySelectorAll(`.no-embed`).forEach(el => el.remove());
+				iframe.classList.remove("empty");
 			};
 			iframe.contentWindow.location.replace(entryData.URL);
 		}
 		else {
-			iframe.setAttribute("src", "about:blank");
+			iframe.onload = () => {};
+			iframe.contentWindow.location.replace("about:blank");
+			iframe.classList.add("empty");
 		}
 
 		document.getElementById("artInfo").innerHTML = entryData

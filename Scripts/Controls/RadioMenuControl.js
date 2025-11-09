@@ -3,6 +3,7 @@ window.GW = window.GW || {};
 	ns.RadioMenu = class RadioMenu extends HTMLElement {
 		static InstanceCount = 0; // Global count of instances created
 		static InstanceMap = {}; // Dynamic map of IDs to instances of the element currently attached
+		static ResetMs = 500;
 
 		// Element name
 		static Name = "gw-radiomenu";
@@ -25,6 +26,11 @@ window.GW = window.GW || {};
 		#StyleAttribute; // Identifying attribute for this instance's CSSStyleSheet
 
 		#ButtonList;
+
+		//Type-ahead
+		KeyMap = {};
+		CurKeySequence = [];
+		LastKeyTimestamp = new Date(-8640000000000000); //Earliest representable date
 
 		/** Creates an instance */
 		constructor() {
@@ -133,12 +139,15 @@ window.GW = window.GW || {};
 				const buttonEl = this.#ButtonList[i];
 				buttonEl.setAttribute("role", "menuitemradio");
 				buttonEl.setAttribute("tabindex", i === 0 ? "0" : "-1");
+				buttonEl.setAttribute("data-index", i);
 				if(!buttonEl.hasAttribute("aria-checked")) {
 					buttonEl.setAttribute("aria-checked", "false");
 				}
 				buttonEl.addEventListener("keydown", this.#onButtonKeydown);
 				buttonEl.addEventListener("click", this.#onButtonClick);
 				buttonEl.addEventListener("focusin", this.#onButtonFocusin);
+
+				this.#addToKeyMap(buttonEl.innerText.trim(), buttonEl);
 			}
 
 			this.IsInitialized = true;
@@ -155,9 +164,11 @@ window.GW = window.GW || {};
 
 			switch(event.key) {
 				case "ArrowUp":
+					event.preventDefault();
 					btnIdx--;
 					break;
 				case "ArrowDown":
+					event.preventDefault();
 					btnIdx++;
 					break;
 				case "Home":
@@ -166,6 +177,11 @@ window.GW = window.GW || {};
 				case "End":
 					btnIdx = this.#ButtonList.length - 1;
 					break;
+				default:
+					const matchedItem = this.#getFirstMatch(event.key);
+					if(matchedItem) {
+						btnIdx = parseInt(matchedItem.getAttribute("data-index"));
+					}
 			}
 
 			btnIdx = Math.min(Math.max(btnIdx, 0), this.#ButtonList.length - 1);
@@ -181,7 +197,58 @@ window.GW = window.GW || {};
 				button.setAttribute("aria-checked", "true");
 				this.dispatchEvent(new CustomEvent("change", {detail: {Selection: button}}));
 			}
+			else {
+				button.setAttribute("aria-checked", "false");
+				this.dispatchEvent(new CustomEvent("change", {detail: {Selection: null}}));
+			}
 		};
+
+		/**
+		 * Enables an option for type-ahead functionality
+		 * @param {string} text Option's text
+		 * @param {HTMLElement} menuItemEl Menu Item element
+		 */
+		#addToKeyMap(text, menuItemEl) {
+			let currentLevel = this.KeyMap;
+			text.split("").forEach(character => {
+				const chaKey = character.toLowerCase();
+				currentLevel[chaKey] = currentLevel[chaKey] || {};
+				currentLevel = currentLevel[chaKey];
+				(currentLevel.ItemElAry = currentLevel.ItemElAry || []).push(menuItemEl);
+			});
+		}
+
+		/**
+		 * Finds a type-ahead match
+		 * @param {string} key Latest typed character
+		 * @returns {HTMLElement | null} Item element match
+		 */
+		#getFirstMatch(key) {
+			const chaKey = key.toLowerCase();
+			const keyTimestamp = new Date();
+			if(keyTimestamp - this.LastKeyTimestamp > RadioMenu.ResetMs) {
+				this.CurKeySequence = [];
+			}
+			this.LastKeyTimestamp = keyTimestamp;
+
+			this.CurKeySequence.push(chaKey);
+
+			let sequenceObj = this.KeyMap;
+			this.CurKeySequence.forEach(chaKey => sequenceObj = sequenceObj[chaKey] || {});
+
+			if(!sequenceObj.ItemElAry) {
+				if(this.KeyMap[chaKey]?.ItemElAry) {
+					this.CurKeySequence = [chaKey];
+					sequenceObj = this.KeyMap[chaKey];
+				}
+				else {
+					this.CurKeySequence = [];
+					return null;
+				}
+			}
+
+			return sequenceObj.ItemElAry[0];
+		}
 	}
 	if(!customElements.get(ns.RadioMenu.Name)) {
 		customElements.define(ns.RadioMenu.Name, ns.RadioMenu);
