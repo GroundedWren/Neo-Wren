@@ -1,0 +1,75 @@
+gw-radiomenu:not(.default) {
+	display: grid;
+	grid-auto-flow: row;
+	grid-auto-rows: minmax(auto, 40px);
+	gap: 5px;
+
+	[role="menuitemradio"] {
+		border-inline: 4px solid var(--background-color);
+		&[aria-checked="true"] {
+			border-inline-start-color: var(--border-color);
+		}
+	}
+}
+
+gw-tablist:not(.default) {
+	fieldset {
+		border: none;
+		padding: 0;
+		margin: 0;
+
+		> div {
+			display: grid;
+			grid-auto-flow: column;
+			grid-auto-columns: 1fr;
+			gap: 5px;
+
+			button {
+				&[tabindex="-1"]:focus {
+					outline: none !important;
+				}
+
+				border-block-start: 3px solid var(--background-color);
+				&[aria-selected="true"] {
+					border-block-start-color: var(--border-color);
+				}
+
+				.radio {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+:is(gw-tablist:not(.default), gw-radiomenu:not(.default)) button, button.borderless {
+	border: none;
+	--button-face-color: var(--misc-interactive-color);
+	--selected-color: var(--selected-alt-color);
+
+	display: grid;
+	align-items: center;
+	justify-content: center;
+
+	.text {
+		padding-block: 2px;
+		padding-inline: 4px;
+		border-radius: 20px;
+		background-color: var(--background-alt-color);
+		background-color: color-mix(in oklab, var(--background-alt-color) 60%, transparent);
+	}
+
+	&.horizontal-select {
+		border-inline: 4px solid var(--background-color);
+		&[aria-checked="true"] {
+			border-inline-start-color: var(--border-color);
+		}
+	}
+
+	&.vertical-select {
+		border-block-start: 4px solid var(--background-color);
+		&[aria-selected="true"] {
+			border-block-start-color: var(--border-color);
+		}
+	}
+}
