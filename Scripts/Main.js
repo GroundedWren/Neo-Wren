@@ -150,15 +150,19 @@ window.GW = window.GW || {};
 				}
 				this.InstanceId = SiteHeader.InstanceCount++;
 
-				document.head.insertAdjacentHTML(
-					`beforeend`,
-					`<link href="https://groundedwren.com/Styles/PersonalizationFonts.css" rel="stylesheet" type="text/css">`
-				);
+				if(!document.head.querySelector(`link[href*="PersonalizationFonts.css"]`)) {
+					document.head.insertAdjacentHTML(
+						`beforeend`,
+						`<link href="https://groundedwren.com/Styles/PersonalizationFonts.css" rel="stylesheet" type="text/css">`
+					);
+				}
 
-				document.head.insertAdjacentHTML(
-					`beforeend`,
-					`<link href="https://groundedwren.com/Styles/Bubbler.css" rel="stylesheet" type="text/css">`
-				);
+				if(!document.head.querySelector(`link[href*="Bubbler.css"]`)) {
+					document.head.insertAdjacentHTML(
+						`beforeend`,
+						`<link href="https://groundedwren.com/Styles/Bubbler.css" rel="stylesheet" type="text/css">`
+					);
+				}
 				
 				if(!GW.Controls?.PersonalizationEl) {
 					const personalizationScript = document.createElement("script");
