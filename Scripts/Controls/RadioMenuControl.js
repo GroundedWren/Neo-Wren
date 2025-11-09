@@ -21,6 +21,8 @@ window.GW = window.GW || {};
 
 		InstanceId; // Identifier for this instance of the element
 		IsInitialized; // Whether the element has rendered its content
+		#InitRes;
+		InitPromise = new Promise(resolve => this.#InitRes = resolve);
 
 		#StyleSheet; // CSSStyleSheet for this instance
 		#StyleAttribute; // Identifying attribute for this instance's CSSStyleSheet
@@ -151,6 +153,7 @@ window.GW = window.GW || {};
 			}
 
 			this.IsInitialized = true;
+			this.#InitRes();
 		}
 
 		#onButtonFocusin = (event) => {
