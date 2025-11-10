@@ -191,7 +191,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 						[
 							`And it's much too cold to run like a dog all alone`,
 							`So come to my side and snuggle with me in the blanket`,
-							`But dont' offer your love 'cause I'm not the one who should take it`,
+							`But don't offer your love 'cause I'm not the one who should take it`,
 						],
 						[
 							`I'll batton the doors and the windows too`,
