@@ -63,26 +63,285 @@
 	<link href="../Styles/MainBundle.css" rel="stylesheet" type="text/css">
 	<script src="../Scripts/Main.js"></script>
 
+	<script src="../Scripts/MusicData.js"></script>
+	<script src="../Scripts/Music.js"></script>
+
+	<link href="../Styles/Bubbler.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Controls/SVGIconControl.js"></script>
+	<script src="../Scripts/Controls/RadioMenuControl.js"></script>
+	<script src="../Scripts/Controls/ImageLoaderControl.js"></script>
+	<script src="../Scripts/Controls/SwitchControl.js"></script>
+
 	<style>
 		body {
-			display: flex;
-			flex-direction: column;
+			display: grid;
+			grid-template-rows: auto 1fr auto;
+			max-height: 100vh;
+
+			@media(height < 750px) or (width < 850px) {
+				max-height: unset;
+				--fig-justify-content: stretch;
+				--main-max-height: none;
+			}
 		}
 		main {
-			padding: 5px;
-			flex-grow: 1;
+			display: grid;
+			grid-template-areas:
+				"col trk";
+			grid-template-columns: 1fr 1fr;
+			gap: 5px;
 
-			max-width: 1100px;
-			margin-inline: auto;
+			padding: 5px;
+			min-height: 0px;
+			min-width: 0px;
+			max-height: var(--main-max-height, 900px);
+
+			@media(width < 850px) {
+				grid-template-areas: 
+					"col"
+					"trk";
+				grid-template-columns: 1fr;
+				grid-template-rows: unset;
+			}
+
+			#secCollection {
+				grid-area: col;
+			}
+
+			#secTracks {
+				grid-area: trk
+			}
+
+			section {
+				display: grid;
+				grid-template-rows: 1fr auto;
+				min-height: 0px;
+				min-width: 0px;
+				gap: 5px;
+
+				background-color: var(--background-alt-color);
+				--alt-btn-bakcground-color: var(--background-alt-color);
+				padding: 5px;
+			}
+			
+			#artCollection {
+				display: grid;
+				grid-template-rows: auto 1fr;
+				min-height: 0px;
+				min-width: 0px;
+
+				figure {
+					display: grid;
+					align-items: center;
+					justify-content: var(--fig-justify-content, center);
+					grid-template-rows: auto 1fr;
+					min-height: 0px;
+					min-width: 0px;
+
+					figcaption {
+						text-align: center;
+						font-weight: bold;
+						background-color: var(--accent-color);
+						border-start-start-radius: 20px;
+						border-start-end-radius: 20px;
+					}
+
+					img {
+						aspect-ratio: 1 / 1;
+						min-height: 0;
+						height: 100%;
+						max-height: 100%;
+
+						min-width: 0;
+						width: 100%;
+						max-width: 100%;
+
+						object-fit: contain;
+					}
+				}
+
+				.header {
+					display: grid;
+					grid-template-columns: auto 1fr;
+					justify-items: end;
+				}
+			}
+			#artTracks {
+				display: grid;
+				grid-template-rows: auto 1fr;
+				min-height: 0px;
+
+				.header {
+					display: grid;
+					grid-template-columns: 1fr auto auto auto;
+					grid-template-rows: 44px;
+					align-items: center;
+					gap: 5px;
+					padding-block-end: 2px;
+
+					button {
+						min-width: 44px;
+						min-height: 44px;
+					}
+				}
+
+				gw-radiomenu {
+					overflow-y: auto;
+				}
+			}
+			#artTrackDetails {
+				display: grid;
+				grid-template-rows: auto auto auto;
+				.header {
+					display: grid;
+					grid-template-columns: auto 1fr;
+					align-items: center;
+					gap: 5px;
+
+					audio {
+						width: 100%;
+					}
+				}
+
+				figure {
+					background-color: var(--background-color);
+					padding: 5px;
+					margin: 0;
+					border-radius: 10px;
+
+					figcaption {
+						font-style: italic;
+						font-weight: 0.9em;
+					}
+				}
+
+				#bqtLyrics {
+					max-height: 150px;
+					overflow-y: auto;
+					margin-block: 5px;
+					margin-inline-start: 10px;
+					margin-inline-end: 0;
+					> div  {
+						&+ div {
+							margin-block-start: 4px;
+							border-block-start: 1px solid var(--border-color);
+						}
+
+						div + div {
+							margin-block-start: 2px;
+						}
+					}
+				}
+			}
+
+			&:not(:has(#mnuTracks [role="menuitemradio"][aria-checked="true"])) {
+				#artTrackDetails {
+					display: none;
+				}
+			}
+		}
+
+		ul.details {
+			list-style: none;
+			padding: 0;
+
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			justify-content: space-around;
+			gap: 5px;
+
+			li {
+				display: grid;
+				grid-template-rows: auto auto;
+				background-color: var(--background-color);
+				padding: 5px;
+				border-radius: 10px;
+
+				label {
+					font-style: italic;
+					font-size: 0.9em;
+				}
+			}
+		}
+
+		.placeholder {
+			display: contents;
+		}
+
+		label:has(gw-switch) {
+			background-color: var(--background-color);
+			border-radius: 20px;
+			padding-inline: 10px !important;
+			padding-block: 2px;
+			font-size: 2em;
+
+			gw-switch {
+				margin: 2px !important;
+			}
 		}
 	</style>
 </head>
 <body>
-	<gw-site-header reflowWidth="650px">
+	<gw-site-header crumbs="index.html|Grounded Wren" curcrumbtxt="Music" reflowWidth="650px">
 		<h1>Music</h1>
 	</gw-site-header>
 	<main id="main">
-		<p>Todo</p>
+		<section id="secCollection">
+			<article id="artCollection" aria-labelledby="hCollection">
+				<div class="header">
+					<h2 id="hCollection">Collection</h2>
+					<div class="bubble-container">
+						<button
+							id="colMnuBtn"
+							aria-haspopup="true"
+							aria-controls="mnuCollections"
+							aria-expanded="false"
+							class="bubbler"
+							onclick="GW.Pages.Music.onColMnuBtnClick(event)"
+						><gw-icon iconKey="compact-disc" name="Collection"></gw-icon></button>
+						<div id="divCollections" class="placeholder"></div>
+					</div>
+				</div>
+				<figure>
+					<figcaption id="fgcCollection">-</figcaption>
+					<gw-image-loader id="colImgLoader"></gw-image-loader>
+				</figure>
+			</article>
+			<article id="artCollectionDetails" aria-labelledby="hCdt">
+				<h3 id="hCdt">Collection Details</h3>
+				<ul id="ulColDets" class="details"></ul>
+			</article>
+		</section>
+		<section id="secTrack">
+			<article id="artTracks" aria-labelledby="hTracks">
+				<div class="header">
+					<h2 id="hTracks">Tracks</h2>
+					<button onclick="GW.Pages.Music.onPrevClicked()">
+						<gw-icon iconKey="backward-step" name="Previous"></gw-icon>
+					</button>
+					<label>
+						<gw-switch><input type="checkbox" id="cbxPlay" autocomplete="off"></gw-switch>
+						<gw-icon iconKey="play" name="Play"></gw-icon>
+					</label>
+					<button onclick="GW.Pages.Music.onNextClicked()">
+						<gw-icon iconKey="forward-step" name="Next"></gw-icon>
+					</button>
+				</div>
+				<div id="divTracklist" class="placeholder"></div>
+			</article>
+			<article id="artTrackDetails" aria-labelledby="hTdt">
+				<div class="header">
+					<h3 id="hTdt">Track Details</h3>
+					<audio id="audTrack" controls></audio>
+				</div>
+				<ul id="ulTrkDets" class="details"></ul>
+				<figure>
+					<figcaption>Lyrics</figcaption>
+					<blockquote id="bqtLyrics" tabindex="0"></blockquote>
+				</figure>
+			</article>
+		</section>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
