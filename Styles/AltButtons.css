@@ -5,7 +5,7 @@ gw-radiomenu:not(.default) {
 	gap: 5px;
 
 	[role="menuitemradio"] {
-		border-inline: 4px solid var(--background-color);
+		border-inline: 4px solid var(--alt-btn-bakcground-color, var(--background-color));
 		&[aria-checked="true"] {
 			border-inline-start-color: var(--border-color);
 		}
@@ -29,7 +29,7 @@ gw-tablist:not(.default) {
 					outline: none !important;
 				}
 
-				border-block-start: 3px solid var(--background-color);
+				border-block-start: 3px solid var(--alt-btn-bakcground-color, var(--background-color));
 				&[aria-selected="true"] {
 					border-block-start-color: var(--border-color);
 				}
