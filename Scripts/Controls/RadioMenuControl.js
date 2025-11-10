@@ -200,7 +200,7 @@ window.GW = window.GW || {};
 				button.setAttribute("aria-checked", "true");
 				this.dispatchEvent(new CustomEvent("change", {detail: {Selection: button}}));
 			}
-			else {
+			else if(!this.hasAttribute("noUnselect")) {
 				button.setAttribute("aria-checked", "false");
 				this.dispatchEvent(new CustomEvent("change", {detail: {Selection: null}}));
 			}
