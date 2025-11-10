@@ -83,6 +83,15 @@
 				--fig-justify-content: stretch;
 				--main-max-height: none;
 			}
+
+			@supports (-webkit-hyphens:none) {
+				max-height: unset;
+				--main-max-height: none;
+				--fig-justify-content: center;
+				#colImgLoader img {
+					max-height: 600px !important;
+				}
+			}
 		}
 		main {
 			display: grid;
@@ -200,6 +209,7 @@
 
 					audio {
 						width: 100%;
+						max-height: 50px;
 					}
 				}
 
