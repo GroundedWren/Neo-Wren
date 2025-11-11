@@ -113,11 +113,8 @@
 				grid-template-rows: 1fr auto;
 				flex-grow: 1;
 
-				[role="tabpanel"] {
-					fieldset {
-						border: none;
-						margin: 0;
-					}
+				gw-radiomenu {
+					margin: 5px;
 				}
 
 				#artInfo:not(:empty) {
@@ -182,21 +179,9 @@
 			</fieldset>
 		</gw-tablist>
 		<div id="divPanels" tabindex="-1" class="outline-unset">
-			<article id="pnlBlog">
-				<fieldset>
-					<legend class="sr-only">Entries</legend>
-				</fieldset>
-			</article>
-			<article id="pnlFiction">
-				<fieldset>
-					<legend class="sr-only">Entries</legend>
-				</fieldset>
-			</article>
-			<article id="pnlPoetry">
-				<fieldset>
-					<legend class="sr-only">Entries</legend>
-				</fieldset>
-			</article>
+			<article id="pnlBlog"></article>
+			<article id="pnlFiction"></article>
+			<article id="pnlPoetry"></article>
 			<article id="artInfo"></article>
 		</div>
 		<div class="frame"><iframe title="" class="empty"></iframe></div>

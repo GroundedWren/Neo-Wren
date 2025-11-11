@@ -25,11 +25,14 @@ GW.Pages = GW.Pages || {};
 
 	function buildMenus() {
 		for(folder of Object.keys(ns.Data)) {
-			document.querySelector(`#pnl${folder} fieldset`).insertAdjacentHTML("beforeend", `<gw-radiomenu data-folder="${folder}">${
-				getSortedEntryNames(folder).map(entryKey => `<button data-entry="${entryKey}">
-					<div class="text">${entryKey}</div>
-				</button>`).join("\n")
-			}</gw-radiomenu>`);
+			document.querySelector(`#pnl${folder}`).insertAdjacentHTML(
+				"beforeend",
+				`<gw-radiomenu data-folder="${folder}" aria-label="Entries">${
+					getSortedEntryNames(folder).map(entryKey => `<button data-entry="${entryKey}">
+						<div class="text">${entryKey}</div>
+					</button>`).join("\n")
+				}</gw-radiomenu>`
+			);
 		}
 		document.querySelectorAll(`gw-radiomenu`).forEach(radioMenu => radioMenu.addEventListener("change", onRadMenuChange));
 	}
