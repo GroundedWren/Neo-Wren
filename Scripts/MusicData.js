@@ -76,7 +76,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 						[
 							`The same boy you've always known`,
 							`I guess I haven't grown`,
-							`The same bo you've always known`,
+							`The same boy you've always known`,
 							`The same boy you've always known`
 						],
 						[
@@ -181,7 +181,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 						[
 							`All the water's run out, you sit there wet`,
 							`There's a high speed chase on the TV set`,
-							`And I think to myself 'why hate the winter?`
+							`And I think to myself "why hate the winter?"`
 						],
 						[
 							`The fireplace glows on the snow outside`,
@@ -253,7 +253,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 						[
 							`But I don't have to work`,
 							`And I might be a-sinning`,
-							`But I never have to hear the rings of school bells`,
+							`But I'm never gonna haveta hear the rings of school bells`,
 						],
 						[
 							`Don't you remember`,
@@ -312,10 +312,10 @@ GW.Pages.Music = GW.Pages.Music || {};
 						],
 						[
 							`(Chorus)`,
-							`With the Hobgoblin warlords' wyverns in the sky`,
+							`"With the Hobgoblin warlords' wyverns in the sky`,
 							`There are nightmares to haunt you wherever you lie`,
 							`We have black and purple hooded robe fashion lines`,
-							`To wear on our journey to conquer mankind`
+							`To wear on our journey to conquer mankind"`
 						],
 						[
 							`So I sat down beside them, Serin tuned up his sound`,
@@ -329,7 +329,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 						],
 						[`(Chorus)`],
 						[
-							`So sadly (Gho)dukk killed them to protect his green lanes`,
+							`So sadly [Gho]dukk killed them to protect his green lanes`,
 							`"Are you all bandits?" he asked of the slain`,
 							`One was a fighter, the second a mage`,
 							`And the third was a cultist fanatic who said`
@@ -470,7 +470,7 @@ GW.Pages.Music = GW.Pages.Music || {};
 					Composers: ["The White Stripes"],
 					Instruments: ["Acoustic Guitar", "Acoustic Bass Guitar", "Synthetic Drums"],
 					RecordedString: "2016",
-					AudioURL: "https://legacy.groundedwren.com",
+					AudioURL: "https://legacy.groundedwren.com/music/Non Sequitur/Offend in Every Way.mp3",
 					Description: "I played a lot of White Stripes back in the day. It wouldn't be inacurate to say I learned guitar by playing along to their music.",
 					Lyrics: [
 						[`(Instrumental)`]

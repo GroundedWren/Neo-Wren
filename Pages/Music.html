@@ -88,6 +88,7 @@
 				max-height: unset;
 				--main-max-height: none;
 				--fig-justify-content: center;
+
 				#colImgLoader img {
 					max-height: 600px !important;
 				}
@@ -111,6 +112,11 @@
 					"trk";
 				grid-template-columns: 1fr;
 				grid-template-rows: unset;
+			}
+
+			.header button {
+				min-width: 44px;
+				min-height: 44px;
 			}
 
 			#secCollection {
@@ -173,6 +179,7 @@
 					display: grid;
 					grid-template-columns: auto 1fr;
 					justify-items: end;
+					align-items: center;
 				}
 			}
 			#artTracks {
@@ -187,11 +194,6 @@
 					align-items: center;
 					gap: 5px;
 					padding-block-end: 2px;
-
-					button {
-						min-width: 44px;
-						min-height: 44px;
-					}
 				}
 
 				gw-radiomenu {

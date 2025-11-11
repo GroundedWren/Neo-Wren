@@ -11,6 +11,7 @@ GW.Pages = GW.Pages || {};
 		ns.TrackAudio = document.getElementById("audTrack");
 		ns.TrackAudio.addEventListener("pause", onTrackPaused);
 		ns.TrackAudio.addEventListener("play", onTrackPlayed);
+		ns.TrackAudio.addEventListener("stalled", onTrackStalled);
 
 		document.getElementById("divCollections").innerHTML = `
 			<gw-radiomenu id="mnuCollections"
@@ -39,6 +40,7 @@ GW.Pages = GW.Pages || {};
 
 	const onCollectionChanged = (event) => {
 		closeColMnu();
+		ns.PlayCbx.checked = false;
 
 		const collectionName = event.detail.Selection.getAttribute("data-collection");
 		const collectionObj = ns.Data.Collections[collectionName];
@@ -71,6 +73,11 @@ GW.Pages = GW.Pages || {};
 	};
 
 	const onTrackChanged = (event) => {
+		if(!event.detail.Selection){
+			ns.PlayCbx.checked = false;
+			return;
+		}
+
 		const trackName = event.detail.Selection.getAttribute("data-track");
 		const trackObj = ns.Data.Collections[getCurCollectionName()].Tracks[trackName];
 
@@ -88,11 +95,13 @@ GW.Pages = GW.Pages || {};
 			<li><label>Description</label><span>${trackObj.Description}</span></li>
 		`;
 
-		document.getElementById("bqtLyrics").innerHTML = `${trackObj.Lyrics.map(verse => `
+		const bqtLyrics = document.getElementById("bqtLyrics");
+		bqtLyrics.innerHTML = `${trackObj.Lyrics.map(verse => `
 			<div role="group" aria-label="Verse">${verse.map(line => `
 				<div role="group" aria-label="Line">${line}</div>
 			`).join("\n")}</div>
 		`).join("\n")}`;
+		bqtLyrics.scrollTop = 0;
 
 		if(ns.PlayCbx.checked) {
 			ns.TrackAudio.play();
@@ -171,6 +180,18 @@ GW.Pages = GW.Pages || {};
 
 	const onTrackPlayed = () => {
 		ns.PlayCbx.checked = true;
+	};
+
+	const onTrackStalled = () => {
+		const curCollection = getCurCollectionName();
+		const curTrack = getCurTrackName();
+		const src = ns.TrackAudio.getAttribute("src");
+		ns.TrackAudio.src = "";
+		setTimeout(() => {
+			if(curCollection === getCurCollectionName() && curTrack === getCurTrackName()){
+				ns.TrackAudio.setAttribute("src", src);
+			}
+		}, 500);
 	};
 
 	ns.onPrevClicked = () => {
