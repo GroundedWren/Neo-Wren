@@ -85,12 +85,12 @@
 			}
 
 			@supports (-webkit-hyphens:none) {
-				max-height: unset;
-				--main-max-height: none;
-				--fig-justify-content: center;
-
-				#colImgLoader img {
-					max-height: 600px !important;
+				figure {
+					position: relative;
+					justify-content: stretch !important;
+					figcaption {
+						z-index: 1;
+					}
 				}
 			}
 		}
