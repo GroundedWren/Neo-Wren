@@ -75,6 +75,7 @@ GW.Pages = GW.Pages || {};
 	const onTrackChanged = (event) => {
 		if(!event.detail.Selection){
 			ns.PlayCbx.checked = false;
+			updateLocation();
 			return;
 		}
 
