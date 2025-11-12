@@ -48,7 +48,7 @@ GW.Pages = GW.Pages || {};
 		const imgLoader = document.getElementById("colImgLoader");
 		imgLoader.querySelectorAll(`img`).forEach(imgEl => imgEl.remove());
 		imgLoader.insertAdjacentHTML("beforeend", `
-			<img src=${collectionObj.ImgUrl} alt=${collectionObj.ImgAlt}>
+			<img src=${collectionObj.ImgUrl} alt="${collectionObj.ImgAlt}">
 		`);
 
 		document.getElementById("fgcCollection").innerText = collectionName;
