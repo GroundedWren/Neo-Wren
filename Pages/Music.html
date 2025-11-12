@@ -295,6 +295,11 @@
 				margin: 2px !important;
 			}
 		}
+		[dir="rtl"] {
+			.directional {
+				transform: rotate(180deg);
+			}
+		}
 	</style>
 </head>
 <body>
@@ -332,14 +337,14 @@
 			<article id="artTracks" aria-labelledby="hTracks">
 				<div class="header">
 					<h2 id="hTracks">Tracks</h2>
-					<button onclick="GW.Pages.Music.onPrevClicked()">
+					<button onclick="GW.Pages.Music.onPrevClicked()" class="directional">
 						<gw-icon iconKey="backward-step" name="Previous"></gw-icon>
 					</button>
 					<label>
-						<gw-switch><input type="checkbox" id="cbxPlay" autocomplete="off"></gw-switch>
-						<gw-icon iconKey="play" name="Play"></gw-icon>
+						<gw-switch class="directional"><input type="checkbox" id="cbxPlay" autocomplete="off"></gw-switch>
+						<gw-icon iconKey="play" name="Play" class="directional"></gw-icon>
 					</label>
-					<button onclick="GW.Pages.Music.onNextClicked()">
+					<button onclick="GW.Pages.Music.onNextClicked()" class="directional">
 						<gw-icon iconKey="forward-step" name="Next"></gw-icon>
 					</button>
 				</div>
