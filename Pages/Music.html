@@ -73,6 +73,10 @@
 	<script src="../Scripts/Controls/SwitchControl.js"></script>
 
 	<style>
+		:root {
+			--track-button-radius: 20px;
+		}
+
 		body {
 			display: grid;
 			grid-template-rows: auto 1fr auto;
@@ -300,6 +304,16 @@
 				transform: rotate(180deg);
 			}
 		}
+
+		#colMnuBtn {
+			border-radius: 10px;
+		}
+		#btnNext {
+			border-start-end-radius: var(--track-button-radius);
+		}
+		#btnPrev {
+			border-start-start-radius: var(--track-button-radius);
+		}
 	</style>
 </head>
 <body>
@@ -337,14 +351,14 @@
 			<article id="artTracks" aria-labelledby="hTracks">
 				<div class="header">
 					<h2 id="hTracks">Tracks</h2>
-					<button onclick="GW.Pages.Music.onPrevClicked()" class="directional">
+					<button id="btnPrev" onclick="GW.Pages.Music.onPrevClicked()" class="directional">
 						<gw-icon iconKey="backward-step" name="Previous"></gw-icon>
 					</button>
 					<label>
 						<gw-switch class="directional"><input type="checkbox" id="cbxPlay" autocomplete="off"></gw-switch>
 						<gw-icon iconKey="play" name="Play" class="directional"></gw-icon>
 					</label>
-					<button onclick="GW.Pages.Music.onNextClicked()" class="directional">
+					<button id="btnNext" onclick="GW.Pages.Music.onNextClicked()" class="directional">
 						<gw-icon iconKey="forward-step" name="Next"></gw-icon>
 					</button>
 				</div>
