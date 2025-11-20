@@ -396,7 +396,7 @@ window.GW = window.GW || {};
 					Color: "#edeae3",
 				},
 				{
-					Href: "./Img/Buttons/gw-button.png",
+					Href: "https://groundedwren.com/Img/Buttons/gw-button.png",
 					Src: "https://groundedwren.com/Img/Buttons/gw-button.png",
 					Alt: "Grounded Wren 88x31 Button; white text on a swirling purple, red, and black background",
 					Title: "Grounded Wren",
