@@ -66,6 +66,10 @@
 	<script src="../Scripts/Controls/CommentsControl.js"></script>
 
 	<style>
+		:root {
+			--banner-warn-color: var(--warn-color);
+		}
+		
 		body {
 			display: grid;
 			grid-template-rows: auto 1fr auto;
@@ -113,7 +117,8 @@
 		<gw-comment-form
 			id="commentForm"
 			titletext="Sign the Guestbook"
-			encodedPath="MTE2MzI3OTExMTQ2MTAyNzk2MS83YTEtcnpDWGZmaG5JdmxLM094aHVSWEQ2U0FXMEI4VVhmSHQ1M3lqZGNPYXI2Tk9CVXVLa0lidWhLRG9YdFh0cHpXcA==" 
+			encodedPath="MTQ0MDg1ODc4OTAxNTMyMjY4NC9mTndhcHNnUlJtTkl6OVMxOUpBRU9XTFRPaVk3d3ZFWkIxUnRhMU5tSEpET3VyNXJ3NFlzLUNzN3ZyNnRtTGZ2TnoxYw=="
+			fallbackEmail="vera@groundedwren.com"
 			omitStar
 		></gw-comment-form>
 		<gw-comment-list

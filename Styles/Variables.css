@@ -15,6 +15,7 @@
 	--focus-color: #FF0701;
 	--icon-color: #000000;
 	--banner-color: #B3B3B3;
+	--warn-color: #EDC200;
 	--mark-color: #D2FCC5;
 	--accent-color: #D5B3D9;
 	--invalid-color: #5C01D8;
@@ -42,6 +43,7 @@
 		--focus-color: #FF0701;
 		--icon-color: #FFFFFF;
 		--banner-color: #404040;
+		--warn-color: #766000;
 		--mark-color: #005C08;
 		--accent-color: #8D4A95;
 		--invalid-color: #A35FFE;
