@@ -290,6 +290,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "Projects",
 		Terms: ["GW", "PROJECT", "PROJECTS", "TIMER", "COUNTDOWN", "STOPWATCH", "TIME"],
 	},
+	"Braille Translator": {
+		URL: "https://groundedwren.com/Pages/Projects/BrailleTranslator.html",
+		Category: "Projects",
+		Terms: ["GW", "PROJECT", "PROJECTS", "BRAILLE", "TRANSLATOR", "PARSER", "CHARACTER"],
+	},
 };
 
 /** Characters */
