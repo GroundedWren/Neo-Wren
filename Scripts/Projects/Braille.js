@@ -14,9 +14,123 @@ GW.Pages = GW.Pages || {};
 
 		ns.OlBraille.addEventListener("focusin", onOlBrailleFocusin);
 
+		document.getElementById("tblstExercises").addEventListener("tab-change", onPracticeTabChanged);
+
 		outputBraille(" ");
 	};
 	window.addEventListener("DOMContentLoaded", onDCL);
+
+	ns.practiceAfterInput = () => {};
+
+	const onPracticeTabChanged = (event) => {
+		// document.querySelectorAll(`#secPractice output`).forEach(outEl => {
+		// 	outEl.innerHTML = "";
+		// 	outEl.removeAttribute("data-word");
+		// });
+
+		const selectedTab = event.currentTarget.querySelector(`[aria-selected="true"]`);
+		if(!selectedTab) {
+			ns.practiceAfterInput = () => {};
+			document.getElementById("secText").classList.remove("hidden");
+			document.getElementById("secBraille").classList.remove("hidden");
+		}
+		else if (selectedTab.getAttribute("aria-controls") === "pnlReading") {
+			ns.practiceAfterInput = validateAgainstReading;
+			document.getElementById("secText").classList.remove("hidden");
+			document.getElementById("secBraille").classList.add("hidden");
+		}
+		else if (selectedTab.getAttribute("aria-controls") === "pnlWriting") {
+			ns.practiceAfterInput = validateAgainstWriting;
+			document.getElementById("secText").classList.add("hidden");
+			document.getElementById("secBraille").classList.remove("hidden");
+		}
+
+		ns.practiceAfterInput();
+	};
+
+	const validateAgainstReading = () => {
+		if(document.getElementById("txtText").value === document.getElementById("outReadingWord").getAttribute("data-word")) {
+			document.getElementById("outReadingValidity").innerHTML = `<gw-icon name="Check" iconKey="circle-check"></gw-icon>Correct!`;
+		}
+		else {
+			document.getElementById("outReadingValidity").innerHTML = "";
+		}
+	};
+
+	const validateAgainstWriting = () => {
+		if(document.getElementById("txtText").value === document.getElementById("outWritingWord").getAttribute("data-word")) {
+			document.getElementById("outWritingValidity").innerHTML = `<gw-icon name="Check" iconKey="circle-check"></gw-icon>Correct!`;
+		}
+		else {
+			document.getElementById("outWritingValidity").innerHTML = "";
+		}
+	};
+
+	ns.onGenerateReadingWord = (event) => {
+		event.preventDefault();
+
+		const data = new FormData(event.currentTarget);
+		const word = pickWord(parseInt(data.get("wordLength")));
+		const outWord = document.getElementById("outReadingWord");
+
+		outWord.innerHTML = translateToUnicodeBraille(word);
+		outWord.setAttribute("data-word", word);
+		document.getElementById("outReadingValidity").innerHTML = "";
+
+		ns.TxtText.value = "";
+		outputBraille("");
+	};
+
+	ns.onGenerateWritingWord = (event) => {
+		event.preventDefault();
+
+		const data = new FormData(event.currentTarget);
+		const word = pickWord(parseInt(data.get("wordLength")));
+		const outWord = document.getElementById("outWritingWord");
+		
+		outWord.innerHTML = word;
+		outWord.setAttribute("data-word", word);
+		document.getElementById("outWritingValidity").innerHTML = "";
+
+		ns.TxtText.value = "";
+		outputBraille("");
+	};
+
+	function translateToUnicodeBraille(textStr) {
+		let inNumberMode = false;
+
+		return textStr.split("").map(char => {
+			let output = "";
+			const thisIsNumeric = isNumeric(char);
+			const thisIsAlpha = isAlpha(char);
+			if(!inNumberMode && thisIsNumeric) {
+				//Insert number marker
+				output += String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(CellEl.NumberCellDots)}`);
+				inNumberMode = true;
+			}
+			else if(thisIsAlpha && inNumberMode) {
+				//Insert alpha marker
+				output += String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(CellEl.AlphaCellDots)}`);
+				inNumberMode = false;
+			}
+
+			if(thisIsAlpha || char === " ") {
+				inNumberMode = false;
+			}
+
+			output += CellEl.AtoBMap.get(char)?.map(
+				charSet => String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(charSet)}`)
+			).join("");
+
+			return output;
+		}).join("");
+	}
+
+	function pickWord(wordLength) {
+		const filteredWords = GW.Hangman.Words.filter(word => word.length === wordLength);
+		const word = filteredWords[Math.floor(Math.random()*filteredWords.length)];
+		return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+	}
 
 	const onOlBrailleFocusin = (event) => {
 		const focusedDot = ns.OlBraille.querySelector(`button:focus-within`)
@@ -288,6 +402,8 @@ GW.Pages = GW.Pages || {};
 			}`);
 		}
 		TextMapStylesheet.replaceSync(rulesets.join("\n"));
+
+		ns.practiceAfterInput();
 	}
 
 	function isNumeric(char) {
