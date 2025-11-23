@@ -93,6 +93,7 @@ window.GW = window.GW || {};
 			{Ascii: "/", Braille: ["456", "34"]},
 			{Ascii: "\\", Braille: ["456", "16"]},
 			{Ascii: "–", Braille: ["36"]},
+			{Ascii: "-", Braille: ["36"]},
 			{Ascii: "–", Braille: ["6", "36"]},
 			{Ascii: "—", Braille: ["5", "6", "36"]},
 			{Ascii: "[", Braille: ["46", "126"]},
