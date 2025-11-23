@@ -204,9 +204,9 @@ window.GW = window.GW || {};
 			BrailleCellEl.#CommonStyleSheet.replaceSync(`${BrailleCellEl.Name} {
 				display: contents;
 				li {
-					background-color: var(--background-alt-color);
+					background-color: var(--background-color);
 					padding: 5px;
-					border-block: 4px solid var(--background-color);
+					border-block: 4px solid var(--background-alt-color);
 				}
 
 				button {

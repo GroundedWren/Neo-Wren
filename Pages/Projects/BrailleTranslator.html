@@ -82,85 +82,116 @@
 
 		main {
 			flex-grow: 1;
-
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
-
 			margin-inline: 5px;
 
-			#secPractice {
-				flex-grow: 1;
+			display: grid;
+			grid-template-areas:
+				"text prac"
+				"brai prac";
+			grid-template-columns: 1fr auto;
+			grid-template-rows: auto 1fr;
+			gap: 5px;
 
-				align-self: end;
-				justify-self: end;
-				
-				display: grid;
-				align-items: end;
+			@media(width < 750px) {
+				display: flex;
+				flex-direction: column;
+			}
 
+			section {
 				> div {
-					min-width: 300px;
-					background-color: var(--background-alt-color);
-					padding: 5px;
 					margin: 5px;
-					--alt-btn-bakcground-color: var(--background-alt-color);
-
-					> article {
-						display: flex;
-						flex-direction: column;
-						gap: 4px;
-
-						.validity {
-							display: flex;
-							flex-direction: row;
-							gap: 4px;
-							background-color: var(--mark-color);
-							align-items: center;
-							justify-content: center;
-						}
-					}
-				}
-
-				form {
 					padding: 5px;
-					display: flex;
-					flex-direction: row;
-					gap: 5px;
-					justify-content: space-between;
+					background-color: var(--background-alt-color);
 				}
 			}
 
 			blockquote {
-				background-color: var(--background-alt-color);
+				background-color: var(--background-color);
 				font-size: 2em;
 				min-height: 1lh;
 			}
 		}
 
 		#secText {
-			display: grid;
-			grid-auto-flow: row;
+			grid-area: text;
+
+			#txtText {
+				width: 100%;
+				max-width: 500px;
+			}
 		}
 
-		#txtText {
-			max-width: 500px;
-		}
+		#secBraille {
+			grid-area: brai;
 
-		#olBraille {
-			display: flex;
-			flex-direction: row;
-			flex-wrap: wrap;
-
-			margin: 0;
-			padding: 0;
-			list-style: none;
-
-			table {
-				width: auto;
-
-				&, :is(tr, td) {
-					border: none;
+			&:has(#gwsBraille:focus-within) {
+				#spnShort {
+					opacity: 1;
 				}
+			}
+
+			.hdr {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				align-items: center;
+				gap: 10px;
+			}
+
+			#spnShort {
+				opacity: 0;
+			}
+
+			#olBraille {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+
+				margin: 0;
+				padding: 0;
+				list-style: none;
+
+				table {
+					width: auto;
+
+					&, :is(tr, td) {
+						border: none;
+					}
+				}
+			}
+		}
+
+		#secPractice {
+			grid-area: prac;
+			
+			display: grid;
+			align-items: start;
+
+			> div {
+				min-width: 300px;
+				--alt-btn-bakcground-color: var(--background-alt-color);
+
+				> article {
+					display: flex;
+					flex-direction: column;
+					gap: 4px;
+
+					.validity {
+						display: flex;
+						flex-direction: row;
+						gap: 4px;
+						background-color: var(--mark-color);
+						align-items: center;
+						justify-content: center;
+					}
+				}
+			}
+
+			form {
+				padding: 5px;
+				display: flex;
+				flex-direction: row;
+				gap: 5px;
+				justify-content: space-between;
 			}
 		}
 
@@ -173,23 +204,6 @@
 
 			#btnAddCell {
 				margin-block: 5px;
-			}
-		}
-
-		#secBraille {
-			.hdr {
-				display: grid;
-				grid-template-columns: auto 1fr;
-				align-items: center;
-				gap: 10px;
-			}
-			#spnShort {
-				opacity: 0;
-			}
-			&:has(#gwsBraille:focus-within) {
-				#spnShort {
-					opacity: 1;
-				}
 			}
 		}
 
@@ -210,7 +224,7 @@
 		</button>
 	</gw-site-header>
 	<main id="main">
-		<section id="secText" aria-labelledby="hText">
+		<section id="secText" aria-labelledby="hText"><div>
 			<h2 id="hText">Text</h2>
 			<input 
 				type="text"
@@ -221,8 +235,8 @@
 				autocomplete="off"
 			></textarea>
 			<blockquote id="bqText"></blockquote>
-		</section>
-		<section id="secBraille" aria-labelledby="hBraille">
+		</div></section>
+		<section id="secBraille" aria-labelledby="hBraille"><div>
 			<div class="hdr">
 				<h2 id="hBraille">Braille</h2>
 				<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
@@ -267,7 +281,7 @@
 				</button>
 			</div>
 			<blockquote id="bqBraille"></blockquote>
-		</section>
+		</div></section>
 		<section id="secPractice" aria-labelledby="hPractice">
 			<div>
 				<h2 id="hPractice">Practice</h2>
