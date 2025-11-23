@@ -3,6 +3,7 @@ GW.Pages = GW.Pages || {};
 (function Braille(ns) {
 	ns.OlBraille;
 	ns.TxtText;
+	ns.InputBatcher = new GW.Gizmos.ActionBatcher("Input", 50, true, true);
 	const TextMapStylesheet = new CSSStyleSheet();
 	document.adoptedStyleSheets.push(TextMapStylesheet);
 	const CellEl = GW.Controls.BrailleCellEl;
@@ -111,7 +112,9 @@ GW.Pages = GW.Pages || {};
 	}
 
 	ns.onTxtInput = (event) => {
-		outputBraille(event.currentTarget.value.trim());
+		ns.InputBatcher.run("text", () => {
+			outputBraille(event.target.value.trim());
+		});
 	};
 
 	const outputBraille = function outputBraille(value) {
