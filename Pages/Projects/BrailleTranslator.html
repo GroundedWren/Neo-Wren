@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="A braille translator">
+	<title>Braille Translator</title>
+
+	<script>
+		/**
+		 * A script for a loading veil
+		 * @author Vera Konigin vera@groundedwren.com
+		 * https://groundedwren.neocities.org
+		 */
+		window.GW = window.GW || {};
+		window.GW.Controls = window.GW.Controls || {};
+		(function Veil(ns) {
+			ns.DeferKeys = {"DOMContentLoaded": true};
+			
+			/**
+			 * Defers the lowering of the veil until a key is cleared
+			 * @param {string} key The defer key to keep the veil up
+			 */
+			ns.addDefer = function addDefer(key) {
+				ns.DeferKeys[key] = true;
+			}
+			
+			/**
+			 * Marks a defer key as complete and clears the veil if no remain
+			 * @param {string} key The key to clear
+			 */
+			ns.clearDefer = function clearDefer(key) {
+				delete ns.DeferKeys[key];
+				if(Object.keys(ns.DeferKeys).length === 0) {
+					requestAnimationFrame(() => document.getElementById("styGwLoad")?.remove());
+				}
+			}
+			
+			document.head.insertAdjacentHTML("beforeend", `
+				<style id="styGwLoad">
+					body {
+						opacity: 0;
+					}
+					html {
+						width: 100vw;
+						height: 100vh;
+						background-color: var(--veil-light-color, #E3E3E3) !important;
+					}
+					@media(prefers-color-scheme: dark) {
+						html {
+							background-color: var(--veil-dark-color, #242424) !important;
+						}
+					}
+				</style>
+			`);
+			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
+				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
+			});
+		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
+	</script>
+	
+	<link href="../../Styles/MainBundle.css" rel="stylesheet" type="text/css">
+	<script src="../../Scripts/Main.js"></script>
+
+	<script src="../../Scripts/Controls/ShortcutsControl.js"></script>
+	<script src="../../Scripts/Controls/SVGIconControl.js"></script>
+
+	<script src="../../Scripts/Projects/BrailleCell.js"></script>
+	<script src="../../Scripts/Projects/Braille.js"></script>
+
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+		}
+
+		main {
+			flex-grow: 1;
+
+			display: grid;
+			grid-template-rows: auto 1fr;
+			gap: 5px;
+
+			blockquote {
+				background-color: var(--background-alt-color);
+				font-size: 2em;
+			}
+		}
+
+		#secText {
+			display: grid;
+			grid-auto-flow: row;
+		}
+
+		#txtText {
+			max-width: 600px;
+		}
+
+		#olBraille {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+
+			margin: 0;
+			padding: 0;
+			list-style: none;
+
+			table {
+				width: auto;
+
+				&, :is(tr, td) {
+					border: none;
+				}
+			}
+		}
+
+		.braille-input {
+			display: grid;
+			grid-template-columns: auto minmax(50px, 1fr);
+			justify-items: start;
+			align-items: stretch;
+			gap: 5px;
+
+			#btnAddCell {
+				margin-block: 5px;
+			}
+		}
+
+		#secBraille {
+			.hdr {
+				display: grid;
+				grid-template-columns: auto 1fr;
+				align-items: center;
+				gap: 10px;
+			}
+			#spnShort {
+				opacity: 0;
+			}
+			&:has(#gwsBraille:focus-within) {
+				#spnShort {
+					opacity: 1;
+				}
+			}
+		}
+	</style>
+</head>
+<body>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren; Pages/Projects/index.html|Projects"
+		curcrumbtxt="Braille"
+		reflowWidth="660px"
+	>
+		<h1>Braille Translator</h1>
+	</gw-site-header>
+	<main id="main">
+		<section id="secText" aria-labelledby="hText">
+			<h2 id="hText">Text</h2>
+			<input 
+				type="text"
+				id="txtText"
+				aria-labelledby="hText"
+				oninput="GW.Pages.Braille.onTxtInput(event)"
+				maxlength="75"
+			></textarea>
+			<blockquote id="bqText"></blockquote>
+		</section>
+		<section id="secBraille" aria-labelledby="hBraille">
+			<div class="hdr">
+				<h2 id="hBraille">Braille</h2>
+				<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
+			</div>
+			<div class="braille-input">
+				<gw-shortcuts
+					id="gwsBraille"
+					role="application"
+					aria-roledescription="Braille display. Alt+S to show shortcuts."
+					code_1="ArrowUp"
+					info_1="Up one dot"
+					handler_1="GW.Pages.Braille.onBrailleNav(event)"
+					code_2="ArrowDown"
+					info_2="Down one dot"
+					handler_2="GW.Pages.Braille.onBrailleNav(event)"
+					code_3="ArrowLeft"
+					info_3="Left one dot"
+					handler_3="GW.Pages.Braille.onBrailleNav(event)"
+					code_4="ArrowRight"
+					info_4="Right one dot"
+					handler_4="GW.Pages.Braille.onBrailleNav(event)"
+					code_5="Home"
+					info_5="First cell"
+					handler_5="GW.Pages.Braille.onBrailleJump(event)"
+					code_6="End"
+					info_6="Last cell"
+					handler_6="GW.Pages.Braille.onBrailleJump(event)"
+					code_7="PageUp"
+					info_7="Previous cell"
+					handler_7="GW.Pages.Braille.onBrailleJump(event)"
+					code_8="PageDown"
+					info_8="Next cell"
+					handler_8="GW.Pages.Braille.onBrailleJump(event)"
+					code_9="Alt+S"
+					info_9="Show shortcuts"
+					handler_9="GW.Controls.Shortcuts.reportShortcuts(event)"
+				>
+					<ol id="olBraille"></ol>
+				</gw-shortcuts>
+				<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
+					<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
+				</button>
+			</div>
+			<blockquote id="bqBraille"></blockquote>
+		</section>
+	</main>
+	<footer>
+		<gw-buttons-list></gw-buttons-list>
+	</footer>
+</body>
+</html>
