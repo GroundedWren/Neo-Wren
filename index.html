@@ -63,7 +63,9 @@
 	<link href="./Styles/MainBundle.css" rel="stylesheet" type="text/css">
 	<script src="./Scripts/Main.js"></script>
 
+	<link href="./Styles/InfoDialog.css" rel="stylesheet" type="text/css">
 	<script src="./Scripts/Controls/ImageLoaderControl.js"></script>
+	<script src="./Scripts/Controls/SVGIconControl.js"></script>
 
 	<style>
 		body {
@@ -184,6 +186,9 @@
 <body>
 	<gw-site-header reflowWidth="790px">
 		<h1>Grounded Wren</h1>
+		<button class="right-content" onclick="document.getElementById('diaInfo').showModal()">
+			<gw-icon iconKey="circle-info" name="Info"></gw-icon>
+		</button>
 	</gw-site-header>
 	<main id="main">
 		<div id="lft">
@@ -221,5 +226,22 @@
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
 	</footer>
+	<dialog id="diaInfo" class="info">
+		<article>
+			<gw-icon class="info-icon" iconKey="circle-info" name="info" tabindex="-1" role="heading" aria-level="1" autofocus></gw-icon>
+			<article>
+				<p>Hey there!</p>
+				<p>
+					The depictions of <a href="https://en.wikipedia.org/wiki/Lyall%27s_wren"><i>Traversia lyalli</i></a>
+					 here and around this website are an 1895 drawing by <a href="https://en.wikipedia.org/wiki/John_Gerrard_Keulemans">John Gerrard Keulmans</a>
+					 which is <a href="https://commons.wikimedia.org/wiki/File:XenicusInsularisKeulemans.jpg">now in the public domain</a>.
+				</p>
+				<p>Head over to the <a href="./Pages/About.html">About page</a> for more about Vera and Grounded Wren.</p>
+			</article>
+			<footer>
+				<button onclick="document.getElementById('diaInfo').close();">Close</button>
+			</footer>
+		</article>
+	</dialog>
 </body>
 </html>

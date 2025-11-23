@@ -388,7 +388,7 @@ window.GW = window.GW || {};
 					Color: "#e4d5df",
 				},
 				{
-					Href: "https://owlsroost.xyz/webring/index.html",
+					Href: "https://www.beepbird.net/webring/index.html",
 					Src: "https://groundedwren.com/Img/Buttons/focusfirst-button.png",
 					Alt: "A light brown 88x31 button with the words 'focus first'",
 					Title: "Focus first",
