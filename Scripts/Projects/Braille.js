@@ -251,7 +251,7 @@ GW.Pages = GW.Pages || {};
 			ns.OlBraille.querySelectorAll(`gw-braille-cell`)
 		).reduce((accu, cell) => {
 			const brailleChar = String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(cell.getAttribute("dots"))}`);
-			return accu + `<span id="spnBChar-${cell.getAttribute("data-idx")}">${brailleChar}</span>`;
+			return accu + `<span id="spnBChar-${cell.getAttribute("data-idx")}" class=charfig>${brailleChar}</span>`;
 		}, "");
 
 		let cellIdx = 0;
@@ -266,10 +266,11 @@ GW.Pages = GW.Pages || {};
 				role="figure"
 				data-idx="${charIdx}"
 				aria-label="${char}"
+				class="charfig"
 			>${char}</span>`
 			charIdx += 1;
 			return spn;
-		}).join("") || "⠀";
+		}).join("");
 
 		const rulesets = [];
 		for(let i = 0; i < charIdx; i++){
@@ -277,7 +278,7 @@ GW.Pages = GW.Pages || {};
 			main:has(:is(gw-braille-cell[data-idx="${i}"], #spnChar-${i}, #spnBChar-${i}):is(:hover, :focus-within)) {
 				#spnChar-${i}, #spnBChar-${i} {
 					background-color: var(--mark-color);
-					text-decoration: underline;
+					border-color: var(--text-color);
 				}
 
 				gw-braille-cell[data-idx="${i}"] li {
