@@ -34,7 +34,7 @@ GW.Pages = GW.Pages || {};
 		getTrackButton(params.get(TRACK_PARAM))?.click();
 
 		if(!mnuCollections.querySelector(`[role="menuitemradio"][aria-checked="true"]`)) {
-			mnuCollections.querySelector(`[role="menuitemradio"]`)?.click();
+			mnuCollections.querySelector(`[role="menuitemradio"][data-collection="I'll Miss The Winter"]`)?.click();
 		}
 	});
 
