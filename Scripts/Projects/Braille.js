@@ -23,26 +23,19 @@ GW.Pages = GW.Pages || {};
 	ns.practiceAfterInput = () => {};
 
 	const onPracticeTabChanged = (event) => {
-		// document.querySelectorAll(`#secPractice output`).forEach(outEl => {
-		// 	outEl.innerHTML = "";
-		// 	outEl.removeAttribute("data-word");
-		// });
-
 		const selectedTab = event.currentTarget.querySelector(`[aria-selected="true"]`);
 		if(!selectedTab) {
 			ns.practiceAfterInput = () => {};
-			document.getElementById("secText").classList.remove("hidden");
-			document.getElementById("secBraille").classList.remove("hidden");
+			document.getElementById("secText").classList.remove("collapsed");
+			document.getElementById("secBraille").classList.remove("collapsed");
 		}
 		else if (selectedTab.getAttribute("aria-controls") === "pnlReading") {
 			ns.practiceAfterInput = validateAgainstReading;
-			document.getElementById("secText").classList.remove("hidden");
-			document.getElementById("secBraille").classList.add("hidden");
+			switchToTextOnly();
 		}
 		else if (selectedTab.getAttribute("aria-controls") === "pnlWriting") {
 			ns.practiceAfterInput = validateAgainstWriting;
-			document.getElementById("secText").classList.add("hidden");
-			document.getElementById("secBraille").classList.remove("hidden");
+			switchToBrailleOnly();
 		}
 
 		ns.practiceAfterInput();
@@ -69,6 +62,8 @@ GW.Pages = GW.Pages || {};
 	ns.onGenerateReadingWord = (event) => {
 		event.preventDefault();
 
+		switchToTextOnly();
+
 		const data = new FormData(event.currentTarget);
 		const word = pickWord(parseInt(data.get("wordLength")));
 		const outWord = document.getElementById("outReadingWord");
@@ -84,6 +79,8 @@ GW.Pages = GW.Pages || {};
 	ns.onGenerateWritingWord = (event) => {
 		event.preventDefault();
 
+		switchToBrailleOnly();
+
 		const data = new FormData(event.currentTarget);
 		const word = pickWord(parseInt(data.get("wordLength")));
 		const outWord = document.getElementById("outWritingWord");
@@ -95,6 +92,16 @@ GW.Pages = GW.Pages || {};
 		ns.TxtText.value = "";
 		outputBraille("");
 	};
+
+	function switchToTextOnly() {
+		document.getElementById("secText").classList.remove("collapsed");
+		document.getElementById("secBraille").classList.add("collapsed");
+	}
+
+	function switchToBrailleOnly() {
+		document.getElementById("secText").classList.add("collapsed");
+		document.getElementById("secBraille").classList.remove("collapsed");
+	}
 
 	function translateToUnicodeBraille(textStr) {
 		let inNumberMode = false;

@@ -98,6 +98,16 @@
 			}
 
 			section {
+				&.collapsed {
+					> div {
+						display: none;
+					}
+				}
+				&:not(.collapsed) {
+					> button {
+						display: none;
+					}
+				}
 				> div {
 					margin: 5px;
 					padding: 5px;
@@ -224,64 +234,74 @@
 		</button>
 	</gw-site-header>
 	<main id="main">
-		<section id="secText" aria-labelledby="hText"><div>
-			<h2 id="hText">Text</h2>
-			<input 
-				type="text"
-				id="txtText"
-				aria-labelledby="hText"
-				oninput="GW.Pages.Braille.onTxtInput(event)"
-				maxlength="50"
-				autocomplete="off"
-			></textarea>
-			<blockquote id="bqText"></blockquote>
-		</div></section>
-		<section id="secBraille" aria-labelledby="hBraille"><div>
-			<div class="hdr">
-				<h2 id="hBraille">Braille</h2>
-				<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
+		<section id="secText" aria-labelledby="hText">
+			<div>
+				<h2 id="hText" tabindex="-1">Text</h2>
+				<input 
+					type="text"
+					id="txtText"
+					aria-labelledby="hText"
+					oninput="GW.Pages.Braille.onTxtInput(event)"
+					maxlength="50"
+					autocomplete="off"
+				></textarea>
+				<blockquote id="bqText"></blockquote>
 			</div>
-			<div class="braille-input">
-				<gw-shortcuts
-					id="gwsBraille"
-					role="application"
-					aria-roledescription="Braille display. Alt+S to show shortcuts."
-					code_1="ArrowUp"
-					info_1="Up one dot"
-					handler_1="GW.Pages.Braille.onBrailleNav(event)"
-					code_2="ArrowDown"
-					info_2="Down one dot"
-					handler_2="GW.Pages.Braille.onBrailleNav(event)"
-					code_3="ArrowLeft"
-					info_3="Left one dot"
-					handler_3="GW.Pages.Braille.onBrailleNav(event)"
-					code_4="ArrowRight"
-					info_4="Right one dot"
-					handler_4="GW.Pages.Braille.onBrailleNav(event)"
-					code_5="Home"
-					info_5="First cell"
-					handler_5="GW.Pages.Braille.onBrailleJump(event)"
-					code_6="End"
-					info_6="Last cell"
-					handler_6="GW.Pages.Braille.onBrailleJump(event)"
-					code_7="PageUp"
-					info_7="Previous cell"
-					handler_7="GW.Pages.Braille.onBrailleJump(event)"
-					code_8="PageDown"
-					info_8="Next cell"
-					handler_8="GW.Pages.Braille.onBrailleJump(event)"
-					code_9="Alt+S"
-					info_9="Show shortcuts"
-					handler_9="GW.Controls.Shortcuts.reportShortcuts(event)"
-				>
-					<ol id="olBraille"></ol>
-				</gw-shortcuts>
-				<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
-					<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
-				</button>
+			<button
+				onclick="document.getElementById('secText').classList.remove('collapsed');document.getElementById('hText').focus()"
+			>Show Text</button>
+		</section>
+		<section id="secBraille" aria-labelledby="hBraille">
+			<div>
+				<div class="hdr">
+					<h2 id="hBraille" tabindex="-1">Braille</h2>
+					<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
+				</div>
+				<div class="braille-input">
+					<gw-shortcuts
+						id="gwsBraille"
+						role="application"
+						aria-roledescription="Braille display. Alt+S to show shortcuts."
+						code_1="ArrowUp"
+						info_1="Up one dot"
+						handler_1="GW.Pages.Braille.onBrailleNav(event)"
+						code_2="ArrowDown"
+						info_2="Down one dot"
+						handler_2="GW.Pages.Braille.onBrailleNav(event)"
+						code_3="ArrowLeft"
+						info_3="Left one dot"
+						handler_3="GW.Pages.Braille.onBrailleNav(event)"
+						code_4="ArrowRight"
+						info_4="Right one dot"
+						handler_4="GW.Pages.Braille.onBrailleNav(event)"
+						code_5="Home"
+						info_5="First cell"
+						handler_5="GW.Pages.Braille.onBrailleJump(event)"
+						code_6="End"
+						info_6="Last cell"
+						handler_6="GW.Pages.Braille.onBrailleJump(event)"
+						code_7="PageUp"
+						info_7="Previous cell"
+						handler_7="GW.Pages.Braille.onBrailleJump(event)"
+						code_8="PageDown"
+						info_8="Next cell"
+						handler_8="GW.Pages.Braille.onBrailleJump(event)"
+						code_9="Alt+S"
+						info_9="Show shortcuts"
+						handler_9="GW.Controls.Shortcuts.reportShortcuts(event)"
+					>
+						<ol id="olBraille"></ol>
+					</gw-shortcuts>
+					<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
+						<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
+					</button>
+				</div>
+				<blockquote id="bqBraille"></blockquote>
 			</div>
-			<blockquote id="bqBraille"></blockquote>
-		</div></section>
+			<button
+				onclick="document.getElementById('secBraille').classList.remove('collapsed');document.getElementById('hBraille').focus()"
+			>Show Braille</button>
+		</section>
 		<section id="secPractice" aria-labelledby="hPractice">
 			<div>
 				<h2 id="hPractice">Practice</h2>
