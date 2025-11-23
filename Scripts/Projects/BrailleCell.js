@@ -206,7 +206,7 @@ window.GW = window.GW || {};
 				li {
 					background-color: var(--background-alt-color);
 					padding: 5px;
-					border-block-end: 4px solid transparent;
+					border-block: 4px solid var(--background-color);
 				}
 
 				button {
