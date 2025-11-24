@@ -217,8 +217,15 @@
 			align-items: stretch;
 			gap: 5px;
 
+			.add-cell-container {
+				margin-block-end: 5px;
+				display: flex;
+				flex-direction: column-reverse;
+			}
+			
 			#btnAddCell {
-				margin-block: 5px;
+				max-height: 106px;
+				flex-grow: 1;
 			}
 		}
 
@@ -297,9 +304,11 @@
 					>
 						<ol id="olBraille"></ol>
 					</gw-shortcuts>
-					<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
-						<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
-					</button>
+					<div class="add-cell-container">
+						<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
+							<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
+						</button>
+					</div>
 				</div>
 				<blockquote id="bqBraille"></blockquote>
 			</div>
