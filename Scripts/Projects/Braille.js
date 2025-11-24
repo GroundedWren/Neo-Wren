@@ -21,7 +21,6 @@ GW.Pages = GW.Pages || {};
 	window.addEventListener("DOMContentLoaded", onDCL);
 
 	ns.practiceAfterInput = () => {};
-
 	const onPracticeTabChanged = (event) => {
 		const selectedTab = event.currentTarget.querySelector(`[aria-selected="true"]`);
 		if(!selectedTab) {
@@ -57,6 +56,10 @@ GW.Pages = GW.Pages || {};
 		else {
 			document.getElementById("outWritingValidity").innerHTML = "";
 		}
+	};
+
+	ns.triggerGenerate = (event) => {
+		Array.from(document.querySelectorAll(`.generate`)).filter(btnEl => btnEl.checkVisibility()).pop()?.click();
 	};
 
 	ns.onGenerateReadingWord = (event) => {

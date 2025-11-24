@@ -246,112 +246,127 @@
 		</button>
 	</gw-site-header>
 	<main id="main">
-		<section id="secText" aria-labelledby="hText">
-			<div>
-				<h2 id="hText" tabindex="-1">Text</h2>
-				<input 
-					type="text"
-					id="txtText"
-					aria-labelledby="hText"
-					oninput="GW.Pages.Braille.onTxtInput(event)"
-					maxlength="50"
-					autocomplete="off"
-				></textarea>
-				<blockquote id="bqText"></blockquote>
-			</div>
-			<button
-				onclick="document.getElementById('secText').classList.remove('collapsed');document.getElementById('hText').focus()"
-			>Show Text</button>
-		</section>
-		<section id="secBraille" aria-labelledby="hBraille">
-			<div>
-				<div class="hdr">
-					<h2 id="hBraille" tabindex="-1">Braille</h2>
-					<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
+		<gw-shortcuts
+			code_1="Alt+G"
+			handler_1="GW.Pages.Braille.triggerGenerate(event)"
+		>
+			<section id="secText" aria-labelledby="hText">
+				<div>
+					<h2 id="hText" tabindex="-1">Text</h2>
+					<input 
+						type="text"
+						id="txtText"
+						aria-labelledby="hText"
+						oninput="GW.Pages.Braille.onTxtInput(event)"
+						maxlength="50"
+						autocomplete="off"
+					></textarea>
+					<blockquote id="bqText"></blockquote>
 				</div>
-				<div class="braille-input">
-					<gw-shortcuts
-						id="gwsBraille"
-						role="application"
-						aria-roledescription="Braille display. Alt+S to show shortcuts."
-						code_1="ArrowUp"
-						info_1="Up one dot"
-						handler_1="GW.Pages.Braille.onBrailleNav(event)"
-						code_2="ArrowDown"
-						info_2="Down one dot"
-						handler_2="GW.Pages.Braille.onBrailleNav(event)"
-						code_3="ArrowLeft"
-						info_3="Left one dot"
-						handler_3="GW.Pages.Braille.onBrailleNav(event)"
-						code_4="ArrowRight"
-						info_4="Right one dot"
-						handler_4="GW.Pages.Braille.onBrailleNav(event)"
-						code_5="Home"
-						info_5="First cell"
-						handler_5="GW.Pages.Braille.onBrailleJump(event)"
-						code_6="End"
-						info_6="Last cell"
-						handler_6="GW.Pages.Braille.onBrailleJump(event)"
-						code_7="PageUp"
-						info_7="Previous cell"
-						handler_7="GW.Pages.Braille.onBrailleJump(event)"
-						code_8="PageDown"
-						info_8="Next cell"
-						handler_8="GW.Pages.Braille.onBrailleJump(event)"
-						code_9="Alt+S"
-						info_9="Show shortcuts"
-						handler_9="GW.Controls.Shortcuts.reportShortcuts(event)"
-					>
-						<ol id="olBraille"></ol>
-					</gw-shortcuts>
-					<div class="add-cell-container">
-						<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
-							<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
-						</button>
+				<button
+					onclick="document.getElementById('secText').classList.remove('collapsed');document.getElementById('hText').focus()"
+				>Show Text</button>
+			</section>
+			<section id="secBraille" aria-labelledby="hBraille">
+				<div>
+					<div class="hdr">
+						<h2 id="hBraille" tabindex="-1">Braille</h2>
+						<span id="spnShort" aria-hidden="true"><kbd>Alt</kbd>+<kbd>S</kbd></span>
 					</div>
-				</div>
-				<blockquote id="bqBraille"></blockquote>
-			</div>
-			<button
-				onclick="document.getElementById('secBraille').classList.remove('collapsed');document.getElementById('hBraille').focus()"
-			>Show Braille</button>
-		</section>
-		<section id="secPractice" aria-labelledby="hPractice">
-			<div>
-				<h2 id="hPractice">Practice</h2>
-				<gw-tablist id="tblstExercises" unselectable>
-					<fieldset>
-						<legend class="sr-only">Exercises</legend>
-						<div>
-							<button aria-controls="pnlReading"><div class="text">Reading</div></buttton>
-							<button aria-controls="pnlWriting"><div class="text">Writing</div></buttton>
+					<div class="braille-input">
+						<gw-shortcuts
+							id="gwsBraille"
+							role="application"
+							aria-roledescription="Braille display. Alt+S to show shortcuts."
+							code_1="ArrowUp"
+							info_1="Up one dot"
+							handler_1="GW.Pages.Braille.onBrailleNav(event)"
+							code_2="ArrowDown"
+							info_2="Down one dot"
+							handler_2="GW.Pages.Braille.onBrailleNav(event)"
+							code_3="ArrowLeft"
+							info_3="Left one dot"
+							handler_3="GW.Pages.Braille.onBrailleNav(event)"
+							code_4="ArrowRight"
+							info_4="Right one dot"
+							handler_4="GW.Pages.Braille.onBrailleNav(event)"
+							code_5="Home"
+							info_5="First cell"
+							handler_5="GW.Pages.Braille.onBrailleJump(event)"
+							code_6="End"
+							info_6="Last cell"
+							handler_6="GW.Pages.Braille.onBrailleJump(event)"
+							code_7="PageUp"
+							info_7="Previous cell"
+							handler_7="GW.Pages.Braille.onBrailleJump(event)"
+							code_8="PageDown"
+							info_8="Next cell"
+							handler_8="GW.Pages.Braille.onBrailleJump(event)"
+							code_9="Alt+S"
+							info_9="Show shortcuts"
+							handler_9="GW.Controls.Shortcuts.reportShortcuts(event)"
+						>
+							<ol id="olBraille"></ol>
+						</gw-shortcuts>
+						<div class="add-cell-container">
+							<button id="btnAddCell" onclick="GW.Pages.Braille.addBrailleCell()">
+								<gw-icon name="Add Cell" iconKey="plus"></gw-icon>
+							</button>
 						</div>
-					</fieldset>
-				</gw-tablist>
-				<article id="pnlReading">
-					<form aria-label="Word generator" onsubmit="GW.Pages.Braille.onGenerateReadingWord(event)">
-						<label>
-							Word length:
-							<input type="number" name="wordLength" required="" max="14" min="4" step="1" value="4">
-						</label>
-						<button type="submit">Generate</button>
-					</form>
-					<output id="outReadingWord"></output>
-					<output id="outReadingValidity" class="validity"></output>
-				</article>
-				<article id="pnlWriting">
-					<form aria-label="Word generator" onsubmit="GW.Pages.Braille.onGenerateWritingWord(event)">
-						<label>
-							Word length:
-							<input type="number" name="wordLength" required="" max="14" min="4" step="1" value="4">
-						</label>
-						<button type="submit">Generate</button>
-					</form>
-					<output id="outWritingWord"></output>
-					<output id="outWritingValidity" class="validity"></output>
-				</article>
-			</div>
-		</section>
+					</div>
+					<blockquote id="bqBraille"></blockquote>
+				</div>
+				<button
+					onclick="document.getElementById('secBraille').classList.remove('collapsed');document.getElementById('hBraille').focus()"
+				>Show Braille</button>
+			</section>
+			<section id="secPractice" aria-labelledby="hPractice">
+				<div>
+					<h2 id="hPractice">Practice</h2>
+					<gw-tablist id="tblstExercises" unselectable>
+						<fieldset>
+							<legend class="sr-only">Exercises</legend>
+							<div>
+								<button aria-controls="pnlReading"><div class="text">Reading</div></buttton>
+								<button aria-controls="pnlWriting"><div class="text">Writing</div></buttton>
+							</div>
+						</fieldset>
+					</gw-tablist>
+					<article id="pnlReading">
+						<form aria-label="Word generator" onsubmit="GW.Pages.Braille.onGenerateReadingWord(event)">
+							<label>
+								Word length:
+								<input type="number" name="wordLength" required="" max="14" min="4" step="1" value="4">
+							</label>
+							<button
+								type="submit"
+								class="generate"
+								aria-label="Generate"
+								aria-keyshortcuts="Alt+G"
+							><u>G</u>enerate</button>
+						</form>
+						<output id="outReadingWord"></output>
+						<output id="outReadingValidity" class="validity"></output>
+					</article>
+					<article id="pnlWriting">
+						<form aria-label="Word generator" onsubmit="GW.Pages.Braille.onGenerateWritingWord(event)">
+							<label>
+								Word length:
+								<input type="number" name="wordLength" required="" max="14" min="4" step="1" value="4">
+							</label>
+							<button
+								type="submit"
+								class="generate"
+								aria-label="Generate"
+								aria-keyshortcuts="Alt+G"
+							><u>G</u>enerate</button>
+						</form>
+						<output id="outWritingWord"></output>
+						<output id="outWritingValidity" class="validity"></output>
+					</article>
+				</div>
+			</section>
+		</gw-shortcuts>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
