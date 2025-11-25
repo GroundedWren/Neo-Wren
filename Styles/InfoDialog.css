@@ -18,7 +18,7 @@ dialog.info {
 
 		.info-icon {
 			grid-column: 1;
-			grid-row: 1 / span 2;
+			grid-row: 1 / span 2;;
 
 			&:focus {
 				outline: none !important;
@@ -28,6 +28,10 @@ dialog.info {
 			.gw-icon {
 				width: initial;
 				height: initial;
+
+				position: sticky;
+				top: 5px;
+				bottom: 5px;
 			}
 		}
 		article {
@@ -48,11 +52,16 @@ dialog.info {
 
 			border: none;
 			position: sticky;
-			bottom: 0;
+			bottom: 0px;
+			margin-block-end: -4px;
+			margin-inline-end: -4px;
+			padding: 2px;
 
 			display: flex;
 			justify-content: flex-end;
 			gap: 10px;
+
+			background-color: color-mix(in oklab, var(--background-alt-color), transparent 30%);
 		}
 	}
 }
