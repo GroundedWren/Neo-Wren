@@ -21,7 +21,7 @@ dialog.info {
 			grid-row: 1 / span 2;;
 
 			&:focus {
-				outline: none !important;
+				outline-color: transparent !important;
 				background-color: var(--selected-color);
 			}
 
