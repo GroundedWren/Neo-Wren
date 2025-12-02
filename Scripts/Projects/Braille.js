@@ -273,10 +273,8 @@ GW.Pages = GW.Pages || {};
 			return output;
 		}).join(" ")}`;
 
-		addCellListeners();
-
-		ns.OlBraille.querySelector(`gw-braille-cell button`).setAttribute("tabindex", "0");
-		generateMappedText();
+		ns.OlBraille.querySelector(`gw-braille-cell button`).setAttribute("tabindex", "0");		
+		postProcessOutput();
 	};
 
 	const onBrailleChange = () => {
@@ -353,8 +351,19 @@ GW.Pages = GW.Pages || {};
 			ns.OlBraille.insertAdjacentHTML("beforeend", `<gw-braille-cell dots=" "></gw-braille-cell>`);
 		}
 
+		postProcessOutput();
+	}
+
+	function pruneCells() {
+		Array.from(ns.OlBraille.querySelectorAll(
+			`:is(gw-braille-cell[dots=" "] + gw-braille-cell[dots=" "], gw-braille-cell[dots=" "]:first-of-type):not(:focus-within)`)
+		).forEach(cellEl => cellEl.remove());
+	}
+
+	function postProcessOutput() {
 		addCellListeners();
 		generateMappedText();
+		ns.practiceAfterInput();
 	}
 
 	function addCellListeners() {
@@ -362,12 +371,6 @@ GW.Pages = GW.Pages || {};
 			brailleEl.addEventListener("change", onBrailleChange)
 			brailleEl.setAttribute("data-listening", "");
 		});
-	}
-
-	function pruneCells() {
-		Array.from(ns.OlBraille.querySelectorAll(
-			`:is(gw-braille-cell[dots=" "] + gw-braille-cell[dots=" "], gw-braille-cell[dots=" "]:first-of-type):not(:focus-within)`)
-		).forEach(cellEl => cellEl.remove());
 	}
 
 	function generateMappedText() {
@@ -412,8 +415,6 @@ GW.Pages = GW.Pages || {};
 			}`);
 		}
 		TextMapStylesheet.replaceSync(rulesets.join("\n"));
-
-		ns.practiceAfterInput();
 	}
 
 	function isNumeric(char) {
