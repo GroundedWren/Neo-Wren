@@ -252,12 +252,12 @@ GW.Pages = GW.Pages || {};
 			const thisIsAlpha = isAlpha(char);
 			if(!inNumberMode && thisIsNumeric) {
 				//Insert number marker
-				output += `<gw-braille-cell data-idx="${charIdx}" dots="${CellEl.NumberCellDots}"></gw-braille-cell>`;
+				output += `<gw-braille-cell data-char-idx="${charIdx}" dots="${CellEl.NumberCellDots}"></gw-braille-cell>`;
 				inNumberMode = true;
 			}
 			else if(thisIsAlpha && inNumberMode) {
 				//Insert alpha marker
-				output += `<gw-braille-cell data-idx="${charIdx}" dots="${CellEl.AlphaCellDots}"></gw-braille-cell>`;
+				output += `<gw-braille-cell data-char-idx="${charIdx}" dots="${CellEl.AlphaCellDots}"></gw-braille-cell>`;
 				inNumberMode = false;
 			}
 
@@ -266,7 +266,7 @@ GW.Pages = GW.Pages || {};
 			}
 
 			output += CellEl.AtoBMap.get(char)?.map(charSet => `
-				<gw-braille-cell data-idx="${charIdx}" dots="${charSet}"></gw-braille-cell>
+				<gw-braille-cell data-char-idx="${charIdx}" dots="${charSet}"></gw-braille-cell>
 			`).join(" ") || "";
 
 			charIdx++;
@@ -305,7 +305,7 @@ GW.Pages = GW.Pages || {};
 			cellIdx++;
 
 			const cell = cells[cellIdx];
-			cell?.setAttribute("data-idx", charIdx);
+			cell?.setAttribute("data-char-idx", charIdx);
 			const cellDots = cell?.getAttribute("dots");
 			if(treeNode) {
 				treeNode = treeNode[cellDots];
@@ -375,12 +375,12 @@ GW.Pages = GW.Pages || {};
 			ns.OlBraille.querySelectorAll(`gw-braille-cell`)
 		).reduce((accu, cell) => {
 			const brailleChar = String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(cell.getAttribute("dots"))}`);
-			return accu + `<span id="spnBChar-${cell.getAttribute("data-idx")}" class=charfig>${brailleChar}</span>`;
+			return accu + `<span id="spnBChar-${cell.getAttribute("data-char-idx")}" class=charfig>${brailleChar}</span>`;
 		}, "");
 
 		let cellIdx = 0;
 		ns.OlBraille.querySelectorAll(`gw-braille-cell`).forEach(cell => {
-			cell.setIndex(++cellIdx);
+			cell.setAttribute("data-cell-idx", ++cellIdx);
 		});
 
 		let charIdx = 0;
@@ -388,7 +388,7 @@ GW.Pages = GW.Pages || {};
 			const spn = `<span
 				id="spnChar-${charIdx}"
 				role="figure"
-				data-idx="${charIdx}"
+				data-char-idx="${charIdx}"
 				aria-label="${char}"
 				class="charfig"
 			>${char}</span>`
@@ -399,13 +399,13 @@ GW.Pages = GW.Pages || {};
 		const rulesets = [];
 		for(let i = 0; i < charIdx; i++){
 			rulesets.push(`
-			main:has(:is(gw-braille-cell[data-idx="${i}"], #spnChar-${i}, #spnBChar-${i}):is(:hover, :focus-within)) {
+			main:has(:is(gw-braille-cell[data-char-idx="${i}"], #spnChar-${i}, #spnBChar-${i}):is(:hover, :focus-within)) {
 				#spnChar-${i}, #spnBChar-${i} {
 					background-color: var(--mark-color);
 					border-color: var(--text-color);
 				}
 
-				gw-braille-cell[data-idx="${i}"] li {
+				gw-braille-cell[data-char-idx="${i}"] li {
 					background-color: var(--mark-color);
 					border-block-end-color: var(--border-color);
 				}

@@ -197,6 +197,9 @@ window.GW = window.GW || {};
 		// Element name
 		static Name = "gw-braille-cell";
 
+		// Attributes whose changes we respond to
+		static observedAttributes = ["data-cell-idx", "data-char-idx"];
+
 		// Element CSSStyleSheet
 		static #CommonStyleSheet = new CSSStyleSheet();
 		static #CommonStyleAttribute = `data-${BrailleCellEl.Name}-style`;
@@ -324,7 +327,7 @@ window.GW = window.GW || {};
 						id="${this.getId("tbl")}"
 						role="grid"
 						aria-label="Braille Cell"
-						aria-describedby="spnChar-${this.getAttribute("data-idx")}"
+						aria-describedby="spnChar-${this.getAttribute("data-char-idx")}"
 					>
 						<tbody>${[1, 2, 3].map((rowNum => `
 							<tr>${[1, 2].map(colNum => `
@@ -351,8 +354,10 @@ window.GW = window.GW || {};
 			this.IsInitialized = true;
 		}
 
-		setIndex(index) {
-			this.getRef("tbl").setAttribute("aria-label", `Braille Cell ${index}`);
+		/** Handler invoked when any of the observed attributes are changed */
+		attributeChangedCallback(name, oldValue, newValue) {
+			this.getRef("tbl")?.setAttribute("aria-label", `Braille Cell ${this.getAttribute("data-cell-idx")}`);
+			this.getRef("tbl")?.setAttribute("aria-describedby", `spnChar-${this.getAttribute("data-char-idx")}`);
 		}
 
 		#onBtnClick = (event) => {
