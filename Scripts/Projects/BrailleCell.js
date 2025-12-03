@@ -110,6 +110,120 @@ window.GW = window.GW || {};
 			{Ascii: "#", Braille: ["456", "1456"]},
 			{Ascii: `"`, Braille: ["6", "2356"]},
 			{Ascii: `~`, Braille: ["4", "35"]},
+
+			// Contracted
+			{Ascii: "but", Braille: ["12"], Sign: "b"},
+			{Ascii: "can", Braille: ["14"], Sign: "c"},
+			{Ascii: "do", Braille: ["145"], Sign: "d"},
+			{Ascii: "every", Braille: ["15"], Sign: "e"},
+			{Ascii: "from", Braille: ["124"], Sign: "f"},
+			{Ascii: "go", Braille: ["1245"], Sign: "g"},
+			{Ascii: "have", Braille: ["125"], Sign: "h"},
+			{Ascii: "just", Braille: ["24"], Sign: "i"},
+			{Ascii: "knowledge", Braille: ["245"], Sign: "j"},
+			{Ascii: "like", Braille: ["13"], Sign: "k"},
+			{Ascii: "more", Braille: ["123"], Sign: "l"},
+			{Ascii: "more", Braille: ["134"], Sign: "m"},
+			{Ascii: "not", Braille: ["1345"], Sign: "n"},
+			{Ascii: "people", Braille: ["1234"], Sign: "p"},
+			{Ascii: "quite", Braille: ["12345"], Sign: "q"},
+			{Ascii: "rather", Braille: ["1235"], Sign: "r"},
+			{Ascii: "so", Braille: ["234"], Sign: "s"},
+			{Ascii: "that", Braille: ["2345"], Sign: "t"},
+			{Ascii: "us", Braille: ["136"], Sign: "u"},
+			{Ascii: "very", Braille: ["1236"], Sign: "v"},
+			{Ascii: "will", Braille: ["2456"], Sign: "w"},
+			{Ascii: "it", Braille: ["1346"], Sign: "x"},
+			{Ascii: "you", Braille: ["13456"], Sign: "y"},
+			{Ascii: "as", Braille: ["1356"], Sign: "z"},
+
+			//TODO: Shortforms
+
+			{Ascii: "and", Braille: ["12346"], IsWord: true},
+			{Ascii: "for", Braille: ["123456"], IsWord: true},
+			{Ascii: "of", Braille: ["12356"], IsWord: true},
+			{Ascii: "the", Braille: ["2346"], IsWord: true},
+			{Ascii: "with", Braille: ["23456"], IsWord: true},
+			{Ascii: "child", Braille: ["16"], IsWord: true},
+			{Ascii: "shall", Braille: ["146"], IsWord: true},
+			{Ascii: "this", Braille: ["1456"], IsWord: true},
+			{Ascii: "which", Braille: ["156"], IsWord: true},
+			{Ascii: "out", Braille: ["1256"], IsWord: true},
+			{Ascii: "still", Braille: ["34"], IsWord: true},
+
+			{Ascii: "character", Braille: ["5", "16"], IsWord: true},
+			{Ascii: "day", Braille: ["5", "145"], IsWord: true},
+			{Ascii: "ever", Braille: ["5", "15"], IsWord: true},
+			{Ascii: "father", Braille: ["5", "124"], IsWord: true},
+			{Ascii: "here", Braille: ["5", "125"], IsWord: true},
+			{Ascii: "know", Braille: ["5", "13"], IsWord: true},
+			{Ascii: "lord", Braille: ["5", "123"], IsWord: true},
+			{Ascii: "mother", Braille: ["5", "134"], IsWord: true},
+			{Ascii: "name", Braille: ["5", "1345"], IsWord: true},
+			{Ascii: "one", Braille: ["5", "135"], IsWord: true},
+			{Ascii: "ought", Braille: ["5", "1256"], IsWord: true},
+			{Ascii: "part", Braille: ["5", "1234"], IsWord: true},
+			{Ascii: "question", Braille: ["5", "12345"], IsWord: true},
+			{Ascii: "right", Braille: ["5", "1235"], IsWord: true},
+			{Ascii: "some", Braille: ["5", "234"], IsWord: true},
+			{Ascii: "there", Braille: ["5", "2346"], IsWord: true},
+			{Ascii: "through", Braille: ["5", "1456"], IsWord: true},
+			{Ascii: "time", Braille: ["5", "2345"], IsWord: true},
+			{Ascii: "under", Braille: ["5", "136"], IsWord: true},
+			{Ascii: "where", Braille: ["5", "156"], IsWord: true},
+			{Ascii: "work", Braille: ["5", "2456"], IsWord: true},
+			{Ascii: "young", Braille: ["5", "13456"], IsWord: true},
+
+			{Ascii: "these", Braille: ["45", "2346"], IsWord: true},
+			{Ascii: "those", Braille: ["45", "1456"], IsWord: true},
+			{Ascii: "upon", Braille: ["45", "136"], IsWord: true},
+			{Ascii: "whose", Braille: ["45", "156"], IsWord: true},
+			{Ascii: "word", Braille: ["45", "2456"], IsWord: true},
+			
+			{Ascii: "cannot", Braille: ["456", "14"], IsWord: true},
+			{Ascii: "had", Braille: ["456", "125"], IsWord: true},
+			{Ascii: "many", Braille: ["456", "134"], IsWord: true},
+			{Ascii: "spirit", Braille: ["456", "234"], IsWord: true},
+			{Ascii: "their", Braille: ["456", "2346"], IsWord: true},
+			{Ascii: "world", Braille: ["456", "2456"], IsWord: true},
+
+			{Ascii: "ch", Braille: ["16"], IsGroup: true},
+			{Ascii: "sh", Braille: ["146"], IsGroup: true},
+			{Ascii: "th", Braille: ["1456"], IsGroup: true},
+			{Ascii: "wh", Braille: ["156"], IsGroup: true},
+			{Ascii: "ou", Braille: ["1256"], IsGroup: true},
+			{Ascii: "st", Braille: ["34"], IsGroup: true},
+			{Ascii: "ar", Braille: ["345"], IsGroup: true},
+			{Ascii: "ed", Braille: ["1246"], IsGroup: true},
+			{Ascii: "er", Braille: ["12456"], IsGroup: true},
+			{Ascii: "ing", Braille: ["346"], IsGroup: true},
+			{Ascii: "gh", Braille: ["126"], IsGroup: true},
+			{Ascii: "ow", Braille: ["246"], IsGroup: true},
+			{Ascii: "be", Braille: ["23"], IsGroup: true},
+			{Ascii: "con", Braille: ["25"], IsGroup: true},
+			{Ascii: "dis", Braille: ["256"], IsGroup: true},
+			{Ascii: "ea", Braille: ["2"], IsGroup: true},
+			{Ascii: "en", Braille: ["26"], IsGroup: true},
+			{Ascii: "his", Braille: ["236"], IsGroup: true},
+			{Ascii: "in", Braille: ["35"], IsGroup: true},
+			{Ascii: "was", Braille: ["356"], IsGroup: true},
+			{Ascii: "were", Braille: ["2356"], IsGroup: true},
+			{Ascii: "bb", Braille: ["23"], IsGroup: true},
+			{Ascii: "cc", Braille: ["25"], IsGroup: true},
+			{Ascii: "ff", Braille: ["235"], IsGroup: true},
+			{Ascii: "gg", Braille: ["2356"], IsGroup: true},
+			{Ascii: "ence", Braille: ["56", "15"], IsGroup: true},
+			{Ascii: "ful", Braille: ["56", "123"], IsGroup: true},
+			{Ascii: "ity", Braille: ["56", "13456"], IsGroup: true},
+			{Ascii: "ment", Braille: ["56", "2345"], IsGroup: true},
+			{Ascii: "ness", Braille: ["56", "234"], IsGroup: true},
+			{Ascii: "ong", Braille: ["56", "1245"], IsGroup: true},
+			{Ascii: "tion", Braille: ["56", "1345"], IsGroup: true},
+			{Ascii: "ance", Braille: ["56", "12"], IsGroup: true},
+			{Ascii: "less", Braille: ["56", "234"], IsGroup: true},
+			{Ascii: "ound", Braille: ["56", "145"], IsGroup: true},
+			{Ascii: "ount", Braille: ["56", "2345"], IsGroup: true},
+			{Ascii: "sion", Braille: ["56", "1345"], IsGroup: true},
 		];
 
 		static BrailleUnicodeMap = new Map([
@@ -180,18 +294,62 @@ window.GW = window.GW || {};
 		]);
 
 		static {
-			BrailleCellEl.AtoBMap = new Map(BrailleCellEl.BrailleKey.map(entry => [entry.Ascii, entry.Braille]));
+			const gradeTwoEntries = BrailleCellEl.BrailleKey.filter(entry => entry.Sign || entry.IsWord || entry.IsGroup);
+			gradeTwoEntries.forEach(entry => {
+				const newEntry = {
+					...entry,
+					Ascii: entry.Ascii.charAt(0).toUpperCase() + entry.Ascii.slice(1),
+					Braille: ["6"].concat(entry.Braille),
+				};
+				if(entry.Sign) {
+					newEntry.Sign = entry.Sign.toUpperCase();
+				}
+				BrailleCellEl.BrailleKey.push(newEntry);
+			});
+
+			BrailleCellEl.#reindex(BrailleCellEl.BrailleKey);
+		}
+
+		static reindexGradeOne() {
+			BrailleCellEl.#reindex(
+				BrailleCellEl.BrailleKey.filter(entry => !entry.IsGroup && !entry.IsWord && !entry.Sign)
+			);
+		}
+
+		static reindexGradeTwo() {
+			BrailleCellEl.#reindex(BrailleCellEl.BrailleKey);
+		}
+
+		static #reindex(brailleKey) {
+			BrailleCellEl.AtoBMap = new Map(brailleKey.map(entry => [entry.Ascii, entry.Braille]));
 
 			BrailleCellEl.BrailleTree = {};
-			BrailleCellEl.BrailleKey.forEach(entry => {
+			brailleKey.forEach(entry => {
 				let curLevel = BrailleCellEl.BrailleTree;
 				entry.Braille.forEach(cell => {
 					curLevel[cell] = curLevel[cell] || {};
 					curLevel = curLevel[cell];
 				});
-				curLevel.Ascii = curLevel.Ascii || [];
-				curLevel.Ascii.push(entry.Ascii);
+				if(entry.Sign || entry.IsWord) {
+					curLevel.WordSign = entry.Ascii;
+				}
+				else {
+					curLevel.Ascii = curLevel.Ascii || [];
+					curLevel.Ascii.push(entry.Ascii);
+				}
 			});
+
+			BrailleCellEl.AlphabeticWordMap = new Map(
+				brailleKey.filter(
+					entry => !!entry.Sign || entry.IsWord || entry.IsGroup
+				).map(
+					entry => [entry.Ascii, entry.Sign || entry.Ascii]
+				)
+			);
+
+			BrailleCellEl.GroupList = brailleKey.map(
+				entry => entry.IsGroup ? entry.Ascii : null
+			).filter(ascii => !!ascii).sort((a, b) => b.length - a.length);
 		}
 
 		// Element name

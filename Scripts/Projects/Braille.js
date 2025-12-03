@@ -16,9 +16,27 @@ GW.Pages = GW.Pages || {};
 
 		document.getElementById("tblstExercises").addEventListener("tab-change", onPracticeTabChanged);
 
-		outputBraille(" ");
+		document.getElementById("cbxGrade2").addEventListener("switch", ns.onGradeChange);
+
+		outputBraille("");
 	};
 	window.addEventListener("DOMContentLoaded", onDCL);
+
+	ns.onGradeChange = () => {
+		if(useContracted()) {
+			CellEl.reindexGradeTwo();
+		}
+		else {
+			CellEl.reindexGradeOne();
+		}
+
+		ns.TxtText.value = "";
+		outputBraille("");
+	};
+
+	function useContracted() {
+		return document.getElementById("cbxGrade2").checked;
+	}
 
 	ns.practiceAfterInput = () => {};
 	const onPracticeTabChanged = (event) => {
@@ -235,8 +253,19 @@ GW.Pages = GW.Pages || {};
 		});
 	}
 
+	ns.addBrailleCell = () => {
+		ns.OlBraille.insertAdjacentHTML("beforeend", `<gw-braille-cell dots=" "></gw-braille-cell>`);
+		addCellListeners();
+		generateMappedText(getCharUnits(ns.TxtText.value));
+
+		ns.OlBraille.querySelector(`gw-braille-cell:last-of-type button`)?.focus();
+	};
+
 	ns.onTxtInput = (event) => {
 		ns.InputBatcher.run("text", () => {
+			const lastWasSpace = event.target.value.charAt(event.target.value.length - 1) === " ";
+			event.target.value = event.target.value.split(" ").filter(char => !!char).join(" ")
+				+ (lastWasSpace ? " " : "");
 			outputBraille(event.target.value.trim());
 		});
 	};
@@ -244,12 +273,12 @@ GW.Pages = GW.Pages || {};
 	const outputBraille = function outputBraille(value) {
 		let inNumberMode = false;
 		
-		const dispVal = value.charAt(value.length - 1) === " " ? value : value + " ";
+		const charUnits = getCharUnits(value);
 		let charIdx = 0;
-		ns.OlBraille.innerHTML = `${dispVal.split("").map(char => {
+		ns.OlBraille.innerHTML = `${charUnits.map(unit => {
 			let output = "";
-			const thisIsNumeric = isNumeric(char);
-			const thisIsAlpha = isAlpha(char);
+			const thisIsNumeric = isNumeric(unit.Key);
+			const thisIsAlpha = isAlpha(unit.Key);
 			if(!inNumberMode && thisIsNumeric) {
 				//Insert number marker
 				output += `<gw-braille-cell data-char-idx="${charIdx}" dots="${CellEl.NumberCellDots}"></gw-braille-cell>`;
@@ -261,11 +290,11 @@ GW.Pages = GW.Pages || {};
 				inNumberMode = false;
 			}
 
-			if(thisIsAlpha || char === " ") {
+			if(thisIsAlpha || unit.Key === " ") {
 				inNumberMode = false;
 			}
 
-			output += CellEl.AtoBMap.get(char)?.map(charSet => `
+			output += CellEl.AtoBMap.get(unit.Key)?.map(charSet => `
 				<gw-braille-cell data-char-idx="${charIdx}" dots="${charSet}"></gw-braille-cell>
 			`).join(" ") || "";
 
@@ -274,25 +303,94 @@ GW.Pages = GW.Pages || {};
 		}).join(" ")}`;
 
 		ns.OlBraille.querySelector(`gw-braille-cell button`).setAttribute("tabindex", "0");		
-		postProcessOutput();
+		postProcessOutput(charUnits);
 	};
+
+	function getCharUnits(inputStr) {
+		if(!useContracted()) {
+			if(inputStr.charAt(inputStr.length - 1) !== " ") {
+				inputStr += " ";
+			}
+			return inputStr.split("").map(char => {
+				return {Key: char, Display: char};
+			});
+		}
+
+		let units = inputStr.split(" ");
+
+		units = units.map(word => {
+			if(CellEl.AlphabeticWordMap.has(word)) {
+				return {Key: CellEl.AlphabeticWordMap.get(word), Display: word};
+			}
+			return word;
+		});
+
+		CellEl.GroupList.forEach(groupStr => {
+			units = units.reduce((acc, unit) => {
+				if(typeof unit === "object") {
+					acc.push(unit);
+					return acc;
+				}
+				const pieces = unit.split(groupStr);
+				if(pieces.length === 1) {
+					acc.push(unit);
+					return acc;
+				}
+				for(let i = 0; i < pieces.length; i++) {
+					if(pieces[i]) {
+						acc.push(pieces[i]);
+					}
+					if(i < pieces.length - 1) {
+						const groupPiece = {Key: groupStr, Display: groupStr};
+
+						// TODO: this doesn't quite work
+						if(pieces[i]) {
+							groupPiece.GroupLast = true;
+						}
+						else {
+							groupPiece.GroupNext = true;
+						}
+						
+						acc.push(groupPiece);
+					}
+				}
+
+				return acc;
+			}, []);
+		});
+
+		units = units.reduce((acc, unit, idx, ary) => {
+			const nextUnit = (idx + 1) < ary.length ? ary[idx + 1] : null;
+			const isGroupedNext = nextUnit && (typeof nextUnit) === "object" && nextUnit.GroupLast;
+			if(typeof unit === "object") {
+				acc.push(unit);
+				if(!unit.GroupNext && !isGroupedNext) {
+					acc.push({Key: " ", Display: " "});
+				}
+			}
+			else if(unit !== "") {
+				unit.split("").forEach(char => acc.push({Key: char, Display: char}));
+				if(!isGroupedNext) {
+					acc.push({Key: " ", Display: " "});
+				}
+			}
+			else {
+				acc.push({Key: " ", Display: " "});
+			}
+			return acc;
+		}, []);
+		return units;
+	}
 
 	const onBrailleChange = () => {
 		outputText();
-	};
-
-	ns.addBrailleCell = () => {
-		ns.OlBraille.insertAdjacentHTML("beforeend", `<gw-braille-cell dots=" "></gw-braille-cell>`);
-		addCellListeners();
-		generateMappedText();
-
-		ns.OlBraille.querySelector(`gw-braille-cell:last-of-type button`)?.focus();
 	};
 
 	function outputText() {
 		pruneCells();
 
 		const cells = Array.from(ns.OlBraille.querySelectorAll(`gw-braille-cell`));
+		const units = [];
 		let charIdx = 0;
 		let cellIdx = -1;
 		let lastValidSymbol = null;
@@ -314,7 +412,19 @@ GW.Pages = GW.Pages || {};
 				|| cellDots === CellEl.AlphaCellDots
 				|| !treeNode
 			)) {
-				outputText += lastValidSymbol.Char;
+				let newAscii = null;
+				if(lastValidSymbol.WordSign
+					&& (outputText.length === 0 || outputText.charAt(outputText.length - 1) === " ")
+					&& (!cellDots || cellDots === " ")
+				) {
+					newAscii = lastValidSymbol.WordSign;
+				}
+				else {
+					newAscii = lastValidSymbol.Char;
+				}
+				units.push({Key: "", Display: newAscii});
+
+				outputText += newAscii;
 				cellIdx = lastValidSymbol.CellIdx;
 				charIdx += 1;
 				lastValidSymbol = null;
@@ -322,12 +432,12 @@ GW.Pages = GW.Pages || {};
 				continue;
 			}
 
-			if(cellDots === CellEl.NumberCellDots) {
+			if(!inNumberMode && cellDots === CellEl.NumberCellDots) {
 				treeNode = CellEl.BrailleTree;
 				inNumberMode = true;
 				continue;
 			}
-			if(cellDots === CellEl.AlphaCellDots) {
+			if(inNumberMode && cellDots === CellEl.AlphaCellDots) {
 				treeNode = CellEl.BrailleTree;
 				inNumberMode = false;
 				continue;
@@ -342,16 +452,16 @@ GW.Pages = GW.Pages || {};
 				if(!validChar) {
 					continue;
 				}
-				lastValidSymbol = {Char: validChar, CellIdx: cellIdx};
+				lastValidSymbol = {Char: validChar, CellIdx: cellIdx, WordSign: treeNode.WordSign};
 			}
 		}
 		ns.TxtText.value = outputText.trim();
-
+		
 		if(ns.OlBraille.querySelector(`gw-braille-cell:last-of-type`)?.getAttribute("dots") !== " ") {
 			ns.OlBraille.insertAdjacentHTML("beforeend", `<gw-braille-cell dots=" "></gw-braille-cell>`);
 		}
 
-		postProcessOutput();
+		postProcessOutput(units);
 	}
 
 	function pruneCells() {
@@ -360,9 +470,9 @@ GW.Pages = GW.Pages || {};
 		).forEach(cellEl => cellEl.remove());
 	}
 
-	function postProcessOutput() {
+	function postProcessOutput(charUnits) {
 		addCellListeners();
-		generateMappedText();
+		generateMappedText(charUnits);
 		ns.practiceAfterInput();
 	}
 
@@ -373,12 +483,12 @@ GW.Pages = GW.Pages || {};
 		});
 	}
 
-	function generateMappedText() {
+	function generateMappedText(charUnits) {
 		document.getElementById("bqBraille").innerHTML = Array.from(
 			ns.OlBraille.querySelectorAll(`gw-braille-cell`)
 		).reduce((accu, cell) => {
 			const brailleChar = String.fromCharCode(`0x${CellEl.BrailleUnicodeMap.get(cell.getAttribute("dots"))}`);
-			return accu + `<span id="spnBChar-${cell.getAttribute("data-char-idx")}" class=charfig>${brailleChar}</span>`;
+			return accu + `<span id="spnBChar-${cell.getAttribute("data-char-idx")}" class="charfig">${brailleChar}</span>`;
 		}, "");
 
 		let cellIdx = 0;
@@ -387,14 +497,14 @@ GW.Pages = GW.Pages || {};
 		});
 
 		let charIdx = 0;
-		document.getElementById("bqText").innerHTML = ns.TxtText.value.trim().split("").map((char) => {
+		document.getElementById("bqText").innerHTML = charUnits.map((unit) => {
 			const spn = `<span
 				id="spnChar-${charIdx}"
 				role="figure"
 				data-char-idx="${charIdx}"
-				aria-label="${char}"
+				aria-label="${unit.Display}"
 				class="charfig"
-			>${char}</span>`
+			>${unit.Display}</span>`
 			charIdx += 1;
 			return spn;
 		}).join("");
@@ -423,5 +533,8 @@ GW.Pages = GW.Pages || {};
 
 	function isAlpha(char) {
 		return !!char.match(/[a-z]/i);
+	}
+	function isAlphaOrWhitespace(char) {
+		return !!char.match(/[a-z]/i) || char === " ";
 	}
 }) (GW.Pages.Braille = GW.Pages.Braille || {}); 
