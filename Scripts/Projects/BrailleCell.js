@@ -306,8 +306,6 @@ window.GW = window.GW || {};
 				}
 				BrailleCellEl.BrailleKey.push(newEntry);
 			});
-
-			BrailleCellEl.#reindex(BrailleCellEl.BrailleKey);
 		}
 
 		static reindexGradeOne() {

@@ -17,13 +17,12 @@ GW.Pages = GW.Pages || {};
 		document.getElementById("tblstExercises").addEventListener("tab-change", onPracticeTabChanged);
 
 		document.getElementById("cbxGrade2").addEventListener("switch", ns.onGradeChange);
-
-		outputBraille("");
+		ns.onGradeChange();
 	};
 	window.addEventListener("DOMContentLoaded", onDCL);
 
 	ns.onGradeChange = () => {
-		if(useContracted()) {
+		if(isUsingContracted()) {
 			CellEl.reindexGradeTwo();
 		}
 		else {
@@ -34,7 +33,7 @@ GW.Pages = GW.Pages || {};
 		outputBraille("");
 	};
 
-	function useContracted() {
+	function isUsingContracted() {
 		return document.getElementById("cbxGrade2").checked;
 	}
 
@@ -307,7 +306,7 @@ GW.Pages = GW.Pages || {};
 	};
 
 	function getCharUnits(inputStr) {
-		if(!useContracted()) {
+		if(!isUsingContracted()) {
 			if(inputStr.charAt(inputStr.length - 1) !== " ") {
 				inputStr += " ";
 			}
@@ -350,7 +349,7 @@ GW.Pages = GW.Pages || {};
 						else {
 							groupPiece.GroupNext = true;
 						}
-						
+
 						acc.push(groupPiece);
 					}
 				}
