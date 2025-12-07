@@ -75,6 +75,11 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Poetry = {
+		"What Water Wants": {
+			Author: "Vera",
+			Date: new Date(2025, 11, 6),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/What_Water_Wants.html",
+		},
 		"I Hear The World End": {
 			Author: "Vera",
 			Date: new Date(2025, 10, 4),
