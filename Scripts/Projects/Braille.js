@@ -306,16 +306,32 @@ GW.Pages = GW.Pages || {};
 	};
 
 	function getCharUnits(inputStr) {
+		if(inputStr.charAt(inputStr.length - 1) !== " ") {
+			inputStr += " ";
+		}
+
 		if(!isUsingContracted()) {
-			if(inputStr.charAt(inputStr.length - 1) !== " ") {
-				inputStr += " ";
-			}
 			return inputStr.split("").map(char => {
 				return {Key: char, Display: char};
 			});
 		}
 
-		let units = inputStr.split(" ");
+		let units = [];
+		let curUnit = "";
+		for(let i = 0; i < inputStr.length; i++) {
+			const char = inputStr.charAt(i);
+			if(isAlpha(char) || isNumeric(char)) {
+				curUnit += char;
+			}
+			else {
+				units.push(curUnit);
+				units.push(char);
+				curUnit = "";
+			}
+		}
+		if(curUnit) {
+			units.push(curUnit);
+		}
 
 		units = units.map(word => {
 			if(CellEl.AlphabeticWordMap.has(word)) {
@@ -330,27 +346,19 @@ GW.Pages = GW.Pages || {};
 					acc.push(unit);
 					return acc;
 				}
+
 				const pieces = unit.split(groupStr);
 				if(pieces.length === 1) {
 					acc.push(unit);
 					return acc;
 				}
+
 				for(let i = 0; i < pieces.length; i++) {
 					if(pieces[i]) {
 						acc.push(pieces[i]);
 					}
 					if(i < pieces.length - 1) {
-						const groupPiece = {Key: groupStr, Display: groupStr};
-
-						// TODO: this doesn't quite work
-						if(pieces[i]) {
-							groupPiece.GroupLast = true;
-						}
-						else {
-							groupPiece.GroupNext = true;
-						}
-
-						acc.push(groupPiece);
+						acc.push({Key: groupStr, Display: groupStr});
 					}
 				}
 
@@ -358,26 +366,16 @@ GW.Pages = GW.Pages || {};
 			}, []);
 		});
 
-		units = units.reduce((acc, unit, idx, ary) => {
-			const nextUnit = (idx + 1) < ary.length ? ary[idx + 1] : null;
-			const isGroupedNext = nextUnit && (typeof nextUnit) === "object" && nextUnit.GroupLast;
+		units = units.reduce((acc, unit) => {
 			if(typeof unit === "object") {
 				acc.push(unit);
-				if(!unit.GroupNext && !isGroupedNext) {
-					acc.push({Key: " ", Display: " "});
-				}
 			}
 			else if(unit !== "") {
 				unit.split("").forEach(char => acc.push({Key: char, Display: char}));
-				if(!isGroupedNext) {
-					acc.push({Key: " ", Display: " "});
-				}
-			}
-			else {
-				acc.push({Key: " ", Display: " "});
 			}
 			return acc;
 		}, []);
+
 		return units;
 	}
 
@@ -393,6 +391,7 @@ GW.Pages = GW.Pages || {};
 		let charIdx = 0;
 		let cellIdx = -1;
 		let lastValidSymbol = null;
+		let lastValidWord = null
 		let inNumberMode = false;
 		let treeNode = CellEl.BrailleTree;
 		let outputText = "";
@@ -406,27 +405,29 @@ GW.Pages = GW.Pages || {};
 				treeNode = treeNode[cellDots];
 			}
 
-			if(lastValidSymbol && (
+			let pushedText = false;
+
+			if(lastValidWord && !treeNode) {
+				units.push({Key: "", Display: lastValidWord.Word});
+				outputText += lastValidWord.Word;
+				cellIdx = lastValidWord.CellIdx;
+				pushedText = true;
+			}
+			else if(lastValidSymbol && (
 				cellDots === CellEl.NumberCellDots
 				|| cellDots === CellEl.AlphaCellDots
 				|| !treeNode
 			)) {
-				let newAscii = null;
-				if(lastValidSymbol.WordSign
-					&& (outputText.length === 0 || outputText.charAt(outputText.length - 1) === " ")
-					&& (!cellDots || cellDots === " ")
-				) {
-					newAscii = lastValidSymbol.WordSign;
-				}
-				else {
-					newAscii = lastValidSymbol.Char;
-				}
-				units.push({Key: "", Display: newAscii});
-
-				outputText += newAscii;
+				units.push({Key: "", Display: lastValidSymbol.Char});
+				outputText += lastValidSymbol.Char;
 				cellIdx = lastValidSymbol.CellIdx;
+				pushedText = true;
+			}
+
+			if(pushedText) {
 				charIdx += 1;
 				lastValidSymbol = null;
+				lastValidWord = null;
 				treeNode = CellEl.BrailleTree;
 				continue;
 			}
@@ -448,12 +449,20 @@ GW.Pages = GW.Pages || {};
 
 			if(treeNode.Ascii) {
 				const validChar = treeNode.Ascii.find((char) => inNumberMode ? !isAlpha(char) : !isNumeric(char));
-				if(!validChar) {
-					continue;
+				if(validChar) {
+					lastValidSymbol = {Char: validChar, CellIdx: cellIdx};
 				}
-				lastValidSymbol = {Char: validChar, CellIdx: cellIdx, WordSign: treeNode.WordSign};
+			}
+
+			const nextCellDots = cells[cellIdx + 1]?.getAttribute("dots")
+			if(treeNode.WordSign
+				&& (outputText.length === 0 || outputText.charAt(outputText.length - 1) === " ")
+				&& (nextCellDots == "" || nextCellDots === " ")
+			) {
+				lastValidWord = {Word: treeNode.WordSign, CellIdx: cellIdx};
 			}
 		}
+
 		ns.TxtText.value = outputText.trim();
 		
 		if(ns.OlBraille.querySelector(`gw-braille-cell:last-of-type`)?.getAttribute("dots") !== " ") {
@@ -497,6 +506,10 @@ GW.Pages = GW.Pages || {};
 
 		let charIdx = 0;
 		document.getElementById("bqText").innerHTML = charUnits.map((unit) => {
+			if(!document.querySelector(`gw-braille-cell[data-char-idx="${charIdx}"]`)) {
+				charIdx += 1;
+				return "";
+			}
 			const spn = `<span
 				id="spnChar-${charIdx}"
 				role="figure"
