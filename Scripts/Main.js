@@ -46,6 +46,7 @@ window.GW = window.GW || {};
 						flex-direction: row;
 						gap: 5px;
 						justify-content: flex-end;
+						flex-wrap: wrap;
 					}
 
 					button {
