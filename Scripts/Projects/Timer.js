@@ -115,7 +115,7 @@ GW.Pages = GW.Pages || {};
 		}
 	};
 
-	const onDCL = () => {
+	const onDCL = async () => {
 		document.adoptedStyleSheets.push(ColorStylesheet);
 
 		ns.Ring = ns.Ring = document.querySelector(`gw-progress-ring`);
@@ -150,6 +150,13 @@ GW.Pages = GW.Pages || {};
 		ns.onTimeInput();
 		ns.onSoundInput();
 		ns.updateThresholds();
+
+		try {
+			await navigator.wakeLock.request("screen");
+			console.log("Wake locked");
+		} catch (err) {
+			console.log("Cannot wake lock");
+		}
 	};
 	window.addEventListener("DOMContentLoaded", onDCL);
 
