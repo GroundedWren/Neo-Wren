@@ -36,6 +36,13 @@ GW.Pages = GW.Pages || {};
 		if(!mnuCollections.querySelector(`[role="menuitemradio"][aria-checked="true"]`)) {
 			mnuCollections.querySelector(`[role="menuitemradio"][data-collection="I'll Miss The Winter"]`)?.click();
 		}
+
+		try {
+			await navigator.wakeLock.request("screen");
+			console.log("Wake locked");
+		} catch (err) {
+			console.log("Cannot wake lock");
+		}
 	});
 
 	const onCollectionChanged = (event) => {
