@@ -295,6 +295,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "Projects",
 		Terms: ["GW", "PROJECT", "PROJECTS", "BRAILLE", "TRANSLATOR", "PARSER", "CHARACTER"],
 	},
+	"Life Tracker": {
+		URL: "https://life.groundedwren.com/",
+		Category: "Projects",
+		Terms: ["GW", "PROJECT", "PROJECTS", "LIFE", "TRACKER", "TRACK", "FAB", "FLESH", "AND", "BLOOD", "TCG"],
+	},
 };
 
 /** Characters */
