@@ -218,7 +218,6 @@ window.GW = window.GW || {};
 
 			{Ascii: "and", Braille: ["12346"], IsWord: true},
 			{Ascii: "for", Braille: ["123456"], IsWord: true},
-			{Ascii: "of", Braille: ["12356"], IsWord: true},
 			{Ascii: "the", Braille: ["2346"], IsWord: true},
 			{Ascii: "with", Braille: ["23456"], IsWord: true},
 			{Ascii: "child", Braille: ["16"], IsWord: true},
@@ -264,6 +263,7 @@ window.GW = window.GW || {};
 			{Ascii: "their", Braille: ["456", "2346"], IsWord: true},
 			{Ascii: "world", Braille: ["456", "2456"], IsWord: true},
 
+			{Ascii: "of", Braille: ["12356"], IsGroup: true},
 			{Ascii: "ch", Braille: ["16"], IsGroup: true},
 			{Ascii: "sh", Braille: ["146"], IsGroup: true},
 			{Ascii: "th", Braille: ["1456"], IsGroup: true},
