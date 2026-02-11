@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Links from Vera">
+	<title>Links</title>
+	
+	<script>
+		/**
+		 * A script for a loading veil
+		 * @author Vera Konigin vera@groundedwren.com
+		 * https://groundedwren.neocities.org
+		 */
+		window.GW = window.GW || {};
+		window.GW.Controls = window.GW.Controls || {};
+		(function Veil(ns) {
+			ns.DeferKeys = {"DOMContentLoaded": true};
+			
+			/**
+			 * Defers the lowering of the veil until a key is cleared
+			 * @param {string} key The defer key to keep the veil up
+			 */
+			ns.addDefer = function addDefer(key) {
+				ns.DeferKeys[key] = true;
+			}
+			
+			/**
+			 * Marks a defer key as complete and clears the veil if no remain
+			 * @param {string} key The key to clear
+			 */
+			ns.clearDefer = function clearDefer(key) {
+				delete ns.DeferKeys[key];
+				if(Object.keys(ns.DeferKeys).length === 0) {
+					requestAnimationFrame(() => document.getElementById("styGwLoad")?.remove());
+				}
+			}
+			
+			document.head.insertAdjacentHTML("beforeend", `
+				<style id="styGwLoad">
+					body {
+						opacity: 0;
+					}
+					html {
+						width: 100vw;
+						height: 100vh;
+						background-color: var(--veil-light-color, #E3E3E3) !important;
+					}
+					@media(prefers-color-scheme: dark) {
+						html {
+							background-color: var(--veil-dark-color, #242424) !important;
+						}
+					}
+				</style>
+			`);
+			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
+				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
+			});
+		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
+	</script>
+
+	<link href="../Styles/MainBundle.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Main.js"></script>
+
+	<script src="../Scripts/Controls/GalleryControl.js"></script>
+	<script src="../Scripts/Controls/ImageLoaderControl.js"></script>
+
+
+	<style>
+		body {
+			display: flex;
+			flex-direction: column;
+		}
+		main {
+			padding: 5px;
+			flex-grow: 1;
+
+			max-width: 1100px;
+			margin-inline: auto;
+		}
+	</style>
+</head>
+<body>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren"
+		curcrumbtxt="Links"
+		reflowWidth="650px"
+	>
+		<h1>Links</h1>
+	</gw-site-header>
+	<main id="main">
+		<p style="text-align: center;">Coming soon!</p>
+		<p>This'll be a page where I link to sites I consider to be virtual neighbors, as well as more general references.</p>
+	</main>
+	<footer>
+		<gw-buttons-list></gw-buttons-list>
+	</footer>
+</body>
+</html>

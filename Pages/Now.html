@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="What Vera is up to">
+	<title>Now</title>
+	
+	<script>
+		/**
+		 * A script for a loading veil
+		 * @author Vera Konigin vera@groundedwren.com
+		 * https://groundedwren.neocities.org
+		 */
+		window.GW = window.GW || {};
+		window.GW.Controls = window.GW.Controls || {};
+		(function Veil(ns) {
+			ns.DeferKeys = {"DOMContentLoaded": true};
+			
+			/**
+			 * Defers the lowering of the veil until a key is cleared
+			 * @param {string} key The defer key to keep the veil up
+			 */
+			ns.addDefer = function addDefer(key) {
+				ns.DeferKeys[key] = true;
+			}
+			
+			/**
+			 * Marks a defer key as complete and clears the veil if no remain
+			 * @param {string} key The key to clear
+			 */
+			ns.clearDefer = function clearDefer(key) {
+				delete ns.DeferKeys[key];
+				if(Object.keys(ns.DeferKeys).length === 0) {
+					requestAnimationFrame(() => document.getElementById("styGwLoad")?.remove());
+				}
+			}
+			
+			document.head.insertAdjacentHTML("beforeend", `
+				<style id="styGwLoad">
+					body {
+						opacity: 0;
+					}
+					html {
+						width: 100vw;
+						height: 100vh;
+						background-color: var(--veil-light-color, #E3E3E3) !important;
+					}
+					@media(prefers-color-scheme: dark) {
+						html {
+							background-color: var(--veil-dark-color, #242424) !important;
+						}
+					}
+				</style>
+			`);
+			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
+				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
+			});
+		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
+	</script>
+
+	<link href="../Styles/MainBundle.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Main.js"></script>
+
+	<link href="../Styles/InfoDialog.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Controls/GalleryControl.js"></script>
+	<script src="../Scripts/Controls/ImageLoaderControl.js"></script>
+	<script src="../Scripts/Controls/SVGIconControl.js"></script>
+
+	<style>
+		html {
+			scrollbar-gutter: stable;
+		}
+		body {
+			display: flex;
+			flex-direction: column;
+		}
+		main {
+			padding: 5px;
+			flex-grow: 1;
+
+			max-width: 1100px;
+			margin-inline: auto;
+
+			h2 {
+				text-align: center;
+			}
+
+			details {
+				background-color: var(--background-alt-color);
+				--content-padding: 4px;
+				padding: var(--content-padding);
+				border-radius: 10px;
+				margin-block: 4px;
+
+				&[open] {
+					summary {
+						--selected-color: var(--accent-color);
+						margin-block-end: var(--content-padding);
+					}
+				}
+
+				summary {
+					border-start-start-radius: 10px;
+					border-start-end-radius: 10px;
+					margin-inline: calc(var(--content-padding)*-1);
+					margin-block: calc(var(--content-padding)*-1);
+				}
+
+				:is(h4, h5) + :is(ul, p) {
+					margin-block-start: 0px;
+				}
+			}
+		}
+
+		.hEnd {
+			text-align: center;
+			&::before, &::after {
+				content: "--";
+			}
+		}
+	</style>
+</head>
+<body>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren"
+		curcrumbtxt="Now"
+		reflowWidth="650px"
+	>
+		<h1>Now</h1>
+		<button class="right-content" onclick="document.getElementById('diaInfo').showModal()">
+			<gw-icon iconKey="circle-info" name="Info"></gw-icon>
+		</button>
+	</gw-site-header>
+	<main id="main">
+		<h2>What's up, Vera?</h2>
+		<details aria-labelledby="h3-1-26" open>
+			<summary><h3 id="h3-1-26"><time datetime="2026-03-02T03:49:28.255Z">March 1, 2026</time></h3></summary>
+			<h4>Overall</h4>
+			<p>
+				This year so far, my main focus has been on just kinda making it through.
+				 The world's been more volatile than normal lately and I'm prone to anxiety about that sort of thing (and, well, most things), so I've just been trying to keep things as normal as possible until they start feeling normal again.
+				 I am taking steps to help manage this - I'm optimistic that they and the changing of the seasons will help me get to a more palatable baseline. It has been a long winter, indeed.
+			</p>
+			<p>
+				My partner and I are marking four years together next month, which is very exciting!
+				 We're sharing an apartment with our three cats, and currently have no plans to move, though the prospect of owning a home is enticing.
+				 I'm still living very near to my immediate family; it is rather nice to be able to see them as often as we like, and they're always quick to volunteer for cat-sitting, which is greatly appreciated.
+			</p>
+			<h4>Hobbies and Friends</h4>
+			<p>
+				My partner and I continue to play <a href="https://fabtcg.com/">Flesh and Blood</a> regularly; it's been a fantastic hobby to have in common.
+				 Not only does it provide an excuse to do some travelling (and I do love a good day trip), it's become a staple of how we regularly spend time together.
+				 It's much more active than watching shows, and we get to both discuss strategy and joke around as we play. It's lovely.
+			</p>
+			<p>
+				My partner's actually just qualified for the Las Vegas Pro Tour later this year, and at the same event I secured my first ever top-eight placement!
+				 Someday we'll be in the finals of an event together, and our battle will be legendary.
+			</p>
+			<p>
+				Flesh and Blood has a great community.
+				 Over the last several months I've gotten to know the folks in our local scene - they've all been extremely welcoming, and I could definitely see some of us being friends outside of the FaB context.
+				 I do hope that happens, and it seems like it will.
+			</p>
+			<p>
+				For another active hobby, my original D&D friend group has started playing again this year!
+				 I'm the new dungeon master - living up to my partner's precedent is a very tall order, but I'm doing my best.
+				 I've both enjoyed the writing and been overwhelmed by it.
+				 Building a world for your players means you can plan and plan ad infinitum and still not be prepared for every possibility.
+				 I won't lie - it's a little stressful.
+				 My friends are fantastic players and I want to make the best experience I can for them.
+			</p>
+			<p>
+				In addition to keeping me writing, D&D has been an on-ramp for me into doing some actual visual arts!
+				 I've never really taken to such things, having shown no aptitude for them while I was young, but being able to engage in low-stakes ways like drawing combat maps and city streets has helped me push through.
+				 I'm also using D&D as a way to dabble in song writing again; I've deliberately lowered my quality thresholds so that I'd actually just get something done, and it's working!
+				 I now have two tavern songs put together (which share a common melody).
+				 I may post them eventually.
+			</p>
+			<p>
+				Spurred by my partner's parents, I've been getting more into coffee has a hobby!
+				 They were generous enough to give me an Origami pour-over-er (that can't be the word) for Christmas, and I've had a blast using it.
+				 We've actually started ordering bags of interesting beans for each other to try, which is great fun.
+				 Natural process coffee in particular has caught my attention - I can't stop trying them!
+			</p>
+			<p>
+				Finally, webmastering is (obviously) still a great joy for me.
+				 Creating the <a href="https://life.groundedwren.com/">life tracker</a> page was a fun melding of this hobby and Flesh and Blood!
+				 Making things you actually need and will use is unquestionably the most gratifying way to write software.
+			</p>
+			<h4>Work and Career</h4>
+			<p>
+				Work has been very very annoying lately.
+				 I'm still doing some things I really enjoy - I've been very active in the accessibility and front-end side of things - but they're increasingly pushy about LLM tools, which I'm absolutley allergic to.
+				 I don't want to get into it too much here, but it is a very potent vector for stress right now.
+			</p>
+			<p>
+				I do continue to develop my accessibility development skillset outside of work.
+				 No details, sorry.
+				 Perhaps someday I'll have a job where a11y is my sole (or at least primary) focus - that'd be the dream.
+			</p>
+			<h4>Art</h4>
+			<p>
+				In terms of art, there has been an absolute flood of incredible media over the last year.
+				 I've been bouncing between my comfort staples and this new stuff.
+				 I'll give some brief lists:
+			</p>
+			<h5 id="hMovies3-1-26">Movies</h5>
+			<ul aria-labelledby="hMovies3-1-26">
+				<li>Wake Up Dead Man</li>
+				<li>[That's really it lately - I've not been watching many movies]</li>
+			</ul>
+			<h5 id="hTV3-1-26">TV</h5>
+			<ul aria-labelledby="hTV3-1-26">
+				<li>A Knight of the Seven Kingdoms</li>
+				<li>Helluva Boss</li>
+				<li>Better Call Saul</li>
+			</ul>
+			<h5 id="hMusic3-1-26">Music</h5>
+			<ul aria-labelledby="hMusic3-1-26">
+				<li>Hen's Teeth - Iron & Wine</li>
+				<li>Wild and Clear and Blue - I'm With Her</li>
+				<li>Live at Red Rocks - American Acquarium</li>
+			</ul>
+			<h5 id="hBooks3-1-26">Books</h5>
+			<ul aria-labelledby="hBooks3-1-26">
+				<li>Erebus - Michael Palin (still)</li>
+			</ul>
+		</details>
+		<section aria-labelledby="hArchive">
+			<h2 id="hArchive">Archive</h2>
+			<h3 class="hEnd">End</h3>
+		</section>
+	</main>
+	<footer>
+		<gw-buttons-list></gw-buttons-list>
+	</footer>
+	<dialog id="diaInfo" class="info">
+		<article>
+			<gw-icon class="info-icon" iconKey="circle-info" name="info" tabindex="-1" role="heading" aria-level="1" autofocus></gw-icon>
+			<article>
+				<p>
+					Where my <a href="./About.html"><q>About</q> page</a> gives you an overview on who I am, this <q>Now</q> page tells you what's been going on with me lately. There's a cool directory of sites with pages like this over at <a href="https://nownownow.com">nownownow.com</a> that's fun to poke through!
+				</p>
+				<p>
+					Expect infrequent updates here, maybe once every few months.
+				</p>
+			</article>
+			<footer>
+				<button onclick="document.getElementById('diaInfo').close();">Close</button>
+			</footer>
+		</article>
+	</dialog>
+</body>
+</html>

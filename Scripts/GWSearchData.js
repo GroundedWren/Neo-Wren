@@ -22,6 +22,16 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW",
 		Terms: ["GW", "ABOUT", "VERA", "KONIGIN"],
 	},
+	"Now": {
+		URL: "https://groundedwren.com/Pages/Now.html",
+		Category: "GW",
+		Terms: ["GW", "NOW", "VERA", "KONIGIN"],
+	},
+	"Now": {
+		URL: "https://groundedwren.com/Pages/Links.html",
+		Category: "GW",
+		Terms: ["GW", "LINKS", "NEIGHBORS", "SITES", "FRIENDS", "VERA", "KONIGIN"],
+	},
 	"GW-Guestbook": {
 		DisplayName: "Guestbook",
 		URL: "https://groundedwren.com/Pages/Guestbook.html",
