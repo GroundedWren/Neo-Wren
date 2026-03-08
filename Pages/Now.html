@@ -81,6 +81,7 @@
 			flex-grow: 1;
 
 			max-width: 1100px;
+			width: 100%;
 			margin-inline: auto;
 
 			h2 {
@@ -110,6 +111,21 @@
 
 				:is(h4, h5) + :is(ul, p) {
 					margin-block-start: 0px;
+				}
+
+				h4, h5, h6 {
+					margin-inline-start: 6px;
+					box-shadow: -3px 0 0 0 var(--background-alt-color),
+						-6px 0 0 0 var(--accent-color);
+				}
+
+				h4 {
+					background-color: var(--accent-color);
+					width: fit-content;
+					padding-inline-start: 1px;
+					padding-inline-end: 4px;
+					border-start-end-radius: 20px;
+					border-end-end-radius: 20px;
 				}
 			}
 		}
