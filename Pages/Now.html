@@ -67,6 +67,7 @@
 	<script src="../Scripts/Controls/GalleryControl.js"></script>
 	<script src="../Scripts/Controls/ImageLoaderControl.js"></script>
 	<script src="../Scripts/Controls/SVGIconControl.js"></script>
+	<script src="../Scripts/Controls/StickyCollapse.js"></script>
 
 	<style>
 		html {
@@ -107,6 +108,9 @@
 					border-start-end-radius: 10px;
 					margin-inline: calc(var(--content-padding)*-1);
 					margin-block: calc(var(--content-padding)*-1);
+
+					position: sticky;
+					top: 0;
 				}
 
 				:is(h4, h5) + :is(ul, p) {
@@ -151,7 +155,7 @@
 	</gw-site-header>
 	<main id="main">
 		<h2>What's up, Vera?</h2>
-		<details aria-labelledby="h3-1-26" open>
+		<gw-sticky-collapse><details aria-labelledby="h3-1-26" open>
 			<summary><h3 id="h3-1-26"><time datetime="2026-03-02T03:49:28.255Z">March 1, 2026</time></h3></summary>
 			<h4>Overall</h4>
 			<p>
@@ -243,7 +247,7 @@
 			<ul aria-labelledby="hBooks3-1-26">
 				<li>Erebus - Michael Palin (still)</li>
 			</ul>
-		</details>
+		</details></gw-sticky-collapse>
 		<section aria-labelledby="hArchive">
 			<h2 id="hArchive">Archive</h2>
 			<h3 class="hEnd">End</h3>
