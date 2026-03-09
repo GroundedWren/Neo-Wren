@@ -78,6 +78,60 @@
 
 			max-width: 1100px;
 			margin-inline: auto;
+
+			article {
+				--article-padding: 5px;
+				--article-radius: 5px;
+				padding: var(--article-padding);
+				border-radius: var(--article-radius);
+				background-color: color-mix(in oklab, var(--background-alt-color) 50%, transparent 50%);
+
+				+ article {
+					margin-block-start: 10px;
+				}
+
+				h2 {
+					position: sticky;
+					inset-block-start: 0;
+
+					background-color: var(--accent-color);
+					border-radius: var(--article-radius);
+					text-align: center;
+					margin-inline: calc(var(--article-padding) * -1);
+					margin-block-start: calc(var(--article-padding) * -1);
+				}
+
+				ul {
+					list-style: none;
+					padding: unset;
+					
+					display: flex;
+					flex-direction: row;
+					flex-wrap: wrap;
+					align-items: center;
+					justify-content: center;
+
+					figure {
+						display: grid;
+						grid-template-rows: auto auto;
+						gap: 5px;
+						background-color: var(--background-alt-color);
+						border-radius: 20px;
+						padding: 10px;
+						text-align: center;
+						justify-items: center;
+
+						img {
+							min-width: 88px;
+							min-height: 31px;
+						}
+
+						figcaption {
+							max-width: 200px;
+						}
+					}
+				}
+			}
 		}
 	</style>
 </head>
@@ -90,8 +144,215 @@
 		<h1>Links</h1>
 	</gw-site-header>
 	<main id="main">
-		<p style="text-align: center;">Coming soon!</p>
-		<p>This'll be a page where I link to sites I consider to be virtual neighbors, as well as more general references.</p>
+		<article aria-labelledby="hNeighbors">
+			<h2 id="hNeighbors">Neighbors</h2>
+			<ul aria-labelledby="hNeighbors">
+				<li>
+					<figure>
+						<a href="https://mspain.art/" target="_blank">
+							<img src="../Img/Buttons/lugia-button.png" alt="mspain button" title="mspain" />
+						</a>
+						<figcaption>The world needs more MSPain</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://leilukin.com" target="_blank">
+							<img src="../Img/Buttons/Leilukins-Hub-button.png" alt="Leilukin's hub button" title="Leilukin's Hub" />
+						</a>
+						<figcaption>Wonderful person with a wonderful site</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.serinscorner.com/" target="_blank">
+							<img src="../Img/Buttons/sc-button.png" alt="Serin's Corner button" title="Serin's Corner" />
+						</a>
+						<figcaption>IRL friend!!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://accessible-webmastery.neocities.org/" target="_blank">
+							<img src="../Img/Buttons/accessible-webmastery-button.png" alt="Accessible Webmastery button" title="Accessible Webmastery" />
+						</a>
+						<figcaption>Great a11y discussion & tips</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://wrennvy.neocities.org/" target="_blank">
+							<img src="../Img/Buttons/wrenvy-button.png" alt="Wrenvy button" title="Wrenvy" />
+						</a>
+						<figcaption>We wrens have to stick together</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://catra.world/" target="_blank">
+							<img src="../Img/Buttons/catra-button.png" alt="Catraa button" title="Catraa" />
+						</a>
+						<figcaption>The web can be art (plus good music!)</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.beepbird.net/" target="_blank" onclick="console.log('Beep!')">
+							<img src="../Img/Buttons/Beepbird-button.png" alt="Beepbird button" title="Beepbird" />
+						</a>
+						<figcaption>Thoughtful site by a fellow bird</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://kalechips.net/" target="_blank">
+							<img src="../Img/Buttons/kalechips-button.png" alt="Kale Chips button" title="Kale Chips" />
+						</a>
+						<figcaption>Mmm, Kale!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://debtdeath.neocities.org/" target="_blank">
+							<img src="../Img/Buttons/debtdeath-button.png" alt="Debt-Death button" title="Debt-Death" />
+						</a>
+						<figcaption>I love this aesthetic</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</article>
+		<article aria-labelledby="hResources">
+			<h2 id="hResources">Resources</h2>
+			<ul>
+				<li>
+					<figure>
+						<a href="https://developer.mozilla.org" target="_blank" class="full">MDN</a>
+						<figcaption>Obviously</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://fontawesome.com/" target="_blank" class="full">Fontawesome</a>
+						<figcaption>Open source icons!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://webaim.org/resources/contrastchecker/" target="_blank" class="full">WebAIM's Contrast Checker</a>
+						<figcaption>A permanent bookmark</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.w3.org/TR/WCAG22/" target="_blank" class="full">WCAG 2.2</a>
+						<figcaption>Standards for web accessibility</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://wave.webaim.org/" target="_blank" class="full">WAVE</a>
+						<figcaption>For quick spot-checking</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" class="full">ARIA Authoring Practices Guide</a>
+						<figcaption>Common patterns & how to implement them!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://html.spec.whatwg.org/dev/" target="_blank" class="full">HTML Living Standard</a>
+						<figcaption>Fun to cite in bug writeups if you're feeling snarky</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.accessibility-developer-guide.com/" target="_blank" class="full">Accessibility Developer Guide</a>
+						<figcaption>Some good tips in here</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://freesound.org/" target="_blank" class="full">freesound.org</a>
+						<figcaption>Free to use audio (this resource's existence makes me genuinely happy)</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://commons.wikimedia.org/wiki/Main_Page" target="_blank" class="full">Wikimedia Commons</a>
+						<figcaption>Images for the commons!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Backgrounds_and_borders/Box-shadow_generator" target="_blank" class="full">Box shadow generator</a>
+						<figcaption>I open this literally every time I make a box shadow</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.namecheap.com" target="_blank" class="full">Namecheap</a>
+						<figcaption>An easy domain registrar</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.schemecolor.com/" target="_blank" class="full">Scheme Color</a>
+						<figcaption>I know this site isn't the <em>most</em> colorful, but when I do use color I go here</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://hekate2.github.io/buttonmaker/" target="_blank" class="full">Button Maker</a>
+						<figcaption>Simple and effective 88x31 button creator</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://ezgif.com/" target="_blank" class="full">EZGif</a>
+						<figcaption>GIF editing tools!</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://www.getpaint.net/" target="_blank" class="full">paint.net</a>
+						<figcaption>This is the best light-weight image editing software I've ever used</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://docs.github.com/en/pages" target="_blank" class="full">Github Pages</a>
+						<figcaption>Simple hosting that just works</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</article>
+		<article aria-labelledby="hCoolSites">
+			<h2 id="hCoolSites">Cool Sites</h2>
+			<ul aria-labelledby="hCoolSites">
+				<li>
+					<figure>
+						<a href="https://meyerweb.com/" target="_blank" class="full">meyerweb.com</a>
+						<figcaption>Mr. CSS, if there ever was one</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://gomakethings.com/" target="_blank" class="full">gomakethings.com</a>
+						<figcaption>Web technologies expert and all around good human being</figcaption>
+					</figure>
+				</li>
+				<li>
+					<figure>
+						<a href="https://brennan.day/" target="_blank">
+							<img src="../Img/Buttons/brennan-day-button.png" alt="Brennan.day button" title="Brennan.day">
+						</a>
+						<figcaption>A cool small web creator</figcaption>
+					</figure>
+				</li>
+			</ul>
+		</article>
 	</main>
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
