@@ -75,6 +75,21 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Poetry = {
+		"Kindred": {
+			Author: "Vera",
+			Date: new Date(2026, 4, 17),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/Kindred.html",
+		},
+		"Under These Bones": {
+			Author: "Vera",
+			Date: new Date(2026, 4, 17),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/Under_These_Bones.html",
+		},
+		"Infinite": {
+			Author: "Vera",
+			Date: new Date(2026, 4, 17),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/Infinite.html",
+		},
 		"What Water Wants": {
 			Author: "Vera",
 			Date: new Date(2025, 11, 6),
