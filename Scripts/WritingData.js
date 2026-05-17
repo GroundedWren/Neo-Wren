@@ -61,6 +61,21 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Fiction =  {
+		"Delcan": {
+			Author: "Vera",
+			Date: new Date(2026, 2, 10),
+			URL: "https://groundedwren.com/Pages/Writing/Fiction/Delcan.html",
+		},
+		"Beatrice": {
+			Author: "Vera",
+			Date: new Date(2026, 1, 12),
+			URL: "https://groundedwren.com/Pages/Writing/Fiction/Beatrice.html",
+		},
+		"Brassbit Receipt": {
+			Author: "Vera",
+			Date: new Date(2026, 1, 7),
+			URL: "https://groundedwren.com/Pages/Writing/Fiction/Brassbit_Receipt.html",
+		},
 		"A Road to Chult": {
 			Author: "Vera",
 			Date: new Date(2022, 6, 12),

@@ -392,6 +392,21 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Fiction */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"Delcan": {
+		URL: "https://groundedwren.com/Pages/Writing/Fiction/Delcan.html",
+		Category: "Writing / Fiction",
+		Terms: ["LEGACY", "WRITING", "DND", "SWIFTWATER", "DELCAN", "SAMBAR", "CORAD", "JELXIS"],
+	},
+	"Beatrice": {
+		URL: "https://groundedwren.com/Pages/Writing/Fiction/Beatrice.html",
+		Category: "Writing / Fiction",
+		Terms: ["LEGACY", "WRITING", "DND", "SWIFTWATER", "MARLYNN", "BEATRICE", "SAMBAR"],
+	},
+	"Brassbit Receipt": {
+		URL: "https://groundedwren.com/Pages/Writing/Fiction/Brassbit_Receipt.html",
+		Category: "Writing / Fiction",
+		Terms: ["LEGACY", "WRITING", "DND", "SWIFTWATER", "BRASSBIT", "COGWORKS", "RECEIPT", "SAMBAR"],
+	},
 	"A Road to Chult": {
 		URL: "https://legacy.groundedwren.com/pages/fiction_entries/ARoadToChult.html",
 		Category: "Writing / Fiction",
@@ -422,6 +437,26 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Poetry */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"Kindred": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/Kindred.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "KINDRED"],
+	},
+	"Under These Bones": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/Under_These_Bones.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "UNDER", "THESE", "BONES"],
+	},
+	"Infinite": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/Infinite.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "INFINITE"],
+	},
+	"What Water Wants": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/What_Water_Wants.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "WHAT", "WATER", "WANTS"],
+	},
 	"I Hear The World End": {
 		URL: "https://groundedwren.com/Pages/Writing/Poetry/I_Hear_The_World_End.html",
 		Category: "Writing / Poetry",
