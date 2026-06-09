@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="Art Gallery">
+	<title>Gallery</title>
+	
+	<script>
+		/**
+		 * A script for a loading veil
+		 * @author Vera Konigin vera@groundedwren.com
+		 * https://groundedwren.neocities.org
+		 */
+		window.GW = window.GW || {};
+		window.GW.Controls = window.GW.Controls || {};
+		(function Veil(ns) {
+			ns.DeferKeys = {"DOMContentLoaded": true};
+			
+			/**
+			 * Defers the lowering of the veil until a key is cleared
+			 * @param {string} key The defer key to keep the veil up
+			 */
+			ns.addDefer = function addDefer(key) {
+				ns.DeferKeys[key] = true;
+			}
+			
+			/**
+			 * Marks a defer key as complete and clears the veil if no remain
+			 * @param {string} key The key to clear
+			 */
+			ns.clearDefer = function clearDefer(key) {
+				delete ns.DeferKeys[key];
+				if(Object.keys(ns.DeferKeys).length === 0) {
+					requestAnimationFrame(() => document.getElementById("styGwLoad")?.remove());
+				}
+			}
+			
+			document.head.insertAdjacentHTML("beforeend", `
+				<style id="styGwLoad">
+					body {
+						opacity: 0;
+					}
+					html {
+						width: 100vw;
+						height: 100vh;
+						background-color: var(--veil-light-color, #E3E3E3) !important;
+					}
+					@media(prefers-color-scheme: dark) {
+						html {
+							background-color: var(--veil-dark-color, #242424) !important;
+						}
+					}
+				</style>
+			`);
+			window.addEventListener("DOMContentLoaded", function onDOMContentLoadedVeil() {
+				ns.clearDefer("DOMContentLoaded");
+				setTimeout(() => document.getElementById("styGwLoad")?.remove(), 3000);
+			});
+		}) (window.GW.Controls.Veil = window.GW.Controls.Veil || {});
+	</script>
+
+	<link href="../Styles/MainBundle.css" rel="stylesheet" type="text/css">
+	<script src="../Scripts/Main.js"></script>
+
+	<script src="../Scripts/Gallery.js"></script>
+
+	<script src="../Scripts/Controls/ShortcutsControl.js"></script>
+	<script src="../Scripts/Controls/ImageLoaderControl.js"></script>
+	<script src="../Scripts/Controls/SVGIconControl.js"></script>
+	<script src="../Scripts/Controls/ArtFrameRowControl.js"></script>
+	<script src="../Scripts/Controls/OptionListboxControl.js"></script>
+
+	<style>
+		body {
+			display: grid;
+			grid-template-rows: auto 1fr auto;
+			position: relative;
+		}
+		header {
+			z-index: 3;
+		}
+		#secFilters {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			column-gap: 10px;
+			justify-content: center;
+			padding-block-start: 2px;
+			padding-inline: 4px;
+			background-color: color-mix(in oklab, var(--background-alt-color) 30%, transparent);
+			backdrop-filter: blur(10px);
+
+			gw-option-listbox *[tabindex="-1"]:focus {
+				outline: none !important;
+			}
+		}
+
+		#secGallery {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			align-items: start;
+			justify-content: center;
+			row-gap: 20px;
+			column-gap: 10px;
+
+			> * {
+				flex-basis: 300px;
+				padding: 4px;
+			}
+		}
+		gw-option-listbox {
+			.gw-icon {
+				display: none;
+			}
+
+			label {
+				border-radius: 4px;
+				padding-inline: 2px;
+			}
+
+			fieldset {
+				display: flex;
+				flex-direction: row;
+				flex-wrap: wrap;
+				gap: 10px;
+				border-color: transparent !important;
+				background-color: transparent !important;
+
+				input {
+					margin-inline-start: 0 !important;
+					margin-inline-end: 2px !important;
+				}
+			}
+		}
+	</style>
+</head>
+<body>
+	<gw-site-header
+		crumbs="index.html|Grounded Wren"
+		curcrumbtxt="Gallery"
+		reflowWidth="650px"
+	>
+		<h1>Gallery</h1>
+		<button id="btnShowAll" class="right-content" onclick="GW.Pages.Gallery.clearFilters()">
+			Show All
+		</button>
+	</gw-site-header>
+	<main id="main">
+		<section id="secFilters" aria-label="Filters">
+			<gw-option-listbox id="olbxArtist">
+				<fieldset>
+					<legend>Artist</legend>
+				</fieldset>
+			</gw-option-listbox>
+			<gw-option-listbox id="olbxChar">
+				<fieldset>
+					<legend>Character</legend>
+				</fieldset>
+			</gw-option-listbox>
+		</section>
+		<gw-shortcuts
+			code_1="ArrowUp"
+			handler_1="GW.Pages.Gallery.onArrowNav(event.key)"
+			code_2="ArrowDown"
+			handler_2="GW.Pages.Gallery.onArrowNav(event.key)"
+			code_3="ArrowLeft"
+			handler_3="GW.Pages.Gallery.onArrowNav(event.key)"
+			code_4="ArrowRight"
+			handler_4="GW.Pages.Gallery.onArrowNav(event.key)"
+			code_5="Enter"
+			handler_5="GW.Pages.Gallery.onGridEnter(event)"
+		>
+			<section id="secGallery" aria-label="Gallery" role="grid" tabindex="0">
+				<gw-art-frame-row
+					data-w="1299"
+					data-h="919"
+					data-color="#78475d"
+					data-title="In The Lavender"
+					data-src="https://legacy.groundedwren.com/img/Vera%20Flowers%20-%20Ewylana%20-%202024-06-04.png"
+					data-alt="A tielfing woman in purple robes sitting in a field of lavender looking contemplatively into the middle distance."
+					data-artists="Elwyn Rain,"
+					data-artistlinks="https://elwyn-rain-art.carrd.co/,"
+					data-characters="Vera,"
+					data-date="2024-06-04T05:00:00.000Z"
+					data-description="A beautiful YCH dynamic sketch!"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="598"
+					data-h="919"
+					data-color="#908380"
+					data-title="Titus Reference"
+					data-src="https://legacy.groundedwren.com/img/Titus%20Ref%20-%20NeverNeverLand%20-%202023-11-27.png"
+					data-alt="A white and pinkish male Turian with red eyes posing plainly."
+					data-artists="Antares,"
+					data-artistlinks="https://ko-fi.com/antaresnnl,"
+					data-characters="Titus,"
+					data-date="2023-11-27T06:00:00.000Z"
+					data-description="A Turian adopt of Titus, a character in Sindri's story."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1225"
+					data-h="919"
+					data-color="#c19a9c"
+					data-title="Tense Encounter"
+					data-src="https://legacy.groundedwren.com/img/Shadow%20and%20Echo%20Battle%20Screen%20-%20Schafer%20Brown%20-%202022-10-16.jpg"
+					data-alt="Video game style battle screen of two black cats with daggers and swords facing off with a death dog in a desert."
+					data-artists="Shafer Brown,"
+					data-artistlinks="https://www.shaferbrown.com/,"
+					data-characters="Shadow,Echo,"
+					data-date="2023-10-16T05:00:00.000Z"
+					data-description="An illustration based on the true story of my partner's cats having a tense stand-off with a dog on their turf."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="919"
+					data-h="919"
+					data-color="#83717f"
+					data-title="Melancholia"
+					data-src="https://legacy.groundedwren.com/img/Melancholia%20watermark%20-%20LiliVic%20Creations%20-%202023-02-19.png"
+					data-alt="A bust of a sad-looking Tiefling woman."
+					data-artists="LiliVic Creations,"
+					data-artistlinks="https://liliviccreationsart.carrd.co/,"
+					data-characters="Vera,"
+					data-date="2023-02-19T06:00:00.000Z"
+					data-description="Wonderful depiction of Vera in a low moment by Lilian.<br>If she'd never done any of this, maybe he'd still be alive..."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1633"
+					data-h="919"
+					data-color="#9b7c71"
+					data-title="Inspiration, inspiration everywhere"
+					data-src="https://legacy.groundedwren.com/img/Inspiration,%20Inspiration%20Everywhere%20-%20ShrimpLoverCat%20-%202023-02-18.png"
+					data-alt="A confident brass dragonborn man gestures ahead while speaking with his right arm around a very concerned Tiefling woman."
+					data-artists="ShrimpLoverCat,"
+					data-artistlinks="https://shrimplovercat.tumblr.com/,"
+					data-characters="Vera,Serin,"
+					data-date="2023-02-18T06:00:00.000Z"
+					data-description="Meme draw-over from Catty!<br>When Serin has cast Magnificient Mansion, he may have just a litttle too much power..."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1225"
+					data-h="919"
+					data-color="#4f4045"
+					data-title="Confusion"
+					data-src="https://legacy.groundedwren.com/img/Vera%20Confusion%20-%20ShrimpLoverCat%20-%202023-01-20.png"
+					data-alt="A confused tiefling woman stares perplexedly at trigonometry equations."
+					data-artists="ShrimpLoverCat,"
+					data-artistlinks="https://shrimplovercat.tumblr.com/,"
+					data-characters="Vera,"
+					data-date="2023-01-20T06:00:00.000Z"
+					data-description="Whimiscal piece from Catty!<br>Vera seems a bit perplexed, probably by some plan Serin has just pitched."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1220"
+					data-h="919"
+					data-color="#504841"
+					data-title="Framed Nocturna Cross Stitch"
+					data-src="https://legacy.groundedwren.com/img/Nocturna%20Cross%20Stitch%20Framed%20-%20Vera%20-%202022-07-18.jpg"
+					data-alt="A framed pixel-art style cross-stitching of a vampiric woman with blue skin and orange hair standing at the ready. She is above three red hearts."
+					data-artists="Vera,"
+					data-artistlinks="https://groundedwren.com/,"
+					data-characters="Nocturna,"
+					data-date="2022-07-18T05:00:00.000Z"
+					data-description="A cross stitch project I completed as a gift for my partner.<br>I am never stitching a white background again - it took forever and was not worth it!"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1920"
+					data-h="801"
+					data-color="#835341"
+					data-title="Risen Brunch"
+					data-src="https://legacy.groundedwren.com/img/Risen%20Brunch%20-%20ShrimpLoverCat%20-%20Shaded%20-%202022-03-12.png"
+					data-alt="Four members of the Risen and Percy seated on the same side of a table eating eggs and bacon."
+					data-artists="ShrimpLoverCat,"
+					data-artistlinks="https://shrimplovercat.tumblr.com/,"
+					data-characters="Vera,Lightsong,Serin,Luric,Percy,"
+					data-date="2022-03-12T06:00:00.000Z"
+					data-description="The Risen D&D party and their patron enjoying a light brunch between adventures.<br>From left to right: Lightsong, a Dwarven cleric; Vera, a smug Tiefling wizard; Serin, a Dragonborn bard; Luric, a Half-Elf warlock; Percy, an even more smug High-Elf wizard"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="689"
+					data-h="919"
+					data-color="#624240"
+					data-title="Freya Shaded Half-body"
+					data-src="https://legacy.groundedwren.com/img/Freya%20Shaded%20Halfbody%20-%20Chelsea-Rhi%20-%202022-02-24.png"
+					data-alt="A Chultan Human woman in splint armor holding an axe over her left shoulder. She has brown skin, green eyes, and braided black hair. She looks determined."
+					data-artists="Chelsea-Rhi,"
+					data-artistlinks="https://linktr.ee/chelsearhi,"
+					data-characters="Freya,"
+					data-date="2022-02-24T06:00:00.000Z"
+					data-description="A depiction of my Human Paladin in a Tomb of Annhilation campaign I was in for years.<br>Once driven from her home, Freya returned to Chult to cleanse it of the undead menace. Tough but fair, Freya is a kind soul who is extremely protective of children in particular.<br>News of her death has been greatly exaggerated."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="800"
+					data-h="800"
+					data-color="#472a3d"
+					data-title="This Better be Good"
+					data-src="https://legacy.groundedwren.com/img/Vera%20Coffee%20-%20Chelsea%20Rhi%20-%202022-01-23.png"
+					data-alt="An annoyed Tiefling woman holding a mug of coffee with the word 'NO' printed on it."
+					data-artists="Chelsea-Rhi,"
+					data-artistlinks="https://linktr.ee/chelsearhi,"
+					data-characters="Vera,"
+					data-date="2022-01-23T06:00:00.000Z"
+					data-description="A wonderful icon commission I got from Chelsea-Rhi on twitter. Do not mess with Vera before she's had her coffee!"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1633"
+					data-h="919"
+					data-color="#384a57"
+					data-title="Pondering Her Orb"
+					data-src="https://legacy.groundedwren.com/img/Vera%20Orb%20-%20ShrimpLoverCat%20-%202021-12-08.png"
+					data-alt="A tiefling woman in blue robes looks deeply into a glowing blue orb."
+					data-artists="ShrimpLoverCat,"
+					data-artistlinks="https://shrimplovercat.tumblr.com/,"
+					data-characters="Vera,"
+					data-date="2021-12-08T06:00:00.000Z"
+					data-description="A wonderfully shaded piece from Catty!<br>Hmm, I wonder who she's scrying on..."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1230"
+					data-h="919"
+					data-color="#a98da2"
+					data-title=""
+					data-src="https://legacy.groundedwren.com/img/Vera%20and%20Jack%20-%20ShrimpLoverCat%20-%202021-08-22.png"
+					data-alt="Siblings"
+					data-artists="ShrimpLoverCat,"
+					data-artistlinks="https://shrimplovercat.tumblr.com/,"
+					data-characters="Vera,Jack,"
+					data-date="2021-08-22T05:00:00.000Z"
+					data-description="Vera posing for a photo with her non-canonical sibling, my real-sibling's character Jack!<br>In canon, I bet they would (playfully!) fight as much as we do."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1103"
+					data-h="919"
+					data-color="#4e2d3a"
+					data-title="Studious"
+					data-src="https://legacy.groundedwren.com/img/Vera%20Reading%20-%20Ravenluck%20-%202021-02-11.png"
+					data-alt="A smirking tiefling woman wrapped in a purple blanket with a spellbook laid across her lap."
+					data-artists="Berenice Borggrefe,"
+					data-artistlinks="https://www.artstation.com/ravenluckarts,"
+					data-characters="Vera,"
+					data-date="2021-02-11T06:00:00.000Z"
+					data-description="This is the very first piece of Vera I ever commissioned!<br>Berenice only had some found reference images to work with and effectively created Vera's canon look from them.<br>I consider this to be the authoritative depiction of Vera."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="895"
+					data-h="919"
+					data-color="#d3c3b5"
+					data-title=""
+					data-src="https://legacy.groundedwren.com/img/Original%20Group%20-%20Bastien%20Aufrere%20-%202019-04-25.png"
+					data-alt="The Original Risen"
+					data-artists="Bastien Aufrere,"
+					data-artistlinks="https://www.artstation.com/bastien_aufrere,"
+					data-characters="Eryn,Serin,Ghodukk,Lightsong,"
+					data-date="2019-04-25T05:00:00.000Z"
+					data-description="The Risen D&D Party as they once appeared years ago, before some could rise no more.<br>Beginning at the left and moving clockwise, we have: Eryn, my original character, a Half-Elf ranger. He is succeeded by Vera; Lightsong, a Dwarven cleric who yet lives; Serin, a Dragonborn bard who yet lives; Ghodukk, a Human barbarian, who tragically fell at the culmination of his story."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="1010"
+					data-h="918"
+					data-color="#6e4e44"
+					data-title="Gardener Sindri"
+					data-src="https://legacy.groundedwren.com/img/Sindri%20Garden%20Raiyk%202018-04-12.png"
+					data-alt="A chibi-style depiction of a purple turian Male in overalls and flannel planting exotic plants with a hand shovel."
+					data-artists="Raiyk,"
+					data-artistlinks="https://www.furaffinity.net/user/Raiyk/,"
+					data-characters="Sindri,"
+					data-date="2018-04-12T05:00:00.000Z"
+					data-description="There are lots of things to love about Andromeda, not least of which is the exciting new plethora of flora to raise and study!"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="473"
+					data-h="670"
+					data-color="#695d4d"
+					data-title="Cowboy Sindri"
+					data-src="https://legacy.groundedwren.com/img/Sindri%20Hat%20-%20Despey%20-%202016-11-19.png"
+					data-alt="A smiling purple Turian male with a brown cowboy hat perched precariously atop his head."
+					data-artists="Despey,"
+					data-artistlinks="https://www.furaffinity.net/user/despey/,"
+					data-characters="Sindri,"
+					data-date="2016-11-19T06:00:00.000Z"
+					data-description="During his time on Earth, Sindri would certainly have tried a cowboy hat or two."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="923"
+					data-h="865"
+					data-color="#753e50"
+					data-title="Tangled up in Blue"
+					data-src="https://legacy.groundedwren.com/img/Sindri%20Profile%20-%20jesterdk%20&%20Vera%20-%202016-10-14.png"
+					data-alt="A portrait of a purple Turian male looking left. The background is from the 1975 album 'Blood on the Tracks' by Bob Dylan."
+					data-artists="Vera,JesterDK,"
+					data-artistlinks="https://groundedwren.com/,https://www.deviantart.com/jesterdk,"
+					data-characters="Sindri,"
+					data-date="2016-10-14T05:00:00.000Z"
+					data-description="JesterDK was kind enough to post some free-to-use Turian lines I filled in!<br>Background is from my at-the-time musical hyperfixation, Blood on the Tracks"
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="858"
+					data-h="919"
+					data-color="#677770"
+					data-title="Sindri Bust"
+					data-src="https://legacy.groundedwren.com/img/Sindri%20Bust%20-%20Despey%20-%202016-09-22.png"
+					data-alt="A bust drawing of a purple male Turian with piercings on his left brow looking confused."
+					data-artists="Despey,"
+					data-artistlinks="https://www.furaffinity.net/user/despey/,"
+					data-characters="Sindri,"
+					data-date="2016-09-22T05:00:00.000Z"
+					data-description="A piece I won from a raffle almost as soon as I adopted Sindri's design! Something has perplexed the poor lad."
+				></gw-art-frame-row>
+				<gw-art-frame-row
+					data-w="562"
+					data-h="919"
+					data-color="#87878d"
+					data-title="Sindri Reference"
+					data-src="https://legacy.groundedwren.com/img/Sindri%20Reference%20-%20Raiyk%20-%202016-09-10.png"
+					data-alt="A chibi character-sheet style depiction of a purple Turian male with two piercings in his left brow."
+					data-artists="Raiyk,"
+					data-artistlinks="https://www.furaffinity.net/user/Raiyk/,"
+					data-characters="Sindri,"
+					data-date="2016-09-10T05:00:00.000Z"
+					data-description="A reference of Sindri designed by Raiyk as an adopt!<br>I really love his ombre-fringe design - I've written it into his backstory as a subtle regional tattoo pattern."
+				></gw-art-frame-row>
+			</section>
+		</gw-shortcuts>
+	</main>
+	<footer>
+		<gw-buttons-list></gw-buttons-list>
+	</footer>
+</body>
+</html>
