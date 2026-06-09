@@ -37,6 +37,9 @@ window.GW = window.GW || {};
 				&:is(:hover, :focus-within) {
 					--icon-opacity: 1;
 				}
+				@media(hover: none) {
+					--icon-opacity: 1;
+				}
 
 				.title {
 					grid-area: tl;
