@@ -40,6 +40,10 @@ GW.Pages = GW.Pages || {};
 			ns.FilterStyleSheet.replaceSync(`
 				gw-art-frame-row:not([data-title="${piece}"]) { display: none; }
 				#olbxArtist, #olbxChar { display: none; }
+				#secGallery > * {
+					flex-grow: 1;
+					max-width: 1100px;
+				}
 			`);
 			return;
 		}

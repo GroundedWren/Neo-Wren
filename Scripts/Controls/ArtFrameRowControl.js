@@ -51,6 +51,10 @@ window.GW = window.GW || {};
 					border-start-start-radius: var(--border-radius);
 					border-start-end-radius: var(--border-radius);
 					overflow: clip;
+					
+					img {
+						margin-inline: auto;
+					}
 				}
 				.expand, .link {
 					grid-area: pc;
