@@ -38,11 +38,14 @@ GW.Pages = GW.Pages || {};
 		const piece = params.get("piece");
 		if(piece) {
 			ns.FilterStyleSheet.replaceSync(`
-				gw-art-frame-row:not([data-title="${piece}"]) { display: none; }
-				#olbxArtist, #olbxChar { display: none; }
-				#secGallery > * {
-					max-width: 1100px;
+				gw-art-frame-row {
+					&:not([data-title="${piece}"]) {
+						display: none;
+					}
+					--focus-link-display: none;
+					--file-link-display: grid;
 				}
+				#olbxArtist, #olbxChar { display: none; }
 			`);
 			return;
 		}
