@@ -397,6 +397,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Fiction */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"Baby Center Stage": {
+		URL: "https://groundedwren.com/Pages/Writing/Fiction/Baby_Center_Stage.html",
+		Category: "Writing / Fiction",
+		Terms: ["WRITING", "FANFICTION", "FAN", "FICTION", "AMAZING", "DIGITAL", "CIRCUS", "JAX", "RIBBIT"],
+	},
 	"Delcan": {
 		URL: "https://groundedwren.com/Pages/Writing/Fiction/Delcan.html",
 		Category: "Writing / Fiction",

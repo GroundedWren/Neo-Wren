@@ -61,6 +61,11 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Fiction =  {
+		"Baby Center Stage": {
+			Author: "Vera",
+			Date: new Date(2026, 5, 27),
+			URL: "https://groundedwren.com/Pages/Writing/Fiction/Baby_Center_Stage.html",
+		},
 		"Delcan": {
 			Author: "Vera",
 			Date: new Date(2026, 2, 10),

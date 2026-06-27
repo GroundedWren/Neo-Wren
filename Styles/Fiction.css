@@ -1,4 +1,69 @@
 .fiction {
+	--background-color: #FFFFFF;
+	--text-color: #000000;
+	--link-color: #0000EE;
+	--link-background-color: #BDE0F2;
+	--mark-color: #D2FCC5;
+	--background-alt-color: #E3E3E3;
+
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+
+	@media(prefers-color-scheme: dark) {
+		--background-color: black;
+		--text-color: white;
+		--link-color: #74D7EE;
+		--link-background-color: #3C5054;
+		--mark-color: #005C08;
+		--background-alt-color: #242424;
+	}
+
+	summary {
+		user-select: none;
+		cursor: pointer;
+
+		> * {
+			display: inline;
+		}
+	}
+
+	.sr-only {
+		position: absolute !important;
+		inset-inline-start: -99999999px;
+		inset-block-start: 0px;
+	}
+
+	.hide-until-focus {
+		position: absolute;
+		inset-inline-start: -99999999px;
+		inset-block-start: 0px;
+		
+		&:focus-within {
+			position: revert;
+			inset-inline-start: revert;
+			inset-block-start: revert;
+		}
+	}
+
+	a {
+		color: var(--link-color);
+		
+		&.full {
+			padding: 4px;
+			border-radius: 20px;
+			background-color: var(--link-background-color);
+
+			&:hover {
+				background-color: var(--mark-color);
+			}
+
+			&:active {
+				box-shadow: 0px 0px 24px 2px var(--link-background-color) inset;
+			}
+		}
+	}
+
 	header {
 		text-align: center;
 		hgroup {
@@ -18,13 +83,8 @@
 		grid-template-rows: auto 1fr auto;
 		justify-items: center;
 
-		background-color: white;
-		color: black;
-		
-		@media(prefers-color-scheme: dark) {
-			background-color: black;
-			color: white;
-		}
+		background-color: var(--background-color);
+		color: var(--text-color);
 
 		main {
 			max-width: 1100px;
@@ -32,8 +92,23 @@
 		}
 	}
 
-	.gw-button {
-		width: 88px;
-		height: 31px;
+	.ftr-links {
+		background-color: color-mix(in oklab, var(--background-alt-color) 60%, transparent);
+		backdrop-filter: blur(10px);
+		justify-self: stretch;
+		position: sticky;
+		inset-block-end: 0px;
+		display: grid;
+		grid-template-columns: 1fr 1fr 1fr;
+		justify-items: center;
+		margin-block: 5px;
+		padding: 2px;
+
+		> :first-child {
+			justify-self: start;
+		}
+		> :last-child {
+			justify-self: end;
+		}
 	}
 }
