@@ -32,6 +32,7 @@ window.GW = window.GW || {};
 					"ch ch"
 					"ds ds";
 				grid-template-columns: 1fr auto;
+				max-width: 1100px;
 
 				--border-radius: 6px;
 				&:is(:hover, :focus-within) {
@@ -51,6 +52,10 @@ window.GW = window.GW || {};
 					border-start-start-radius: var(--border-radius);
 					border-start-end-radius: var(--border-radius);
 					overflow: clip;
+					
+					img {
+						margin-inline: auto;
+					}
 				}
 				.expand, .link {
 					grid-area: pc;
@@ -63,10 +68,17 @@ window.GW = window.GW || {};
 					opacity: var(--icon-opacity, 0);
 
 					a {
-						display: grid;
+						display: grid;;
 						min-width: 30px;
 						min-height: 30px;
 						margin: 5px;
+
+						&.focus {
+							display: var(--focus-link-display, grid);
+						}
+						&.file {
+							display: var(--file-link-display, none);
+						}
 					}
 				}
 				.timestamp {
@@ -135,7 +147,12 @@ window.GW = window.GW || {};
 				imageLoaderScript.type = "text/javascript";
 				imageLoaderScript.src = "https://groundedwren.com/Scripts/Controls/SVGIconControl.js";
 				document.head.appendChild(imageLoaderScript);
-				GW.Controls?.Veil?.addDefer("GW.Controls.IconEl");
+			}
+			if(!GW.Controls?.Toaster) {
+				const imageLoaderScript = document.createElement("script");
+				imageLoaderScript.type = "text/javascript";
+				imageLoaderScript.src = "https://groundedwren.com/Scripts/Controls/ToasterControl.js";
+				document.head.appendChild(imageLoaderScript);
 			}
 		}
 
@@ -235,12 +252,15 @@ window.GW = window.GW || {};
 					</gw-image-loader>
 				</div>
 				<div role="gridcell" class="expand" tabindex="-1">
-					<a href="${this.dataset.src}" tabindex="-1">
-						<gw-icon iconkey="expand" name="Open fullscreen"></gw-icon>
+					<a href="?piece=${encodeURI(this.dataset.title)}" class="focus" tabindex="-1">
+						<gw-icon iconkey="expand" name="Expand"></gw-icon>
+					</a>
+					<a href="${this.dataset.src}" class="file" tabindex="-1">
+						<gw-icon iconkey="expand" name="Open file"></gw-icon>
 					</a>
 				</div>
 				<div role="gridcell" class="link" tabindex="-1">
-					<a href="?piece=${encodeURI(this.dataset.title)}" tabindex="-1">
+					<a id="${this.getId("plink")}" tabindex="-1">
 						<gw-icon iconkey="link" name="Permalink"></gw-icon>
 					</a>
 				</div>
@@ -263,6 +283,19 @@ window.GW = window.GW || {};
 				</div>
 				<div role="gridcell" class="description" tabindex="-1">${this.dataset.description}</div>
 			`;
+
+			this.getRef("plink").addEventListener("click", async () => {
+				try {
+					const loc = window.location;
+					await navigator.clipboard.writeText(
+						`${loc.origin}${loc.pathname}?piece=${encodeURI(this.dataset.title)}`
+					);
+					GW.Controls.Toaster.showToast("Link copied!");
+				}
+				catch (error) {
+					GW.Controls.Toaster.showToast(error.message);
+				}
+			});
 
 			this.IsInitialized = true;
 		}

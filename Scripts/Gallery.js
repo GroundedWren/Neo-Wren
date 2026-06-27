@@ -38,22 +38,28 @@ GW.Pages = GW.Pages || {};
 		const piece = params.get("piece");
 		if(piece) {
 			ns.FilterStyleSheet.replaceSync(`
-				gw-art-frame-row:not([data-title="${piece}"]) { display: none; }
+				gw-art-frame-row {
+					&:not([data-title="${piece}"]) {
+						display: none;
+					}
+					--focus-link-display: none;
+					--file-link-display: grid;
+				}
 				#olbxArtist, #olbxChar { display: none; }
 			`);
+			return;
 		}
 
-		setTimeout(() => {
-			const artist = params.get("artist");
-			if(artist) {
-				document.getElementById("olbxArtist").querySelector(`[role="option"]:has([value="${artist}"])`).click();
-			}
+		const artist = params.get("artist");
+		if(artist) {
+			document.getElementById("olbxArtist").querySelector(`[value="${artist}"]`).click();
+		}
 
-			const character = params.get("character");
-			if(character) {
-				document.getElementById("olbxChar").querySelector(`[role="option"]:has([value="${character}"])`).click();
-			}
-		}, 0); //Let the mutation observers construct the listboxes
+		const character = params.get("character");
+		if(character) {
+			document.getElementById("olbxChar").querySelector(`[value="${character}"]`).click();
+		}
+		recomputeFilters();
 	});
 
 	const onGridFocusin = (event) => {
@@ -66,19 +72,23 @@ GW.Pages = GW.Pages || {};
 			selectCell(closestCell);
 		}
 		else if(event.target === galleryEl) {
-			const cellEl = galleryEl.querySelector(`[role="gridcell"]`)
-			selectCell(cellEl);
-			cellEl.focus();
+			const cellEl = [...galleryEl.querySelectorAll(`[role="gridcell"]`)].filter(
+				cell => cell.checkVisibility()
+			)[0];
+			if(cellEl) {
+				selectCell(cellEl);
+				cellEl.focus();
+			}
 		}
 	}
 
 	const recomputeFilters = () => {
-		const chosenArtist = document.getElementById("olbxArtist").Value;
+		const chosenArtist = document.querySelector("#olbxArtist input:checked")?.value;
 		const artistFilter = chosenArtist 
 			? `gw-art-frame-row:not([data-artists*="${chosenArtist},"]) { display: none; }`
 			: "";
 
-		const chosenCharacter = document.getElementById("olbxChar").Value;
+		const chosenCharacter = document.querySelector("#olbxChar input:checked")?.value;
 		const characterFilter = chosenCharacter 
 			? `gw-art-frame-row:not([data-characters*="${chosenCharacter},"]) { display: none; }`
 			: "";
@@ -97,6 +107,22 @@ GW.Pages = GW.Pages || {};
 			${artistFilter}
 			${characterFilter}
 		`);
+
+		const galleryEl = document.getElementById("secGallery");
+		if(![...galleryEl.querySelectorAll(`gw-art-frame-row`)].filter(row => row.checkVisibility()).length) {
+			galleryEl.setAttribute("tabindex", "-1");
+			clearSelection();
+		}
+		else if (galleryEl.getAttribute("tabindex") === "-1") {
+			galleryEl.setAttribute("tabindex", "0");
+		}
+		else {
+			const activeCell = galleryEl.querySelector(`[role="gridcell"][tabindex="0"]`);
+			if(!activeCell?.checkVisibility()) {
+				clearSelection();
+				galleryEl.setAttribute("tabindex", "0");
+			}
+		}
 	};
 
 	ns.clearFilters = function clearFilters() {
@@ -149,9 +175,15 @@ GW.Pages = GW.Pages || {};
 	}
 
 	function selectCell(gridcell) {
-		document.querySelectorAll(`#secGallery [tabindex="0"]`).forEach(tabbableEl => tabbableEl.setAttribute("tabindex", "-1"));
+		clearSelection();
 		[gridcell, ...gridcell?.querySelectorAll(`[tabindex="-1"]`)].forEach(
 			tabbableEl => tabbableEl.setAttribute("tabindex", "0")
+		);
+	}
+
+	function clearSelection() {
+		document.querySelectorAll(`#secGallery [tabindex="0"]`).forEach(
+			tabbableEl => tabbableEl.setAttribute("tabindex", "-1")
 		);
 	}
 

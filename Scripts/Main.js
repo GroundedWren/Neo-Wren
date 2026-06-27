@@ -45,7 +45,7 @@ window.GW = window.GW || {};
 						display: flex;
 						flex-direction: row;
 						gap: 5px;
-						justify-content: flex-end;
+						justify-content: var(--right-justify-content, flex-end);
 						flex-wrap: wrap;
 					}
 
@@ -279,7 +279,7 @@ window.GW = window.GW || {};
 
 							> :last-child {
 								justify-self: end;
-								justify-content: center;
+								justify-content: var(--right-justify-content, flex-end);
 							}
 						}
 					}
