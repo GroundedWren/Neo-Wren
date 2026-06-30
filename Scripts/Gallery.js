@@ -165,7 +165,10 @@ GW.Pages = GW.Pages || {};
 	};
 
 	ns.onGridEnter = function onGridEnter(_event) {
-		const cellLinks = [...getCurCell()?.querySelectorAll(`a`)];
+		const cellLinks = [...getCurCell()?.querySelectorAll(`a`)].filter(linkEl => linkEl.checkVisibility());
+		if(!getCurCell().matches(`:focus`)){ 
+			cellLinks.filter(linkEl => linkEl.matches(`:focus`))?.click();
+		 }
 		if(cellLinks.length === 1) {
 			cellLinks[0].click();
 		}
