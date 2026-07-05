@@ -63,7 +63,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW",
 		Terms: ["GW", "PROJECTS", "PROJECT", "INDEX"],
 	},
-	"Gallery": {
+	"Art Gallery": {
 		URL: "https://groundedwren.com/Pages/Gallery.html",
 		Category: "GW",
 		Terms: ["GW", "ART", "GALLERY", "PICTURE", "PAINTING", "GRAPHIC", "DIGITAL"],
