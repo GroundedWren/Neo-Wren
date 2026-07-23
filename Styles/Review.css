@@ -1,13 +1,26 @@
 .review {
-    counter-reset: paragraph;
+	--mark-color: #299608;
 
-    p {
-        counter-increment: paragraph;
-        line-height: 2lh;
-        &::before {
-            content: "¶" counter(paragraph);
-            display: block;
-            line-height: 0;
-        }
-    }
+	@media(prefers-color-scheme: dark) {
+		--mark-color: #00800B;
+	}
+
+	counter-reset: paragraph;
+
+	p {
+		counter-increment: paragraph;
+		line-height: 2lh;
+		&::before {
+			content: "¶" counter(paragraph);
+			display: block;
+			line-height: 0;
+		}
+	}
+
+	article[aria-label="callout"] {
+		border-inline-start: 1.5px solid var(--mark-color);
+		margin-inline-start: 3px;
+		padding-inline-start: 3px;
+		background-color: color-mix(in oklab, var(--mark-color), transparent 80%);
+	}
 }
