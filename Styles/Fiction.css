@@ -64,6 +64,10 @@
 		}
 	}
 
+	blockquote {
+		font-style: italic;
+	}
+
 	header {
 		text-align: center;
 		hgroup {

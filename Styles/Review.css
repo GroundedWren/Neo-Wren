@@ -1,8 +1,10 @@
 .review {
 	--mark-color: #299608;
+	--warn-color: #EDC200;
 
 	@media(prefers-color-scheme: dark) {
 		--mark-color: #00800B;
+		--warn-color: #766000;
 	}
 
 	counter-reset: paragraph;
@@ -22,5 +24,21 @@
 		margin-inline-start: 3px;
 		padding-inline-start: 3px;
 		background-color: color-mix(in oklab, var(--mark-color), transparent 80%);
+	}
+
+	aside[aria-label="context"] {
+		border-inline-start: 1.5px dashed var(--warn-color);
+		margin-inline: auto;
+		padding-inline: 10px;
+		background-color: color-mix(in oklab, var(--warn-color), transparent 80%);
+		max-width: 900px;
+
+		p {
+			counter-increment: none;
+			line-height: 1lh;
+			&::before {
+				content: "";
+			}
+		}
 	}
 }
