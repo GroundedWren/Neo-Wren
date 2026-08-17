@@ -260,7 +260,7 @@ window.GW = window.GW || {};
 					</a>
 				</div>
 				<div role="gridcell" class="link" tabindex="-1">
-					<a id="${this.getId("plink")}" tabindex="-1">
+					<a id="${this.getId("plink")}" href="javascript:void(0)" tabindex="-1">
 						<gw-icon iconkey="link" name="Permalink"></gw-icon>
 					</a>
 				</div>
