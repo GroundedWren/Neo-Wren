@@ -101,6 +101,25 @@
 			}
 		}
 
+		#icoKeyboard {
+			display: none;
+		}
+		@media(hover: hover) {
+			:has(#secGallery:focus-within) {
+				#icoKeyboard {
+					display: grid;
+					grid-auto-flow: column;
+					gap: 5px;
+					background-color: color-mix(in oklab, var(--background-alt-color) 30%, transparent);
+					backdrop-filter: blur(10px);
+
+					position: fixed;
+					inset-inline-start: 0;
+					inset-block-end: 0;
+				}
+			}
+		}
+
 		#secGallery {
 			display: flex;
 			flex-direction: row;
@@ -437,5 +456,9 @@
 	<footer>
 		<gw-buttons-list></gw-buttons-list>
 	</footer>
+	<div id="icoKeyboard">
+		<gw-icon iconKey="keyboard" aria-hidden="true"></gw-icon>
+		<span>Navigate with the arrow keys</span>
+	</div>
 </body>
 </html>
