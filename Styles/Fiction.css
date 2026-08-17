@@ -64,6 +64,10 @@
 		}
 	}
 
+	blockquote {
+		font-style: italic;
+	}
+
 	header {
 		text-align: center;
 		hgroup {
@@ -82,6 +86,10 @@
 		display: grid;
 		grid-template-rows: auto 1fr auto;
 		justify-items: center;
+
+		@media print {
+			display: block;
+		}
 
 		background-color: var(--background-color);
 		color: var(--text-color);

@@ -95,6 +95,11 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Poetry = {
+		"A Mote of Love": {
+			Author: "Vera",
+			Date: new Date(2026, 7, 13),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/A_Mote_of_Love.html",
+		},
 		"Kindred": {
 			Author: "Vera",
 			Date: new Date(2026, 4, 17),

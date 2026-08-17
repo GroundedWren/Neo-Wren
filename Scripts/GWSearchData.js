@@ -63,7 +63,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 		Category: "GW",
 		Terms: ["GW", "PROJECTS", "PROJECT", "INDEX"],
 	},
-	"Gallery": {
+	"Art Gallery": {
 		URL: "https://groundedwren.com/Pages/Gallery.html",
 		Category: "GW",
 		Terms: ["GW", "ART", "GALLERY", "PICTURE", "PAINTING", "GRAPHIC", "DIGITAL"],
@@ -447,6 +447,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Poetry */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"A Mote of Love": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/A_Mote_of_Love.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "A", "MOTE", "OF", "LOVE", "SESTINA"],
+	},
 	"Kindred": {
 		URL: "https://groundedwren.com/Pages/Writing/Poetry/Kindred.html",
 		Category: "Writing / Poetry",
