@@ -2,7 +2,7 @@
 	--mark-color: #299608;
 	--warn-color: #EDC200;
 
-	@media not print and (prefers-color-scheme: dark) {
+	@media screen and (prefers-color-scheme: dark) {
 		--mark-color: #00800B;
 		--warn-color: #766000;
 	}
