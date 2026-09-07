@@ -10,7 +10,7 @@
 		box-sizing: border-box;
 	}
 
-	@media(prefers-color-scheme: dark) {
+	@media not print and (prefers-color-scheme: dark) {
 		--background-color: black;
 		--text-color: white;
 		--link-color: #74D7EE;

@@ -2,14 +2,14 @@
 	--mark-color: #299608;
 	--warn-color: #EDC200;
 
-	@media(prefers-color-scheme: dark) {
+	@media not print and (prefers-color-scheme: dark) {
 		--mark-color: #00800B;
 		--warn-color: #766000;
 	}
 
 	counter-reset: paragraph;
 
-	p {
+	p:not(.in-situ) {
 		counter-increment: paragraph;
 		line-height: 2lh;
 		&::before {
