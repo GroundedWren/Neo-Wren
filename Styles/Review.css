@@ -12,6 +12,9 @@
 	p:not(.in-situ) {
 		counter-increment: paragraph;
 		line-height: 2lh;
+		margin-block-start: 0;
+		padding-block-start: 16px;
+		margin-block-end: 16px;
 		&::before {
 			content: "¶" counter(paragraph);
 			display: block;
