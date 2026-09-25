@@ -95,6 +95,11 @@ GW.Pages.Writing = GW.Pages.Writing || {};
 	};
 
 	ns.Poetry = {
+		"Echoes in the Open": {
+			Author: "Vera",
+			Date: new Date(2026, 10, 24),
+			URL: "https://groundedwren.com/Pages/Writing/Poetry/Echoes_in_the_Open.html",
+		},
 		"A Mote of Love": {
 			Author: "Vera",
 			Date: new Date(2026, 7, 13),

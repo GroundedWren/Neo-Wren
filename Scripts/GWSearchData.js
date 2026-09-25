@@ -447,6 +447,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Poetry */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"Echoes in the Open": {
+		URL: "https://groundedwren.com/Pages/Writing/Poetry/Echoes_in_the_Open.html",
+		Category: "Writing / Poetry",
+		Terms: ["WRITING", "POETRY", "ECHOES", "IN", "THE", "OPEN", "PROSE", "POEM", "VIGNETTES", "VIGNETTE"],
+	},
 	"A Mote of Love": {
 		URL: "https://groundedwren.com/Pages/Writing/Poetry/A_Mote_of_Love.html",
 		Category: "Writing / Poetry",
