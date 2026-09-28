@@ -157,12 +157,36 @@
 			#lft, #rht {
 				display: none !important;
 			}
+
+			#traversiaLyalli {
+				max-width: 550px;
+			}
+		}
+
+		@media(height < 850px) {
+			@media (width > 900px) {
+				#traversiaLyalli {
+					max-width: 50vw;
+				}
+			}
+
+			@media (width > 1200px) {
+				#traversiaLyalli {
+					max-width: 40vw;
+				}
+			}
+
+			@media (width > 1500px) {
+				#traversiaLyalli {
+					max-width: 30vw;
+				}
+			}
 		}
 
 		#traversiaLyalli {
 			grid-area: brd;
+			justify-self: center;
 			width: 100%;
-			max-width: 650px;
 			aspect-ratio: 1 / 1 auto;
 			border-radius: 100%;
 			background-color: var(--accent-color);
@@ -186,8 +210,16 @@
 			grid-area: rht;
 			overflow: clip;
 		}
+
+		#lft, #rht {
+			position: relative;
+			height: 100%;
+		}
 		.side-deco {
 			height: 700px;
+			position: absolute;
+			inset-block-start: 0;
+			height: 100%;
 		}
 	</style>
 </head>
