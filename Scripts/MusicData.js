@@ -2,8 +2,92 @@ window.GW = window.GW || {};
 GW.Pages = GW.Pages || {};
 GW.Pages.Music = GW.Pages.Music || {};
 (function Data(ns) {
-	ns.OrderedCollections = ["Brave Old World", "I'll Miss The Winter", "Grounded Wren", "Non Sequitur", "Relics"];
+	ns.OrderedCollections = ["Misc", "Brave Old World", "I'll Miss The Winter", "Grounded Wren", "Non Sequitur", "Relics"];
 	ns.Collections = {
+		"Misc": {
+			DateStr: "Various",
+			Artists: ["Vera"],
+			Description: "Little tracks yet ungrouped",
+			ImgUrl: "https://groundedwren.com/Img/Music/Snow_Window.png",
+			ImgAlt: "A nearly-white photograph of snowy trees with a frosted glass effect",
+			OrderedTracks: [
+				"The Sea And The Rhythm",
+				"Glass Iron and Fire",
+				"Chult The Brave",
+			],
+			Tracks: {
+				"The Sea And The Rhythm": {
+					Performers: ["Vera"],
+					Composers: ["Iron & Wine"],
+					Instruments: ["Acoustic Guitar"],
+					Recorded: new Date(2026, 7, 15),
+					AudioURL: "https://groundedwren.com/Audio/Music/Misc/The Sea And The Rhythm.mp3",
+					Description: `A cover recorded for Chapter 5 of my TADC fanfic "The Salty Breeze"`
+					 + " Getting Audacity & my new microphone to work were my main challenges with this one.",
+					Lyrics: [
+						[`(Instrumental)`]
+					],
+				},
+				"Glass Iron and Fire": {
+					Performers: ["Vera"],
+					Composers: ["Vera"],
+					Instruments: ["Acoustic Guitar", "Vocals"],
+					Recorded: new Date(2026, 0, 24),
+					AudioURL: "https://groundedwren.com/Audio/Music/Misc/Glass Iron and Fire.mp3",
+					Description: `A little folk anthem for a fictional country in a D&D campaign I ran.`,
+					Lyrics: [
+						[`This is called "Glass, Iron, and fire"`],
+						[
+							`A blood red sky o'er blood red land`,
+							`Blackened rock and ashen sands`,
+							`The steel flow, the loyal clans`,
+							`The people rest in royal hands`
+						],
+						[
+							`With dragon blood the Dracai rule`,
+							`And Volcai prowess is the fuel`,
+							`When every clan unites as one`,
+							`Faltered foes will die or run!`
+						],
+						[
+							`To Emperor, our fealty`,
+							`Hail to life and majesty!`,
+							`With cinder claws and mothers' might`,
+							`Volcan fires do yet burn bright!`
+						],
+					],
+				},
+				"Chult The Brave": {
+					Performers: ["Vera"],
+					Composers: ["Vera"],
+					Instruments: ["Acoustic Guitar", "Vocals"],
+					Recorded: new Date(2026, 0, 24),
+					AudioURL: "https://groundedwren.com/Audio/Music/Misc/Chult The Brave.mp3",
+					Description: `A little folk anthem for a *different* fictional country in a D&D campaign I ran.`,
+					Lyrics: [
+						[`And this is called "Chult The Brave"`],
+						[
+							`Oh Chult, great Chult, our wild lands`,
+							`Mighty creatures and caloused hands`,
+							`Our history in each ancient tree`,
+							`Stands as us, so tall and free`
+						],
+						[
+							`So come, so come, ye wayward souls`,
+							`Hunt our game and fish our shoals`,
+							`Fill your lungs with the jungle air`,
+							`Breathe your roar, and foes dispair!`
+						],
+						[
+							`You'll hear our voices, you'll hear our cries`,
+							`Through typhoons and dragons' lies`,
+							`Chult, brave Chult, this sacred land`,
+							`Is right, is strong, and will always stand`
+						],
+					],
+				},
+			}
+		},
 		"Brave Old World": {
 			DateStr: "2024",
 			Artists: ["Vera"],
