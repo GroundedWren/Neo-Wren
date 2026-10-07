@@ -5,9 +5,11 @@ gw-radiomenu:not(.default) {
 	gap: 5px;
 
 	[role="menuitemradio"] {
-		border-inline: 4px solid var(--alt-btn-bakcground-color, var(--background-color));
+		margin-inline-start: 4px;
+		
 		&[aria-checked="true"] {
-			border-inline-start-color: var(--border-color);
+			margin-inline-start: 0px;
+			border-inline-start: 4px solid var(--border-color);
 		}
 	}
 }
@@ -29,9 +31,10 @@ gw-tablist:not(.default) {
 					outline-color: transparent !important;
 				}
 
-				border-block-start: 3px solid var(--alt-btn-bakcground-color, var(--background-color));
+				margin-block-start: 3px;
 				&[aria-selected="true"] {
-					border-block-start-color: var(--border-color);
+					margin-block-start: 0px;
+					border-block-start: 3px solid var(--border-color);
 				}
 
 				.radio {
