@@ -86,8 +86,9 @@
 				--sec-display: block;
 				--sec-col-img-height: max-content;
 				--fig-justify-content: stretch;
+				--collection-padding-block-end: 0px;
 
-				@media(width < 850px) {
+				@media (width < 850px) {
 					max-height: unset;
 					--main-max-height: none;
 				}
@@ -155,6 +156,7 @@
 					display: var(--sec-display, grid);
 					grid-template-rows: 1fr auto;
 					gap: var(--sec-elem-vert-padding);
+					padding-block-end: var(--collection-padding-block-end, 5px);
 				}
 				&#secTrack {
 					display: var(--sec-display, flex);
@@ -208,6 +210,24 @@
 					justify-items: end;
 					align-items: center;
 				}
+			}
+			#artCollectionDetails {
+				position: sticky;
+				inset-block-end: 0px;
+				background-color: color-mix(in oklab, var(--background-alt-color) 70%, transparent);
+				backdrop-filter: blur(2px);
+				--bRadius: 5px;
+				border-start-start-radius: var(--bRadius);
+				border-start-end-radius: var(--bRadius);
+
+				#hCdt {
+					display: inline;
+					padding-inline-end: 5px;
+					background-color: var(--background-alt-color);
+					--bRadius: 10px;
+					border-start-end-radius: var(--bRadius);
+					border-end-end-radius: var(--bRadius);
+				}	
 			}
 			#artTracks {
 				display: contents;
@@ -309,7 +329,8 @@
 		ul.details {
 			list-style: none;
 			padding: 0;
-			margin-block: 2px;
+			margin-block-start: 2px;
+			margin-block-end: 0px;
 
 			display: flex;
 			flex-direction: row;
