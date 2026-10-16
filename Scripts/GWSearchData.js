@@ -148,7 +148,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 	},
 	"Toaster": {
 		URL: "https://groundedwren.neocities.org/pages/controls/toasterDemo.html",
-		Category: " GW Neocities / Controls",
+		Category: "GW Neocities / Controls",
 		Terms: ["NEOCITIES", "TOASTER", "TOAST", "MESSAGE", "ALERT", "POPUP", "SNACKBAR", "CONTROLS", "CONTROL"]
 	},
 	"Tooltips": {
@@ -400,7 +400,7 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 	"Baby Center Stage": {
 		URL: "https://groundedwren.com/Pages/Writing/Fiction/Baby_Center_Stage.html",
 		Category: "Writing / Fiction",
-		Terms: ["WRITING", "FANFICTION", "FAN", "FICTION", "AMAZING", "DIGITAL", "CIRCUS", "JAX", "RIBBIT"],
+		Terms: ["WRITING", "FANFICTION", "FAN", "FICTION", "AMAZING", "DIGITAL", "CIRCUS", "JAX", "RIBBIT", "BABY", "CENTER", "STAGE"],
 	},
 	"Delcan": {
 		URL: "https://groundedwren.com/Pages/Writing/Fiction/Delcan.html",
