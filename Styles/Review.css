@@ -13,12 +13,11 @@
 		counter-increment: paragraph;
 		line-height: 2lh;
 		margin-block-start: 0;
-		padding-block-start: 16px;
 		margin-block-end: 16px;
 		&::before {
 			content: "¶" counter(paragraph);
 			display: block;
-			line-height: 0;
+			line-height: 1;
 		}
 	}
 
