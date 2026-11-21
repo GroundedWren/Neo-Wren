@@ -397,6 +397,11 @@ GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global,
 
 /** Fiction */
 GW.Controls.Search.Data.Global = { ...GW.Controls.Search.Data.Global, 
+	"Slingshot": {
+		URL: "https://groundedwren.com/Pages/Writing/Fiction/Slingshot.html",
+		Category: "Writing / Fiction",
+		Terms: ["WRITING", "FICTION", "SHORT", "STORY", "FLASH", "SLINGSHSOT", "NEANDERTHAL", "PLEISTOCENE"],
+	},
 	"Baby Center Stage": {
 		URL: "https://groundedwren.com/Pages/Writing/Fiction/Baby_Center_Stage.html",
 		Category: "Writing / Fiction",
