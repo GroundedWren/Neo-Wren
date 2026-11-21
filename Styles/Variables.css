@@ -20,9 +20,7 @@
 	--accent-color: #D5B3D9;
 	--invalid-color: #5C01D8;
 	
-	input {
-		color-scheme: light;
-	}
+	color-scheme: light;
 }
 
 @media not print {
@@ -48,8 +46,6 @@
 		--accent-color: #8D4A95;
 		--invalid-color: #A35FFE;
 		
-		input {
-			color-scheme: dark;
-		}
+		color-scheme: dark;
 	}
 }
